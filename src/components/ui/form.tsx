@@ -1,17 +1,16 @@
-import * as React from 'react'
+import { Label } from '@/components/ui/label'
+import { cn } from '@/lib/utils'
 import type * as LabelPrimitive from '@radix-ui/react-label'
 import { Slot } from '@radix-ui/react-slot'
+import * as React from 'react'
 import {
   Controller,
+  FormProvider,
+  useFormContext,
   type ControllerProps,
   type FieldPath,
-  type FieldValues,
-  FormProvider,
-  useFormContext
+  type FieldValues
 } from 'react-hook-form'
-
-import { cn } from '@/lib/utils'
-import { Label } from '@/components/ui/label'
 
 const Form = FormProvider
 
@@ -165,12 +164,8 @@ React.HTMLAttributes<HTMLParagraphElement>
 FormMessage.displayName = 'FormMessage'
 
 export {
-  useFormField,
-  Form,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-  FormField
+  Form, FormControl,
+  FormDescription, FormField, FormItem,
+  FormLabel, FormMessage, useFormField
 }
+
