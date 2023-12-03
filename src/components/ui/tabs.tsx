@@ -1,14 +1,14 @@
-import { cn } from '@/lib/utils'
-import * as TabsPrimitive from '@radix-ui/react-tabs'
-import * as React from 'react'
+import { cn } from '@/lib/utils';
+import * as TabsPrimitive from '@radix-ui/react-tabs';
+import * as React from 'react';
 
-const Tabs = TabsPrimitive.Root
+const Tabs = TabsPrimitive.Root;
 
 const TabsList = React.forwardRef<
-React.ElementRef<typeof TabsPrimitive.List>,
-React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & {
-  className?: string
-}
+  React.ElementRef<typeof TabsPrimitive.List>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & {
+    className?: string;
+  }
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.List
     ref={ref}
@@ -18,14 +18,14 @@ React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & {
     )}
     {...props}
   />
-))
-TabsList.displayName = TabsPrimitive.List.displayName
+));
+TabsList.displayName = TabsPrimitive.List.displayName;
 
 const TabsTrigger = React.forwardRef<
-React.ElementRef<typeof TabsPrimitive.Trigger>,
-React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {
-  className?: string
-}
+  React.ElementRef<typeof TabsPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {
+    className?: string;
+  }
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Trigger
     ref={ref}
@@ -35,14 +35,14 @@ React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {
     )}
     {...props}
   />
-))
-TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
+));
+TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 
 const TabsContent = React.forwardRef<
-React.ElementRef<typeof TabsPrimitive.Content>,
-React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content> & {
-  className?: string
-}
+  React.ElementRef<typeof TabsPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content> & {
+    className?: string;
+  }
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Content
     ref={ref}
@@ -52,7 +52,7 @@ React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content> & {
     )}
     {...props}
   />
-))
-TabsContent.displayName = TabsPrimitive.Content.displayName
+));
+TabsContent.displayName = TabsPrimitive.Content.displayName;
 
-export { Tabs, TabsContent, TabsList, TabsTrigger }
+export { Tabs, TabsContent, TabsList, TabsTrigger };

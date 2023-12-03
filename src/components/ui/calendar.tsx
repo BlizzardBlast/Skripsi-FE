@@ -1,20 +1,20 @@
-import { buttonVariants } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import * as React from 'react'
-import { DayPicker, type StyledElement } from 'react-day-picker'
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import * as React from 'react';
+import { DayPicker, type StyledElement } from 'react-day-picker';
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>
+export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
-function Calendar ({
+function Calendar({
   className,
   classNames,
   showOutsideDays = true,
   ...props
 }: CalendarProps & {
-  className?: string
-  classNames?: Partial<StyledElement<string>>
-  showOutsideDays: boolean
+  className?: string;
+  classNames?: Partial<StyledElement<string>>;
+  showOutsideDays: boolean;
 }): JSX.Element {
   return (
     <DayPicker
@@ -55,13 +55,13 @@ function Calendar ({
         ...classNames
       }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />
+        IconLeft: ({ ...props }) => <ChevronLeft className='h-4 w-4' />,
+        IconRight: ({ ...props }) => <ChevronRight className='h-4 w-4' />
       }}
       {...props}
     />
-  )
+  );
 }
-Calendar.displayName = 'Calendar'
+Calendar.displayName = 'Calendar';
 
-export { Calendar }
+export { Calendar };
