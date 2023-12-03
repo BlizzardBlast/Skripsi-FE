@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import {
   Toast,
   ToastClose,
@@ -8,7 +9,7 @@ import {
 } from '@/components/ui/toast'
 import { useToast } from '@/components/ui/use-toast'
 
-export function Toaster () {
+export function Toaster (): JSX.Element {
   const { toasts } = useToast()
 
   return (

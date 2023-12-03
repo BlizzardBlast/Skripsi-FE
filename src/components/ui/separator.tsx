@@ -4,7 +4,11 @@ import * as React from 'react'
 
 const Separator = React.forwardRef<
 React.ElementRef<typeof SeparatorPrimitive.Root>,
-React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
+React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root> & {
+  className?: string
+  orientation?: 'horizontal' | 'vertical'
+  decorative?: boolean
+}
 >(
   (
     { className, orientation = 'horizontal', decorative = true, ...props },

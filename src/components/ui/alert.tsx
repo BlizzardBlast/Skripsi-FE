@@ -33,7 +33,9 @@ Alert.displayName = 'Alert'
 
 const AlertTitle = React.forwardRef<
 HTMLParagraphElement,
-React.HTMLAttributes<HTMLHeadingElement>
+React.HTMLAttributes<HTMLHeadingElement> & {
+  className?: string
+}
 >(({ className, ...props }, ref) => (
   <h5
     ref={ref}
@@ -45,7 +47,9 @@ AlertTitle.displayName = 'AlertTitle'
 
 const AlertDescription = React.forwardRef<
 HTMLParagraphElement,
-React.HTMLAttributes<HTMLParagraphElement>
+React.HTMLAttributes<HTMLParagraphElement> & {
+  className?: string
+}
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -56,4 +60,3 @@ React.HTMLAttributes<HTMLParagraphElement>
 AlertDescription.displayName = 'AlertDescription'
 
 export { Alert, AlertDescription, AlertTitle }
-

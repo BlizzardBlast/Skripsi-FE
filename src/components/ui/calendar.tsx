@@ -2,7 +2,7 @@ import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import * as React from 'react'
-import { DayPicker } from 'react-day-picker'
+import { DayPicker, type StyledElement } from 'react-day-picker'
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -11,7 +11,11 @@ function Calendar ({
   classNames,
   showOutsideDays = true,
   ...props
-}: CalendarProps) {
+}: CalendarProps & {
+  className?: string
+  classNames?: Partial<StyledElement<string>>
+  showOutsideDays: boolean
+}): JSX.Element {
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}

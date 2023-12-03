@@ -12,7 +12,7 @@ module.exports = {
     'plugin:react-hooks/recommended'
   ],
   overrides: [],
-  ignorePatterns: ['dist', '.eslintrc.cjs', '**/src/components/**'],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
