@@ -5,11 +5,12 @@ import {
 } from '@radix-ui/react-navigation-menu';
 import { Link } from 'react-router-dom';
 import { navigationMenuTriggerStyle } from '../ui/navigationMenuTriggerStyle';
+import SearchHeader from '../search/search-header';
 
 export default function Header(): JSX.Element {
   return (
-    <NavigationMenu className='flex justify-center items-center'>
-      <NavigationMenuList className='flex flex-row justify-between w-[98.9svw]'>
+    <NavigationMenu className='flex justify-center items-center h-[10svh]'>
+      <NavigationMenuList className='flex flex-row justify-between w-[98.9svw] gap-4'>
         {/* <NavigationMenuItem>
           <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>Home</NavigationMenuTrigger>
           <NavigationMenuContent className='absolute'>
@@ -45,7 +46,7 @@ export default function Header(): JSX.Element {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem> */}
-        <div className='flex flex-row'>
+        <div className='flex flex-row items-center'>
           <NavigationMenuItem>
             <Link to='/' className={navigationMenuTriggerStyle()}>
               Home
@@ -62,6 +63,7 @@ export default function Header(): JSX.Element {
             </Link>
           </NavigationMenuItem>
         </div>
+        <SearchHeader />
         <div className='flex flex-row'>
           <NavigationMenuItem>
             <Link to='/login' className={navigationMenuTriggerStyle()}>
