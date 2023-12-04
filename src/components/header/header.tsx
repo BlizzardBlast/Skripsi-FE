@@ -1,7 +1,6 @@
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList
 } from '@radix-ui/react-navigation-menu';
 import { Link } from 'react-router-dom';
@@ -10,7 +9,7 @@ import { navigationMenuTriggerStyle } from '../ui/navigationMenuTriggerStyle';
 export default function Header(): JSX.Element {
   return (
     <NavigationMenu className='flex justify-center items-center'>
-      <NavigationMenuList className='flex flex-row justify-between w-[100svw]'>
+      <NavigationMenuList className='flex flex-row justify-between w-[98.9svw]'>
         {/* <NavigationMenuItem>
           <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>Home</NavigationMenuTrigger>
           <NavigationMenuContent className='absolute'>
@@ -48,40 +47,30 @@ export default function Header(): JSX.Element {
         </NavigationMenuItem> */}
         <div className='flex flex-row'>
           <NavigationMenuItem>
-            <Link to='/'>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Home
-              </NavigationMenuLink>
+            <Link to='/' className={navigationMenuTriggerStyle()}>
+              Home
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link to='/about-us'>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                About Us
-              </NavigationMenuLink>
+            <Link to='/about-us' className={navigationMenuTriggerStyle()}>
+              About Us
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link to='/contact'>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Contact Us
-              </NavigationMenuLink>
+            <Link to='/contact' className={navigationMenuTriggerStyle()}>
+              Contact Us
             </Link>
           </NavigationMenuItem>
         </div>
         <div className='flex flex-row'>
           <NavigationMenuItem>
-            <Link to='/login'>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Login
-              </NavigationMenuLink>
+            <Link to='/login' className={navigationMenuTriggerStyle()}>
+              Login
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link to='/register'>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Register
-              </NavigationMenuLink>
+            <Link to='/register' className={navigationMenuTriggerStyle()}>
+              Register
             </Link>
           </NavigationMenuItem>
         </div>
