@@ -8,7 +8,7 @@ const rootElement = document.getElementById('root');
 if (rootElement !== null && rootElement !== undefined) {
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
-      <App />
+      <App data-testid='app' />
     </React.StrictMode>
   );
 } else {
