@@ -1,78 +1,79 @@
+import { cn } from '@/lib/utils';
+import { forwardRef } from 'react';
+import { Link } from 'react-router-dom';
+import SearchHeader from '../search/search-header';
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuList
-} from '@radix-ui/react-navigation-menu';
-import { Link } from 'react-router-dom';
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger
+} from '../ui/navigation-menu';
 import { navigationMenuTriggerStyle } from '../ui/navigationMenuTriggerStyle';
-import SearchHeader from '../search/search-header';
+import Paragraph from '../typography/paragraph';
 
 export default function Header(): JSX.Element {
   return (
     <NavigationMenu className='flex justify-center items-center h-[10svh]'>
       <NavigationMenuList className='flex flex-row justify-between w-[98.9svw] gap-4'>
-        {/* <NavigationMenuItem>
-          <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>Home</NavigationMenuTrigger>
-          <NavigationMenuContent className='absolute'>
-            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              <li className="row-span-3">
-                <NavigationMenuLink asChild>
-                  <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
-                  >
-                    <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
-                    </div>
-                    <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed components built with Radix UI and
-                      Tailwind CSS.
-                    </p>
-                  </a>
-                </NavigationMenuLink>
-              </li>
-              <Link to="/hmm">
-                <h1>Introduction</h1>
-                Re-usable components built using Radix UI and Tailwind CSS.
-              </Link>
-              <Link to="/hmm">
-                <h1>Installation</h1>
-                How to install dependencies and structure your app.
-              </Link>
-              <Link to="/hmm">
-                <h1>Typography</h1>
-                Styles for headings, paragraphs, lists...etc
-              </Link>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem> */}
         <div className='flex flex-row items-center'>
           <NavigationMenuItem>
             <Link to='/' className={navigationMenuTriggerStyle()}>
-              Home
+              Beranda
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
+            <Link to='/kontak' className={navigationMenuTriggerStyle()}>
+              Hubungi Kami
+            </Link>
+          </NavigationMenuItem>
+          {/* <NavigationMenuItem>
             <Link to='/about-us' className={navigationMenuTriggerStyle()}>
               About Us
             </Link>
-          </NavigationMenuItem>
+          </NavigationMenuItem> */}
           <NavigationMenuItem>
-            <Link to='/contact' className={navigationMenuTriggerStyle()}>
-              Contact Us
-            </Link>
+            <NavigationMenuTrigger>Tentang Kami</NavigationMenuTrigger>
+            <NavigationMenuContent className='absolute'>
+              <ul className='flex gap-3 p-4 w-[350px] lg:w-[450px] items-center'>
+                <div>
+                  <li className='row-span-3'>
+                    <Paragraph className='flex h-full w-full select-none flex-col justify-end rounded-md p-6 no-underline outline-none focus:shadow-md'>
+                      <span className='mb-2 mt-4 text-lg font-medium'>
+                        Tentang Kami
+                      </span>
+                    </Paragraph>
+                  </li>
+                </div>
+                <div>
+                  <ListItem href='/docs' title='Mengenai AsuhHewan'>
+                    Kenal kami lebih dalam
+                  </ListItem>
+                  <ListItem
+                    href='/docs/installation'
+                    title='Staf & Dewan Direksi'
+                  >
+                    Struktur Organisasi dari AsuhHewan
+                  </ListItem>
+                  <ListItem href='/docs/primitives/typography' title='Kontak'>
+                    Hubungi Kami
+                  </ListItem>
+                </div>
+              </ul>
+            </NavigationMenuContent>
           </NavigationMenuItem>
         </div>
         <SearchHeader />
         <div className='flex flex-row'>
           <NavigationMenuItem>
-            <Link to='/login' className={navigationMenuTriggerStyle()}>
-              Login
+            <Link to='/masuk' className={navigationMenuTriggerStyle()}>
+              Masuk
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link to='/register' className={navigationMenuTriggerStyle()}>
-              Register
+            <Link to='/daftar' className={navigationMenuTriggerStyle()}>
+              Daftar
             </Link>
           </NavigationMenuItem>
         </div>
@@ -80,3 +81,29 @@ export default function Header(): JSX.Element {
     </NavigationMenu>
   );
 }
+
+const ListItem = forwardRef<
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'>
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            className
+          )}
+          {...props}
+        >
+          <div className='text-sm font-medium leading-none'>{title}</div>
+          <p className='line-clamp-2 text-sm leading-snug text-muted-foreground'>
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = 'ListItem';

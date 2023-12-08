@@ -1,69 +1,66 @@
 import { FaFacebook, FaInstagramSquare, FaPinterest } from 'react-icons/fa';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 import { IconContext } from 'react-icons';
+import Paragraph from '../typography/paragraph';
 
 export default function Footer(): JSX.Element {
   const firstColumnContent = [
-    'Tentang Tokopedia',
-    'Hak Kekayaan Intelektual',
-    'Karir',
-    'Blog',
-    'Bridestory',
-    'Tokopedia Parents',
-    'Mitra Blog',
-    'Tokopedia Affiliate Program',
-    'Tokopedia B2B Digital',
-    'Tokopedia Marketing Solutions'
+    'Adopsi',
+    'Donasi',
+    'Sukarelawan',
+    'Program Ambassador',
+    'Makanan dan Persediaan',
+    'Penggalangan dana'
   ];
-  const beliContent = [
-    'Tagihan & Top Up',
-    'Tukar Tambah Handphone',
-    'Tokopedia COD'
+
+  const aboutContent = [
+    'Lowongan Kerja',
+    'Staf & Dewan Direksi',
+    'Berita dan Acara',
+    'Kontak'
   ];
-  const jualContent = [
-    'Pusat Edukasi Seller',
-    'Mitra Toppers',
-    'Daftar Official Store'
-  ];
-  const bantuanDanPanduanContent = [
-    'Tokopedia Care',
-    'Syarat dan Ketentuan',
-    'Kebijakan Privasi',
-    'Mitra'
-  ];
+
+  const resourcesContent = ['FAQ', 'Kemitraan', 'Untuk Pengembang'];
+
   return (
     <div className='min-h-[20svh] border-t-2 border-solid border-gray-300 px-36 py-10 flex flex-col sm:flex-row justify-center gap-6 leading-7'>
       <div>
-        <b>Tokopedia</b>
-        <br />
+        <Paragraph className='mb-3'>
+          <b>
+            Bagaimana Anda
+            <br />
+            dapat membantu?
+          </b>
+        </Paragraph>
         {firstColumnContent.map((content, index) => (
-          <p key={`content${index}`}>{content}</p>
+          <Paragraph key={`content${index}`}>{content}</Paragraph>
         ))}
       </div>
 
       <div>
-        <b>Beli</b>
-        <br />
-        {beliContent.map((content, index) => (
-          <p key={`beliContent${index}`}>{content}</p>
+        <Paragraph className='mb-3'>
+          <b>Mengenai AsuhHewan</b>
+        </Paragraph>
+        {aboutContent.map((content, index) => (
+          <Paragraph key={`aboutContent${index}`}>{content}</Paragraph>
         ))}
         <br />
-
-        <b>Jual</b>
-        <br />
-        {jualContent.map((content, index) => (
-          <p key={`jualContent${index}`}>{content}</p>
-        ))}
-        <br />
-
-        <b>Bantuan dan Panduan</b>
-        <br />
-        {bantuanDanPanduanContent.map((content, index) => (
-          <p key={`bantuanDanPanduanContent${index}`}>{content}</p>
-        ))}
       </div>
+
       <div>
-        <b>Ikuti Kami</b>
+        <Paragraph className='mb-3'>
+          <b>Sumber Daya</b>
+        </Paragraph>
+        {resourcesContent.map((content, index) => (
+          <Paragraph key={`resourcesContent${index}`}>{content}</Paragraph>
+        ))}
+        <br />
+      </div>
+
+      <div>
+        <Paragraph className='mb-3'>
+          <b>Ikuti Kami</b>
+        </Paragraph>
         <IconContext.Provider value={{ size: '1.3rem' }}>
           <div className='flex flex-row gap-2 mt-1'>
             <FaFacebook />
