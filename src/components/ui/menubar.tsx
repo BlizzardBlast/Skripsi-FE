@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils.ts';
 import { type CheckedState } from '@radix-ui/react-checkbox';
 import * as MenubarPrimitive from '@radix-ui/react-menubar';
 import { Check, ChevronRight, Circle } from 'lucide-react';

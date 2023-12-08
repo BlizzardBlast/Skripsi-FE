@@ -1,5 +1,5 @@
-import HeadingOne from '@/components/typography/headingOne';
-import { Button } from '@/components/ui/button';
+import HeadingOne from '@/components/typography/headingOne.tsx';
+import { Button } from '@/components/ui/button.tsx';
 import { useState } from 'react';
 
 export default function Home(): JSX.Element {

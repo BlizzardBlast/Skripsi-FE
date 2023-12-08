@@ -1,7 +1,7 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils.ts';
 import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
-import SearchHeader from '../search/search-header';
+import SearchHeader from '../search/search-header.tsx';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,9 +9,9 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger
-} from '../ui/navigation-menu';
-import { navigationMenuTriggerStyle } from '../ui/navigationMenuTriggerStyle';
-import Paragraph from '../typography/paragraph';
+} from '../ui/navigation-menu.tsx';
+import { navigationMenuTriggerStyle } from '../ui/navigationMenuTriggerStyle.tsx';
+import Paragraph from '../typography/paragraph.tsx';
 
 export default function Header(): JSX.Element {
   return (

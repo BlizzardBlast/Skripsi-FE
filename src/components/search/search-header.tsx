@@ -1,4 +1,4 @@
-import { Input } from '../ui/input';
+import { Input } from '../ui/input.tsx';
 import './search-header.css';
 
 export default function SearchHeader(): JSX.Element {

@@ -1,8 +1,8 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils.ts';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { ChevronDown } from 'lucide-react';
 import * as React from 'react';
-import { navigationMenuTriggerStyle } from './navigationMenuTriggerStyle';
+import { navigationMenuTriggerStyle } from './navigationMenuTriggerStyle.tsx';
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,

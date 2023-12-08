@@ -1,4 +1,4 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
@@ -7,9 +7,9 @@ const rootElement = document.getElementById('root');
 
 if (rootElement !== null && rootElement !== undefined) {
   ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
-      <App data-testid='app' />
-    </React.StrictMode>
+    <StrictMode>
+      <App />
+    </StrictMode>
   );
 } else {
   console.error("Root element with id 'root' not found");

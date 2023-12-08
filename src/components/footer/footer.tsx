@@ -1,7 +1,7 @@
 import { FaFacebook, FaInstagramSquare, FaPinterest } from 'react-icons/fa';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 import { IconContext } from 'react-icons';
-import Paragraph from '../typography/paragraph';
+import Paragraph from '../typography/paragraph.tsx';
 
 export default function Footer(): JSX.Element {
   const firstColumnContent = [
