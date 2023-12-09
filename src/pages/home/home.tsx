@@ -1,4 +1,5 @@
 import HeadingOne from '@/components/typography/headingOne.tsx';
+import Paragraph from '@/components/typography/paragraph.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { useState } from 'react';
 
@@ -13,7 +14,7 @@ export default function Home(): JSX.Element {
           setCount((prevCount) => prevCount + 1);
         }}
       >
-        Count is: {count}
+        <Paragraph>Count is: {count}</Paragraph>
       </Button>
     </div>
   );

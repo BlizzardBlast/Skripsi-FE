@@ -26,6 +26,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true }
     ],
-    'react/react-in-jsx-scope': 'off'
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type']
   }
 };
