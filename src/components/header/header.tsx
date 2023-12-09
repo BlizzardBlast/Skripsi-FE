@@ -81,7 +81,7 @@ const opsiBantuKami = [
   {
     name: 'Penggalangan Dana',
     description: 'Ikuti program Fundraising kami',
-    href: '/program-Fundraising',
+    href: '/program-fundraising',
     icon: BanknotesIcon
   }
 ];
@@ -115,7 +115,7 @@ export default function Header(): JSX.Element {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className='bg-[#FFFBE9]'>
+    <header className='bg-quatenary-color'>
       <nav
         className='mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8'
         aria-label='Global'
@@ -133,7 +133,7 @@ export default function Header(): JSX.Element {
         <div className='flex lg:hidden'>
           <button
             type='button'
-            className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-[#AD8B73]'
+            className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-primary-color'
             onClick={() => {
               setMobileMenuOpen(true);
             }}
@@ -144,10 +144,10 @@ export default function Header(): JSX.Element {
         </div>
         <Popover.Group className='hidden lg:flex lg:gap-x-12'>
           <Popover className='relative'>
-            <Popover.Button className='flex items-center bg-transparent gap-x-1 px-2 rounded text-sm font-semibold leading-6 border-0 hover:text-[#CEAB93] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#AD8B73] text-[#AD8B73]'>
+            <Popover.Button className='flex items-center bg-transparent gap-x-1 px-2 rounded text-sm font-semibold leading-6 border-0 hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color text-primary-color'>
               Bantu Kami
               <ChevronDownIcon
-                className='h-5 w-5 flex-none text-gray-400'
+                className='h-5 w-5 flex-none text-secondary-color'
                 aria-hidden='true'
               />
             </Popover.Button>
@@ -161,28 +161,28 @@ export default function Header(): JSX.Element {
               leaveFrom='opacity-100 translate-y-0'
               leaveTo='opacity-0 translate-y-1'
             >
-              <Popover.Panel className='absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-[#FFFBE9] shadow-lg ring-1 ring-gray-900/5'>
+              <Popover.Panel className='absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-quaternary-color shadow-lg ring-1 ring-gray-900/5'>
                 <div className='p-4'>
                   {opsiBantuKami.map((item) => (
                     <div
                       key={item.name}
-                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-[#E3CAA5]'
+                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-tertiary-color'
                     >
-                      <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-[#E3CAA5] group-hover:bg-[#FFFBE9]'>
+                      <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-tertiary-color group-hover:bg-quaternary-color'>
                         <item.icon
-                          className='h-6 w-6 text-[#AD8B73] group-hover:text-[#CEAB93]'
+                          className='h-6 w-6 text-primary-color group-hover:text-secondary-color'
                           aria-hidden='true'
                         />
                       </div>
                       <div className='flex-auto'>
                         <a
                           href={item.href}
-                          className='block font-semibold text-[#AD8B73]'
+                          className='block font-semibold text-primary-color'
                         >
                           {item.name}
                           <span className='absolute inset-0' />
                         </a>
-                        <p className='mt-1 text-[#CEAB93] group-hover:text-[#FFFBE9]'>
+                        <p className='mt-1 text-secondary-color group-hover:text-quaternary-color'>
                           {item.description}
                         </p>
                       </div>
@@ -193,10 +193,10 @@ export default function Header(): JSX.Element {
             </Transition>
           </Popover>
           <Popover className='relative'>
-            <Popover.Button className='flex items-center bg-transparent gap-x-1 px-2 rounded text-sm font-semibold leading-6 border-0 hover:text-[#CEAB93] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#AD8B73] text-[#AD8B73]'>
+            <Popover.Button className='flex items-center bg-transparent gap-x-1 px-2 rounded text-sm font-semibold leading-6 border-0 hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color text-primary-color'>
               Tentang Kami
               <ChevronDownIcon
-                className='h-5 w-5 flex-none text-gray-400'
+                className='h-5 w-5 flex-none text-secondary-color'
                 aria-hidden='true'
               />
             </Popover.Button>
@@ -210,28 +210,28 @@ export default function Header(): JSX.Element {
               leaveFrom='opacity-100 translate-y-0'
               leaveTo='opacity-0 translate-y-1'
             >
-              <Popover.Panel className='absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-[#FFFBE9] shadow-lg ring-1 ring-gray-900/5'>
+              <Popover.Panel className='absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-quaternary-color shadow-lg ring-1 ring-gray-900/5'>
                 <div className='p-4'>
                   {opsiTentangKami.map((item) => (
                     <div
                       key={item.name}
-                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-[#E3CAA5]'
+                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-tertiary-color'
                     >
-                      <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-[#E3CAA5] group-hover:bg-[#FFFBE9]'>
+                      <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-tertiary-color group-hover:bg-quaternary-color'>
                         <item.icon
-                          className='h-6 w-6 text-[#AD8B73] group-hover:text-[#CEAB93]'
+                          className='h-6 w-6 text-primary-color group-hover:text-secondary-color'
                           aria-hidden='true'
                         />
                       </div>
                       <div className='flex-auto'>
                         <a
                           href={item.href}
-                          className='block font-semibold text-[#AD8B73]'
+                          className='block font-semibold text-primary-color'
                         >
                           {item.name}
                           <span className='absolute inset-0' />
                         </a>
-                        <p className='mt-1 text-[#CEAB93] group-hover:text-[#FFFBE9]'>
+                        <p className='mt-1 text-secondary-color group-hover:text-quaternary-color'>
                           {item.description}
                         </p>
                       </div>
@@ -242,10 +242,10 @@ export default function Header(): JSX.Element {
             </Transition>
           </Popover>
           <Popover className='relative'>
-            <Popover.Button className='flex items-center bg-transparent gap-x-1 px-2 rounded text-sm font-semibold leading-6 border-0 hover:text-[#CEAB93] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#AD8B73] text-[#AD8B73]'>
+            <Popover.Button className='flex items-center bg-transparent gap-x-1 px-2 rounded text-sm font-semibold leading-6 border-0 hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color text-primary-color'>
               Sumber Daya
               <ChevronDownIcon
-                className='h-5 w-5 flex-none text-gray-400'
+                className='h-5 w-5 flex-none text-secondary-color'
                 aria-hidden='true'
               />
             </Popover.Button>
@@ -259,28 +259,28 @@ export default function Header(): JSX.Element {
               leaveFrom='opacity-100 translate-y-0'
               leaveTo='opacity-0 translate-y-1'
             >
-              <Popover.Panel className='absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-[#FFFBE9] shadow-lg ring-1 ring-gray-900/5'>
+              <Popover.Panel className='absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-quaternary-color shadow-lg ring-1 ring-gray-900/5'>
                 <div className='p-4'>
                   {opsiSumberDaya.map((item) => (
                     <div
                       key={item.name}
-                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-[#E3CAA5]'
+                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-tertiary-color'
                     >
-                      <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-[#E3CAA5] group-hover:bg-[#FFFBE9]'>
+                      <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-tertiary-color group-hover:bg-quaternary-color'>
                         <item.icon
-                          className='h-6 w-6 text-[#AD8B73] group-hover:text-[#CEAB93]'
+                          className='h-6 w-6 text-primary-color group-hover:text-secondary-color'
                           aria-hidden='true'
                         />
                       </div>
                       <div className='flex-auto'>
                         <a
                           href={item.href}
-                          className='block font-semibold text-[#AD8B73]'
+                          className='block font-semibold text-primary-color'
                         >
                           {item.name}
                           <span className='absolute inset-0' />
                         </a>
-                        <p className='mt-1 text-[#CEAB93] group-hover:text-[#FFFBE9]'>
+                        <p className='mt-1 text-secondary-color group-hover:text-quaternary-color'>
                           {item.description}
                         </p>
                       </div>
@@ -292,7 +292,7 @@ export default function Header(): JSX.Element {
           </Popover>
           <a
             href='/adopsi'
-            className='text-sm font-semibold leading-6 text-[#AD8B73] hover:text-[#CEAB93] px-2'
+            className='text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color px-2'
           >
             Adopsi
           </a>
@@ -300,13 +300,13 @@ export default function Header(): JSX.Element {
         <div className='hidden lg:flex lg:flex-1 lg:justify-end gap-10'>
           <a
             href='/masuk'
-            className='text-sm font-semibold leading-6 text-[#AD8B73] hover:text-[#CEAB93] px-2'
+            className='text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color px-2'
           >
             Masuk
           </a>
           <a
             href='/daftar'
-            className='text-sm font-semibold leading-6 text-[#AD8B73] hover:text-[#CEAB93] px-2'
+            className='text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color px-2'
           >
             Daftar
           </a>
@@ -314,12 +314,12 @@ export default function Header(): JSX.Element {
       </nav>
       <Dialog
         as='div'
-        className='lg:hidden bg-[#FFFBE9]'
+        className='lg:hidden bg-quaternary-color'
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
       >
         <div className='fixed inset-0 z-10' />
-        <Dialog.Panel className='fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-[#FFFBE9] px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-[#AD8B73]'>
+        <Dialog.Panel className='fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-quaternary-color px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-primary-color'>
           <div className='flex items-center justify-between'>
             <a href='#' className='-m-1.5 p-1.5'>
               <span className='sr-only'>Asuh Hewan</span>
@@ -331,7 +331,7 @@ export default function Header(): JSX.Element {
             </a>
             <button
               type='button'
-              className='-m-2.5 rounded-md p-2.5 text-[#AD8B73]'
+              className='-m-2.5 rounded-md p-2.5 text-primary-color'
               onClick={() => {
                 setMobileMenuOpen(false);
               }}
@@ -341,12 +341,12 @@ export default function Header(): JSX.Element {
             </button>
           </div>
           <div className='mt-6 flow-root'>
-            <div className='-my-6 divide-y divide-[#AD8B73]'>
+            <div className='-my-6 divide-y divide-primary-color'>
               <div className='space-y-2 py-6'>
                 <Disclosure as='div' className='-mx-3'>
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-[#AD8B73] hover:bg-[#E3CAA5]'>
+                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'>
                         Bantu Kami
                         <ChevronDownIcon
                           className={classNames(
@@ -362,7 +362,7 @@ export default function Header(): JSX.Element {
                             key={item.name}
                             as='a'
                             href={item.href}
-                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-[#AD8B73] hover:bg-[#E3CAA5]'
+                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -374,7 +374,7 @@ export default function Header(): JSX.Element {
                 <Disclosure as='div' className='-mx-3'>
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-[#AD8B73] hover:bg-[#E3CAA5]'>
+                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'>
                         Tentang Kami
                         <ChevronDownIcon
                           className={classNames(
@@ -390,7 +390,7 @@ export default function Header(): JSX.Element {
                             key={item.name}
                             as='a'
                             href={item.href}
-                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-[#AD8B73] hover:bg-[#E3CAA5]'
+                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -402,7 +402,7 @@ export default function Header(): JSX.Element {
                 <Disclosure as='div' className='-mx-3'>
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-[#AD8B73] hover:bg-[#E3CAA5]'>
+                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'>
                         Sumber Daya
                         <ChevronDownIcon
                           className={classNames(
@@ -418,7 +418,7 @@ export default function Header(): JSX.Element {
                             key={item.name}
                             as='a'
                             href={item.href}
-                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-[#AD8B73] hover:bg-[#E3CAA5]'
+                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -429,13 +429,13 @@ export default function Header(): JSX.Element {
                 </Disclosure>
                 <a
                   href='/adopsi'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-[#AD8B73] hover:bg-[#E3CAA5]'
+                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
                 >
                   Adopsi
                 </a>
                 <a
                   href='/kontak'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-[#AD8B73] hover:bg-[#E3CAA5]'
+                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
                 >
                   Hubungi Kami
                 </a>
@@ -443,13 +443,13 @@ export default function Header(): JSX.Element {
               <div className='py-6'>
                 <a
                   href='/masuk'
-                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-[#AD8B73] hover:bg-[#E3CAA5]'
+                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
                 >
                   Masuk
                 </a>
                 <a
                   href='/daftar'
-                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-[#AD8B73] hover:bg-[#E3CAA5]'
+                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
                 >
                   Daftar
                 </a>
