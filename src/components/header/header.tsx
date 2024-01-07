@@ -144,7 +144,7 @@ export default function Header(): JSX.Element {
         </div>
         <Popover.Group className='hidden lg:flex lg:gap-x-12'>
           <Popover className='relative'>
-            <Popover.Button className='flex items-center bg-transparent gap-x-1 px-2 rounded text-sm font-semibold leading-6 border-0 hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color text-primary-color'>
+            <Popover.Button className='flex items-center gap-x-1 rounded border-0 bg-transparent px-2 text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color'>
               Bantu Kami
               <ChevronDownIcon
                 className='h-5 w-5 flex-none text-secondary-color'
@@ -193,7 +193,7 @@ export default function Header(): JSX.Element {
             </Transition>
           </Popover>
           <Popover className='relative'>
-            <Popover.Button className='flex items-center bg-transparent gap-x-1 px-2 rounded text-sm font-semibold leading-6 border-0 hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color text-primary-color'>
+            <Popover.Button className='flex items-center gap-x-1 rounded border-0 bg-transparent px-2 text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color'>
               Tentang Kami
               <ChevronDownIcon
                 className='h-5 w-5 flex-none text-secondary-color'
@@ -242,7 +242,7 @@ export default function Header(): JSX.Element {
             </Transition>
           </Popover>
           <Popover className='relative'>
-            <Popover.Button className='flex items-center bg-transparent gap-x-1 px-2 rounded text-sm font-semibold leading-6 border-0 hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color text-primary-color'>
+            <Popover.Button className='flex items-center gap-x-1 rounded border-0 bg-transparent px-2 text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color'>
               Sumber Daya
               <ChevronDownIcon
                 className='h-5 w-5 flex-none text-secondary-color'
@@ -292,21 +292,21 @@ export default function Header(): JSX.Element {
           </Popover>
           <a
             href='/adopsi'
-            className='text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color px-2'
+            className='px-2 text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color'
           >
             Adopsi
           </a>
         </Popover.Group>
-        <div className='hidden lg:flex lg:flex-1 lg:justify-end gap-10'>
+        <div className='hidden gap-10 lg:flex lg:flex-1 lg:justify-end'>
           <a
             href='/masuk'
-            className='text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color px-2'
+            className='px-2 text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color'
           >
             Masuk
           </a>
           <a
             href='/daftar'
-            className='text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color px-2'
+            className='px-2 text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color'
           >
             Daftar
           </a>
@@ -314,7 +314,7 @@ export default function Header(): JSX.Element {
       </nav>
       <Dialog
         as='div'
-        className='lg:hidden bg-quaternary-color'
+        className='bg-quaternary-color lg:hidden'
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
       >

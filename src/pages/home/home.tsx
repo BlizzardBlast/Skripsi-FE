@@ -6,7 +6,7 @@ import { useState } from 'react';
 export default function Home(): JSX.Element {
   const [count, setCount] = useState(0);
   return (
-    <div className='h-[50vh] flex justify-center items-center flex-col'>
+    <div className='flex h-[50vh] flex-col items-center justify-center'>
       <HeadingOne>Ni Hao</HeadingOne>
       <br />
       <Button

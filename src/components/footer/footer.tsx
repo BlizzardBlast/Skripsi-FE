@@ -28,7 +28,7 @@ export default function Footer(): JSX.Element {
   ];
 
   return (
-    <div className='min-h-[20svh] border-t-2 border-solid border-tertiary-color px-36 py-10 flex flex-col sm:flex-row justify-center gap-6 leading-7'>
+    <div className='flex min-h-[20svh] flex-col justify-center gap-6 border-t-2 border-solid border-tertiary-color px-36 py-10 leading-7 sm:flex-row'>
       <div>
         <Paragraph className='mb-3 text-primary-color'>
           <b>
@@ -41,7 +41,7 @@ export default function Footer(): JSX.Element {
           <Link
             key={`content${index}`}
             to={content.link}
-            className='text-primary-color leading-7'
+            className='leading-7 text-primary-color'
           >
             {content.title}
             <br />
@@ -57,7 +57,7 @@ export default function Footer(): JSX.Element {
           <Link
             key={`aboutContent${index}`}
             to={content.link}
-            className='text-primary-color leading-7'
+            className='leading-7 text-primary-color'
           >
             {content.title}
             <br />
@@ -74,7 +74,7 @@ export default function Footer(): JSX.Element {
           <Link
             key={`resourcesContent${index}`}
             to={content.link}
-            className='text-primary-color leading-7'
+            className='leading-7 text-primary-color'
           >
             {content.title}
             <br />
@@ -88,7 +88,7 @@ export default function Footer(): JSX.Element {
           <b>Ikuti Kami</b>
         </Paragraph>
         <IconContext.Provider value={{ size: '1.3rem' }}>
-          <div className='flex flex-row gap-2 mt-1'>
+          <div className='mt-1 flex flex-row gap-2'>
             <a
               href={'https://www.facebook.com'}
               target='_blank'
