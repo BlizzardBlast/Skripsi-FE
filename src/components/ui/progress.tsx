@@ -6,7 +6,7 @@ const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {
     className?: string;
-    value?: number | null | undefined;
+    value?: number | null;
   }
 >(({ className, value, ...props }, ref) => (
   <ProgressPrimitive.Root

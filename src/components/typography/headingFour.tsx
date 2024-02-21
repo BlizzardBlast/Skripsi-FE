@@ -2,9 +2,9 @@ import { type ReactNode } from 'react';
 
 export default function HeadingFour({
   children
-}: {
+}: Readonly<{
   children: ReactNode;
-}): JSX.Element {
+}>): JSX.Element {
   return (
     <h4 className='scroll-m-20 text-xl font-semibold tracking-tight'>
       {children}

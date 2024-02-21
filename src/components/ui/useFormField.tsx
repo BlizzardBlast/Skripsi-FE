@@ -6,7 +6,7 @@ const useFormField = (): {
   invalid: boolean;
   isDirty: boolean;
   isTouched: boolean;
-  error?: FieldError | undefined;
+  error?: FieldError;
   id: string;
   name: string;
   formItemId: string;

@@ -3,6 +3,7 @@ import { FaFacebook, FaInstagramSquare, FaPinterest } from 'react-icons/fa';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import Paragraph from '../typography/paragraph.tsx';
+import { useMemo } from 'react';
 
 export default function Footer(): JSX.Element {
   const firstColumnContent = [
@@ -37,9 +38,9 @@ export default function Footer(): JSX.Element {
             dapat membantu?
           </b>
         </Paragraph>
-        {firstColumnContent.map((content, index) => (
+        {firstColumnContent.map((content) => (
           <Link
-            key={`content${index}`}
+            key={content.link}
             to={content.link}
             className='leading-7 text-primary-color'
           >
@@ -53,9 +54,9 @@ export default function Footer(): JSX.Element {
         <Paragraph className='mb-3 text-primary-color'>
           <b>Mengenai AsuhHewan</b>
         </Paragraph>
-        {aboutContent.map((content, index) => (
+        {aboutContent.map((content) => (
           <Link
-            key={`aboutContent${index}`}
+            key={content.link}
             to={content.link}
             className='leading-7 text-primary-color'
           >
@@ -70,9 +71,9 @@ export default function Footer(): JSX.Element {
         <Paragraph className='mb-3 text-primary-color'>
           <b>Sumber Daya</b>
         </Paragraph>
-        {resourcesContent.map((content, index) => (
+        {resourcesContent.map((content) => (
           <Link
-            key={`resourcesContent${index}`}
+            key={content.link}
             to={content.link}
             className='leading-7 text-primary-color'
           >
@@ -87,7 +88,7 @@ export default function Footer(): JSX.Element {
         <Paragraph className='mb-3 text-primary-color'>
           <b>Ikuti Kami</b>
         </Paragraph>
-        <IconContext.Provider value={{ size: '1.3rem' }}>
+        <IconContext.Provider value={useMemo(() => ({ size: '1.3rem' }), [])}>
           <div className='mt-1 flex flex-row gap-2'>
             <a
               href={'https://www.facebook.com'}

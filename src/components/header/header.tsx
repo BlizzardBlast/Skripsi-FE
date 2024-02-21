@@ -121,7 +121,7 @@ export default function Header(): JSX.Element {
         aria-label='Global'
       >
         <div className='flex lg:flex-1'>
-          <a href='#' className='-m-1.5 p-1.5'>
+          <a href='#!' className='-m-1.5 p-1.5'>
             <span className='sr-only'>Asuh Hewan</span>
             <LoadImage
               source='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
@@ -321,7 +321,7 @@ export default function Header(): JSX.Element {
         <div className='fixed inset-0 z-10' />
         <Dialog.Panel className='fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-quaternary-color px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-primary-color'>
           <div className='flex items-center justify-between'>
-            <a href='#' className='-m-1.5 p-1.5'>
+            <a href='#!' className='-m-1.5 p-1.5'>
               <span className='sr-only'>Asuh Hewan</span>
               <LoadImage
                 source='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
