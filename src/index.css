@@ -34,10 +34,11 @@
 
     --radius: 0.5rem;
 
-    --primary-color: #ad8b73;
-    --secondary-color: #ceab93;
-    --tertiary-color: #e3caa5;
-    --quaternary-color: #fffbe9;
+    --primary-color: #6b240c;
+    --secondary-color: #994d1c;
+    --tertiary-color: #e48f45;
+    --quaternary-color: #f5cca0;
+    --primary-text-color: #272727;
   }
 
   .dark {
@@ -84,4 +85,12 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--quaternary-color);
+  font-family: 'Outfit', Arial, Helvetica, sans-serif;
+}
+
+@font-face {
+  font-family: 'Outfit'; /*Can be any text*/
+  src:
+    local('Outfit'),
+    url('./fonts/Outfit.ttf') format('truetype');
 }

@@ -48,7 +48,8 @@ module.exports = {
         'primary-color': 'var(--primary-color)',
         'secondary-color': 'var(--secondary-color)',
         'tertiary-color': 'var(--tertiary-color)',
-        'quaternary-color': 'var(--quaternary-color)'
+        'quaternary-color': 'var(--quaternary-color)',
+        'primary-text-color': 'var(--primary-text-color)'
       },
       borderRadius: {
         lg: 'var(--radius)',

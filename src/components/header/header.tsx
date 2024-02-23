@@ -1,121 +1,20 @@
+import {
+  classNames,
+  opsiBantuKami,
+  opsiSumberDaya,
+  opsiTentangKami
+} from '@/components/header/headerResources.ts';
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import {
-  BanknotesIcon,
-  Bars3Icon,
-  BriefcaseIcon,
-  BuildingOffice2Icon,
-  CodeBracketIcon,
-  InformationCircleIcon,
-  NewspaperIcon,
-  PhoneIcon,
-  QuestionMarkCircleIcon,
-  UserGroupIcon,
-  UsersIcon,
-  XMarkIcon
-} from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Fragment, useState } from 'react';
-import { FaRegHandshake } from 'react-icons/fa';
-import { IoFastFoodOutline } from 'react-icons/io5';
-import { LiaDonateSolid } from 'react-icons/lia';
 import LoadImage from '../loadImage/loadImage.tsx';
-
-const opsiTentangKami = [
-  {
-    name: 'Mengenai AsuhHewan',
-    description: 'Kenal kami lebih dalam',
-    href: '/tentang-kami',
-    icon: InformationCircleIcon
-  },
-  {
-    name: 'Lowongan Kerja',
-    description: 'Telurusi lowongan kerja yang ada di AsuhHewan',
-    href: '/lowongan-kerja',
-    icon: BriefcaseIcon
-  },
-  {
-    name: 'Staf & Dewan Direksi',
-    description: 'Struktur Organisasi dari AsuhHewan',
-    href: '/struktur-organisasi',
-    icon: BuildingOffice2Icon
-  },
-  {
-    name: 'Berita dan Acara',
-    description: 'Cari tahu berita dan acara terbaru dari AsuhHewan',
-    href: '/berita-dan-acara',
-    icon: NewspaperIcon
-  },
-  {
-    name: 'Kontak',
-    description: 'Hubungi Kami',
-    href: '/kontak',
-    icon: PhoneIcon
-  }
-];
-
-const opsiBantuKami = [
-  {
-    name: 'Donasi',
-    description: 'Berikan donasi agar kami dapat membantu lebih banyak hewan',
-    href: '/donasi',
-    icon: LiaDonateSolid
-  },
-  {
-    name: 'Sukarelawan',
-    description: 'Ikuti program sukarelawan kami',
-    href: '/sukarelawan',
-    icon: UserGroupIcon
-  },
-  {
-    name: 'Program Ambassador',
-    description: 'Ikuti program Ambassador kami',
-    href: '/program-ambassador',
-    icon: UsersIcon
-  },
-  {
-    name: 'Makanan dan Persediaan',
-    description: 'Berikan sembako kepada hewan yang membutuhkan',
-    href: '/sembako',
-    icon: IoFastFoodOutline
-  },
-  {
-    name: 'Penggalangan Dana',
-    description: 'Ikuti program Fundraising kami',
-    href: '/program-fundraising',
-    icon: BanknotesIcon
-  }
-];
-
-const opsiSumberDaya = [
-  {
-    name: 'FAQ',
-    description: 'Pertanyaan yang sering ditanyakan',
-    href: '/faq',
-    icon: QuestionMarkCircleIcon
-  },
-  {
-    name: 'Kemitraan',
-    description: 'Telurusi siapa saja mitra kami',
-    href: '/mitra',
-    icon: FaRegHandshake
-  },
-  {
-    name: 'Untuk Pengembang',
-    description: 'Telusuri sumber daya untuk pengembang',
-    href: '/pengembang',
-    icon: CodeBracketIcon
-  }
-];
-
-function classNames(...classes: string[]): string {
-  return classes.filter(Boolean).join(' ');
-}
 
 export default function Header(): JSX.Element {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className='bg-quatenary-color'>
+    <header className='bg-secondary-color'>
       <nav
         className='mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8'
         aria-label='Global'
@@ -133,7 +32,7 @@ export default function Header(): JSX.Element {
         <div className='flex lg:hidden'>
           <button
             type='button'
-            className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-primary-color'
+            className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white'
             onClick={() => {
               setMobileMenuOpen(true);
             }}
@@ -144,7 +43,7 @@ export default function Header(): JSX.Element {
         </div>
         <Popover.Group className='hidden lg:flex lg:gap-x-12'>
           <Popover className='relative'>
-            <Popover.Button className='flex items-center gap-x-1 rounded border-0 bg-transparent px-2 text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color'>
+            <Popover.Button className='flex items-center gap-x-1 rounded border-0 bg-transparent px-2 text-sm font-semibold leading-6 text-white hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color'>
               Bantu Kami
               <ChevronDownIcon
                 className='h-5 w-5 flex-none text-secondary-color'
@@ -170,14 +69,14 @@ export default function Header(): JSX.Element {
                     >
                       <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-tertiary-color group-hover:bg-quaternary-color'>
                         <item.icon
-                          className='h-6 w-6 text-primary-color group-hover:text-secondary-color'
+                          className='h-6 w-6 text-white group-hover:text-secondary-color'
                           aria-hidden='true'
                         />
                       </div>
                       <div className='flex-auto'>
                         <a
                           href={item.href}
-                          className='block font-semibold text-primary-color'
+                          className='block font-semibold text-white'
                         >
                           {item.name}
                           <span className='absolute inset-0' />
@@ -193,7 +92,7 @@ export default function Header(): JSX.Element {
             </Transition>
           </Popover>
           <Popover className='relative'>
-            <Popover.Button className='flex items-center gap-x-1 rounded border-0 bg-transparent px-2 text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color'>
+            <Popover.Button className='flex items-center gap-x-1 rounded border-0 bg-transparent px-2 text-sm font-semibold leading-6 text-white hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color'>
               Tentang Kami
               <ChevronDownIcon
                 className='h-5 w-5 flex-none text-secondary-color'
@@ -219,14 +118,14 @@ export default function Header(): JSX.Element {
                     >
                       <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-tertiary-color group-hover:bg-quaternary-color'>
                         <item.icon
-                          className='h-6 w-6 text-primary-color group-hover:text-secondary-color'
+                          className='h-6 w-6 text-white group-hover:text-secondary-color'
                           aria-hidden='true'
                         />
                       </div>
                       <div className='flex-auto'>
                         <a
                           href={item.href}
-                          className='block font-semibold text-primary-color'
+                          className='block font-semibold text-white'
                         >
                           {item.name}
                           <span className='absolute inset-0' />
@@ -242,7 +141,7 @@ export default function Header(): JSX.Element {
             </Transition>
           </Popover>
           <Popover className='relative'>
-            <Popover.Button className='flex items-center gap-x-1 rounded border-0 bg-transparent px-2 text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color'>
+            <Popover.Button className='flex items-center gap-x-1 rounded border-0 bg-transparent px-2 text-sm font-semibold leading-6 text-white hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color'>
               Sumber Daya
               <ChevronDownIcon
                 className='h-5 w-5 flex-none text-secondary-color'
@@ -268,14 +167,14 @@ export default function Header(): JSX.Element {
                     >
                       <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-tertiary-color group-hover:bg-quaternary-color'>
                         <item.icon
-                          className='h-6 w-6 text-primary-color group-hover:text-secondary-color'
+                          className='h-6 w-6 text-white group-hover:text-secondary-color'
                           aria-hidden='true'
                         />
                       </div>
                       <div className='flex-auto'>
                         <a
                           href={item.href}
-                          className='block font-semibold text-primary-color'
+                          className='block font-semibold text-white'
                         >
                           {item.name}
                           <span className='absolute inset-0' />
@@ -292,7 +191,7 @@ export default function Header(): JSX.Element {
           </Popover>
           <a
             href='/adopsi'
-            className='px-2 text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color'
+            className='px-2 text-sm font-semibold leading-6 text-white hover:text-secondary-color'
           >
             Adopsi
           </a>
@@ -300,13 +199,13 @@ export default function Header(): JSX.Element {
         <div className='hidden gap-10 lg:flex lg:flex-1 lg:justify-end'>
           <a
             href='/masuk'
-            className='px-2 text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color'
+            className='px-2 text-sm font-semibold leading-6 text-white hover:text-secondary-color'
           >
             Masuk
           </a>
           <a
             href='/daftar'
-            className='px-2 text-sm font-semibold leading-6 text-primary-color hover:text-secondary-color'
+            className='px-2 text-sm font-semibold leading-6 text-white hover:text-secondary-color'
           >
             Daftar
           </a>
@@ -331,7 +230,7 @@ export default function Header(): JSX.Element {
             </a>
             <button
               type='button'
-              className='-m-2.5 rounded-md p-2.5 text-primary-color'
+              className='-m-2.5 rounded-md p-2.5 text-white'
               onClick={() => {
                 setMobileMenuOpen(false);
               }}
@@ -346,7 +245,7 @@ export default function Header(): JSX.Element {
                 <Disclosure as='div' className='-mx-3'>
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'>
+                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'>
                         Bantu Kami
                         <ChevronDownIcon
                           className={classNames(
@@ -362,7 +261,7 @@ export default function Header(): JSX.Element {
                             key={item.name}
                             as='a'
                             href={item.href}
-                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
+                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-white hover:bg-tertiary-color'
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -374,7 +273,7 @@ export default function Header(): JSX.Element {
                 <Disclosure as='div' className='-mx-3'>
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'>
+                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'>
                         Tentang Kami
                         <ChevronDownIcon
                           className={classNames(
@@ -390,7 +289,7 @@ export default function Header(): JSX.Element {
                             key={item.name}
                             as='a'
                             href={item.href}
-                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
+                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-white hover:bg-tertiary-color'
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -402,7 +301,7 @@ export default function Header(): JSX.Element {
                 <Disclosure as='div' className='-mx-3'>
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'>
+                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'>
                         Sumber Daya
                         <ChevronDownIcon
                           className={classNames(
@@ -418,7 +317,7 @@ export default function Header(): JSX.Element {
                             key={item.name}
                             as='a'
                             href={item.href}
-                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
+                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-white hover:bg-tertiary-color'
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -429,13 +328,13 @@ export default function Header(): JSX.Element {
                 </Disclosure>
                 <a
                   href='/adopsi'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
+                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
                 >
                   Adopsi
                 </a>
                 <a
                   href='/kontak'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
+                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
                 >
                   Hubungi Kami
                 </a>
@@ -443,13 +342,13 @@ export default function Header(): JSX.Element {
               <div className='py-6'>
                 <a
                   href='/masuk'
-                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
+                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
                 >
                   Masuk
                 </a>
                 <a
                   href='/daftar'
-                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-primary-color hover:bg-tertiary-color'
+                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
                 >
                   Daftar
                 </a>

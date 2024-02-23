@@ -27,6 +27,7 @@ module.exports = {
       { allowConstantExport: true }
     ],
     'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/consistent-type-definitions': ['off']
+    '@typescript-eslint/consistent-type-definitions': ['off'],
+    '@typescript-eslint/non-nullable-type-assertion-style': 'off'
   }
 };
