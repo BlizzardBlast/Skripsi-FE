@@ -9,6 +9,7 @@ module.exports = {
     'standard-with-typescript',
     'plugin:react/recommended',
     'eslint:recommended',
+    'plugin:security/recommended-legacy',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'prettier'
