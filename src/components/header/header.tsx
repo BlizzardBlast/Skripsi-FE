@@ -1,13 +1,8 @@
-import {
-  classNames,
-  opsiBantuKami,
-  opsiSumberDaya,
-  opsiTentangKami
-} from '@/components/header/headerResources.ts';
-import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Logo from '../../assets/logo.png';
 import LoadImage from '../loadImage/loadImage.tsx';
 
 export default function Header(): JSX.Element {
@@ -16,18 +11,18 @@ export default function Header(): JSX.Element {
   return (
     <header className='bg-secondary-color'>
       <nav
-        className='mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8'
+        className='mx-auto flex items-center justify-between p-2 lg:px-8'
         aria-label='Global'
       >
         <div className='flex lg:flex-1'>
-          <a href='#!' className='-m-1.5 p-1.5'>
+          <Link to='#!' className='-m-1.5 p-1.5'>
             <span className='sr-only'>Asuh Hewan</span>
             <LoadImage
-              source='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
+              source={Logo}
               alternative='tailwind-logo'
-              classes='h-8 w-8'
+              classes='w-48'
             />
-          </a>
+          </Link>
         </div>
         <div className='flex lg:hidden'>
           <button
@@ -41,174 +36,39 @@ export default function Header(): JSX.Element {
             <Bars3Icon className='h-6 w-6' aria-hidden='true' />
           </button>
         </div>
-        <Popover.Group className='hidden lg:flex lg:gap-x-12'>
-          <Popover className='relative'>
-            <Popover.Button className='flex items-center gap-x-1 rounded border-0 bg-transparent px-2 text-sm font-semibold leading-6 text-white hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color'>
-              Bantu Kami
-              <ChevronDownIcon
-                className='h-5 w-5 flex-none text-secondary-color'
-                aria-hidden='true'
-              />
-            </Popover.Button>
-
-            <Transition
-              as={Fragment}
-              enter='transition ease-out duration-200'
-              enterFrom='opacity-0 translate-y-1'
-              enterTo='opacity-100 translate-y-0'
-              leave='transition ease-in duration-150'
-              leaveFrom='opacity-100 translate-y-0'
-              leaveTo='opacity-0 translate-y-1'
-            >
-              <Popover.Panel className='absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-quaternary-color shadow-lg ring-1 ring-gray-900/5'>
-                <div className='p-4'>
-                  {opsiBantuKami.map((item) => (
-                    <div
-                      key={item.name}
-                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-tertiary-color'
-                    >
-                      <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-tertiary-color group-hover:bg-quaternary-color'>
-                        <item.icon
-                          className='h-6 w-6 text-white group-hover:text-secondary-color'
-                          aria-hidden='true'
-                        />
-                      </div>
-                      <div className='flex-auto'>
-                        <a
-                          href={item.href}
-                          className='block font-semibold text-white'
-                        >
-                          {item.name}
-                          <span className='absolute inset-0' />
-                        </a>
-                        <p className='mt-1 text-secondary-color group-hover:text-quaternary-color'>
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Popover.Panel>
-            </Transition>
-          </Popover>
-          <Popover className='relative'>
-            <Popover.Button className='flex items-center gap-x-1 rounded border-0 bg-transparent px-2 text-sm font-semibold leading-6 text-white hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color'>
-              Tentang Kami
-              <ChevronDownIcon
-                className='h-5 w-5 flex-none text-secondary-color'
-                aria-hidden='true'
-              />
-            </Popover.Button>
-
-            <Transition
-              as={Fragment}
-              enter='transition ease-out duration-200'
-              enterFrom='opacity-0 translate-y-1'
-              enterTo='opacity-100 translate-y-0'
-              leave='transition ease-in duration-150'
-              leaveFrom='opacity-100 translate-y-0'
-              leaveTo='opacity-0 translate-y-1'
-            >
-              <Popover.Panel className='absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-quaternary-color shadow-lg ring-1 ring-gray-900/5'>
-                <div className='p-4'>
-                  {opsiTentangKami.map((item) => (
-                    <div
-                      key={item.name}
-                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-tertiary-color'
-                    >
-                      <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-tertiary-color group-hover:bg-quaternary-color'>
-                        <item.icon
-                          className='h-6 w-6 text-white group-hover:text-secondary-color'
-                          aria-hidden='true'
-                        />
-                      </div>
-                      <div className='flex-auto'>
-                        <a
-                          href={item.href}
-                          className='block font-semibold text-white'
-                        >
-                          {item.name}
-                          <span className='absolute inset-0' />
-                        </a>
-                        <p className='mt-1 text-secondary-color group-hover:text-quaternary-color'>
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Popover.Panel>
-            </Transition>
-          </Popover>
-          <Popover className='relative'>
-            <Popover.Button className='flex items-center gap-x-1 rounded border-0 bg-transparent px-2 text-sm font-semibold leading-6 text-white hover:text-secondary-color focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-color'>
-              Sumber Daya
-              <ChevronDownIcon
-                className='h-5 w-5 flex-none text-secondary-color'
-                aria-hidden='true'
-              />
-            </Popover.Button>
-
-            <Transition
-              as={Fragment}
-              enter='transition ease-out duration-200'
-              enterFrom='opacity-0 translate-y-1'
-              enterTo='opacity-100 translate-y-0'
-              leave='transition ease-in duration-150'
-              leaveFrom='opacity-100 translate-y-0'
-              leaveTo='opacity-0 translate-y-1'
-            >
-              <Popover.Panel className='absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-quaternary-color shadow-lg ring-1 ring-gray-900/5'>
-                <div className='p-4'>
-                  {opsiSumberDaya.map((item) => (
-                    <div
-                      key={item.name}
-                      className='group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-tertiary-color'
-                    >
-                      <div className='flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-tertiary-color group-hover:bg-quaternary-color'>
-                        <item.icon
-                          className='h-6 w-6 text-white group-hover:text-secondary-color'
-                          aria-hidden='true'
-                        />
-                      </div>
-                      <div className='flex-auto'>
-                        <a
-                          href={item.href}
-                          className='block font-semibold text-white'
-                        >
-                          {item.name}
-                          <span className='absolute inset-0' />
-                        </a>
-                        <p className='mt-1 text-secondary-color group-hover:text-quaternary-color'>
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Popover.Panel>
-            </Transition>
-          </Popover>
-          <a
-            href='/adopsi'
-            className='px-2 text-sm font-semibold leading-6 text-white hover:text-secondary-color'
+        <div className='hidden lg:flex lg:gap-x-12'>
+          <Link
+            to='/coffee-beans-list'
+            className='px-2 text-sm font-semibold leading-6 text-white hover:text-primary-text-color'
           >
-            Adopsi
-          </a>
-        </Popover.Group>
+            Coffee Beans List
+          </Link>
+          <Link
+            to='/find-your-coffee'
+            className='px-2 text-sm font-semibold leading-6 text-white hover:text-primary-text-color'
+          >
+            Find Your Coffee
+          </Link>
+          <Link
+            to='/shop'
+            className='px-2 text-sm font-semibold leading-6 text-white hover:text-primary-text-color'
+          >
+            Shop
+          </Link>
+        </div>
         <div className='hidden gap-10 lg:flex lg:flex-1 lg:justify-end'>
-          <a
-            href='/masuk'
-            className='px-2 text-sm font-semibold leading-6 text-white hover:text-secondary-color'
+          <Link
+            to='/masuk'
+            className='px-2 text-sm font-semibold leading-6 text-white hover:text-primary-text-color'
           >
             Masuk
-          </a>
-          <a
-            href='/daftar'
-            className='px-2 text-sm font-semibold leading-6 text-white hover:text-secondary-color'
+          </Link>
+          <Link
+            to='/daftar'
+            className='px-2 text-sm font-semibold leading-6 text-white hover:text-primary-text-color'
           >
             Daftar
-          </a>
+          </Link>
         </div>
       </nav>
       <Dialog
@@ -220,14 +80,14 @@ export default function Header(): JSX.Element {
         <div className='fixed inset-0 z-10' />
         <Dialog.Panel className='fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-quaternary-color px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-primary-color'>
           <div className='flex items-center justify-between'>
-            <a href='#!' className='-m-1.5 p-1.5'>
+            <Link to='#!' className='-m-1.5 p-1.5'>
               <span className='sr-only'>Asuh Hewan</span>
               <LoadImage
-                source='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
+                source={Logo}
                 alternative='tailwind-logo'
-                classes='h-8 w-8'
+                classes='w-48'
               />
-            </a>
+            </Link>
             <button
               type='button'
               className='-m-2.5 rounded-md p-2.5 text-white'
@@ -242,116 +102,32 @@ export default function Header(): JSX.Element {
           <div className='mt-6 flow-root'>
             <div className='-my-6 divide-y divide-primary-color'>
               <div className='space-y-2 py-6'>
-                <Disclosure as='div' className='-mx-3'>
-                  {({ open }) => (
-                    <>
-                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'>
-                        Bantu Kami
-                        <ChevronDownIcon
-                          className={classNames(
-                            open ? 'rotate-180' : '',
-                            'h-5 w-5 flex-none'
-                          )}
-                          aria-hidden='true'
-                        />
-                      </Disclosure.Button>
-                      <Disclosure.Panel className='mt-2 space-y-2'>
-                        {[...opsiBantuKami].map((item) => (
-                          <Disclosure.Button
-                            key={item.name}
-                            as='a'
-                            href={item.href}
-                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-white hover:bg-tertiary-color'
-                          >
-                            {item.name}
-                          </Disclosure.Button>
-                        ))}
-                      </Disclosure.Panel>
-                    </>
-                  )}
-                </Disclosure>
-                <Disclosure as='div' className='-mx-3'>
-                  {({ open }) => (
-                    <>
-                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'>
-                        Tentang Kami
-                        <ChevronDownIcon
-                          className={classNames(
-                            open ? 'rotate-180' : '',
-                            'h-5 w-5 flex-none'
-                          )}
-                          aria-hidden='true'
-                        />
-                      </Disclosure.Button>
-                      <Disclosure.Panel className='mt-2 space-y-2'>
-                        {[...opsiTentangKami].map((item) => (
-                          <Disclosure.Button
-                            key={item.name}
-                            as='a'
-                            href={item.href}
-                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-white hover:bg-tertiary-color'
-                          >
-                            {item.name}
-                          </Disclosure.Button>
-                        ))}
-                      </Disclosure.Panel>
-                    </>
-                  )}
-                </Disclosure>
-                <Disclosure as='div' className='-mx-3'>
-                  {({ open }) => (
-                    <>
-                      <Disclosure.Button className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'>
-                        Sumber Daya
-                        <ChevronDownIcon
-                          className={classNames(
-                            open ? 'rotate-180' : '',
-                            'h-5 w-5 flex-none'
-                          )}
-                          aria-hidden='true'
-                        />
-                      </Disclosure.Button>
-                      <Disclosure.Panel className='mt-2 space-y-2'>
-                        {[...opsiSumberDaya].map((item) => (
-                          <Disclosure.Button
-                            key={item.name}
-                            as='a'
-                            href={item.href}
-                            className='block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-white hover:bg-tertiary-color'
-                          >
-                            {item.name}
-                          </Disclosure.Button>
-                        ))}
-                      </Disclosure.Panel>
-                    </>
-                  )}
-                </Disclosure>
-                <a
-                  href='/adopsi'
+                <Link
+                  to='/adopsi'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
                 >
                   Adopsi
-                </a>
-                <a
-                  href='/kontak'
+                </Link>
+                <Link
+                  to='/kontak'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
                 >
                   Hubungi Kami
-                </a>
+                </Link>
               </div>
               <div className='py-6'>
-                <a
-                  href='/masuk'
+                <Link
+                  to='/masuk'
                   className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
                 >
                   Masuk
-                </a>
-                <a
-                  href='/daftar'
+                </Link>
+                <Link
+                  to='/daftar'
                   className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
                 >
                   Daftar
-                </a>
+                </Link>
               </div>
             </div>
           </div>
