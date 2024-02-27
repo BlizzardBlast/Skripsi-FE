@@ -1,5 +1,6 @@
 import Layout from '@/layout/layout.tsx';
 import Home from '@/pages/home/home.tsx';
+import RootErrorElement from '@/routes/Error Element/root.tsx';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -11,7 +12,8 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home />
       }
-    ]
+    ],
+    errorElement: <RootErrorElement />
   }
 ]);
 
