@@ -16,26 +16,26 @@ import { LiaDonateSolid } from 'react-icons/lia';
 
 export const opsiTentangKami = [
   {
-    name: 'Mengenai AsuhHewan',
+    name: 'Mengenai Kofebin',
     description: 'Kenal kami lebih dalam',
     href: '/tentang-kami',
     icon: InformationCircleIcon
   },
   {
     name: 'Lowongan Kerja',
-    description: 'Telurusi lowongan kerja yang ada di AsuhHewan',
+    description: 'Telurusi lowongan kerja yang ada di Kofebin',
     href: '/lowongan-kerja',
     icon: BriefcaseIcon
   },
   {
     name: 'Staf & Dewan Direksi',
-    description: 'Struktur Organisasi dari AsuhHewan',
+    description: 'Struktur Organisasi dari Kofebin',
     href: '/struktur-organisasi',
     icon: BuildingOffice2Icon
   },
   {
     name: 'Berita dan Acara',
-    description: 'Cari tahu berita dan acara terbaru dari AsuhHewan',
+    description: 'Cari tahu berita dan acara terbaru dari Kofebin',
     href: '/berita-dan-acara',
     icon: NewspaperIcon
   },

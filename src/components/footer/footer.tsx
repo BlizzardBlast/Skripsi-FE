@@ -14,7 +14,7 @@ export default function Footer(): JSX.Element {
   return (
     <div className='flex min-h-[20svh] flex-col justify-center gap-6 border-t-2 border-solid border-tertiary-color px-36 py-10 leading-7 sm:flex-row'>
       <div>
-        <Paragraph className='text-primary-text-color mb-3'>
+        <Paragraph className='mb-3 text-primary-text-color'>
           <b>
             Bagaimana Anda
             <br />
@@ -25,7 +25,7 @@ export default function Footer(): JSX.Element {
           <Link
             key={content.link}
             to={content.link}
-            className='text-primary-text-color leading-7'
+            className='leading-7 text-primary-text-color'
           >
             {content.title}
             <br />
@@ -34,14 +34,14 @@ export default function Footer(): JSX.Element {
       </div>
 
       <div>
-        <Paragraph className='text-primary-text-color mb-3'>
-          <b>Mengenai AsuhHewan</b>
+        <Paragraph className='mb-3 text-primary-text-color'>
+          <b>Mengenai Kofebin</b>
         </Paragraph>
         {aboutContent.map((content) => (
           <Link
             key={content.link}
             to={content.link}
-            className='text-primary-text-color leading-7'
+            className='leading-7 text-primary-text-color'
           >
             {content.title}
             <br />
@@ -51,14 +51,14 @@ export default function Footer(): JSX.Element {
       </div>
 
       <div>
-        <Paragraph className='text-primary-text-color mb-3'>
+        <Paragraph className='mb-3 text-primary-text-color'>
           <b>Sumber Daya</b>
         </Paragraph>
         {resourcesContent.map((content) => (
           <Link
             key={content.link}
             to={content.link}
-            className='text-primary-text-color leading-7'
+            className='leading-7 text-primary-text-color'
           >
             {content.title}
             <br />
@@ -68,7 +68,7 @@ export default function Footer(): JSX.Element {
       </div>
 
       <div>
-        <Paragraph className='text-primary-text-color mb-3'>
+        <Paragraph className='mb-3 text-primary-text-color'>
           <b>Ikuti Kami</b>
         </Paragraph>
         <IconContext.Provider value={useMemo(() => ({ size: '1.3rem' }), [])}>
