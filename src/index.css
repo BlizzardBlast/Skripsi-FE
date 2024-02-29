@@ -89,7 +89,7 @@ body {
 }
 
 @font-face {
-  font-family: 'Outfit'; /*Can be any text*/
+  font-family: 'Outfit';
   src:
     local('Outfit'),
     url('./fonts/Outfit.ttf') format('truetype');

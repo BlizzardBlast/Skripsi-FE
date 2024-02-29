@@ -1,20 +1,32 @@
-import HeadingOne from '@/components/typography/headingOne.tsx';
 import Paragraph from '@/components/typography/paragraph.tsx';
 import { Button } from '@/components/ui/button.tsx';
-import { useState } from 'react';
+import LeafImage from '@/pages/home/leaf-image.tsx';
+import { Link } from 'react-router-dom';
 
 export default function Home(): JSX.Element {
-  const [count, setCount] = useState(0);
   return (
     <div className='flex h-[50vh] flex-col items-center justify-center'>
-      <HeadingOne>Ni Hao</HeadingOne>
-      <br />
+      <LeafImage />
+      <h1 className='mb-4 scroll-m-20 text-5xl font-black tracking-tight'>
+        Discover Your Coffee Preference
+      </h1>
+      <div className='w-8/12'>
+        <Paragraph className='text-center text-2xl'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation
+        </Paragraph>
+      </div>
       <Button
-        onClick={() => {
-          setCount((prevCount) => prevCount + 1);
-        }}
+        asChild
+        className='mt-6 rounded-2xl bg-[#E48F45] px-5 py-6 hover:bg-[#994D1C]'
       >
-        <Paragraph>Count is: {count}</Paragraph>
+        <Link
+          to='/find-your-coffee'
+          className='text-xl font-extralight tracking-tight'
+        >
+          Discover Your Preference
+        </Link>
       </Button>
     </div>
   );
