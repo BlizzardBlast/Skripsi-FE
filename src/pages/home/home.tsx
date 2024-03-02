@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function Home(): JSX.Element {
   return (
-    <div className='flex h-[50vh] flex-col items-center justify-center'>
+    <div className='flex h-[70vh] flex-col items-center justify-center'>
       <LeafImage />
       <h1 className='mb-4 scroll-m-20 text-5xl font-black tracking-tight'>
         Discover Your Coffee Preference
@@ -19,14 +19,9 @@ export default function Home(): JSX.Element {
       </div>
       <Button
         asChild
-        className='mt-6 rounded-2xl bg-[#E48F45] px-5 py-6 hover:bg-[#994D1C]'
+        className='mt-6 rounded-2xl bg-[#E48F45] px-5 py-6 text-xl font-extralight tracking-tight hover:bg-[#994D1C]'
       >
-        <Link
-          to='/find-your-coffee'
-          className='text-xl font-extralight tracking-tight'
-        >
-          Discover Your Preference
-        </Link>
+        <Link to='/find-your-coffee'>Discover Your Preference</Link>
       </Button>
     </div>
   );

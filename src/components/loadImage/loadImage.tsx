@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { cn } from '@/lib/utils.ts';
+import { useEffect, useRef, useState } from 'react';
 
 type LoadImageProps = {
   source: string;
@@ -14,23 +15,34 @@ const LoadImage = ({
   lazy = false
 }: LoadImageProps): JSX.Element => {
   const [loading, setLoading] = useState(true);
+  const imageElement = useRef<HTMLImageElement>(null);
 
   const handleImageLoad = (): void => {
     setLoading(false);
   };
 
-  const loadingClass = `animate-pulse bg-gray-300 ${classes}`;
-  const imageClass = `${classes} h-auto`;
+  useEffect(() => {
+    const imageElementCurrent = imageElement.current;
+
+    if (imageElementCurrent !== null && imageElementCurrent !== undefined) {
+      imageElementCurrent.addEventListener('load', handleImageLoad);
+      return () => {
+        imageElementCurrent.removeEventListener('load', handleImageLoad);
+      };
+    }
+  }, [imageElement]);
+
+  const loadingClass = cn(classes, 'bg-transparent');
+  const imageClass = cn('h-auto', classes);
 
   return (
     <div className='w-full'>
       <div className={loading ? loadingClass : ''}>
         <img
+          ref={imageElement}
           src={source}
           alt={alternative}
-          onLoad={handleImageLoad}
           className={imageClass}
-          style={{ display: loading ? 'none' : 'block' }}
           loading={lazy ? 'lazy' : 'eager'}
         />
       </div>
