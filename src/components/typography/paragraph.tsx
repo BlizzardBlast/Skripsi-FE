@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils.ts';
 import { type ReactNode } from 'react';
 
 export default function Paragraph({
@@ -7,5 +8,5 @@ export default function Paragraph({
   className?: string;
   children: ReactNode;
 }>): JSX.Element {
-  return <p className={`leading-7 ${className}`}>{children}</p>;
+  return <p className={cn('leading-7', className)}>{children}</p>;
 }

@@ -6,13 +6,15 @@ type LoadImageProps = {
   alternative: string;
   classes: string;
   lazy?: boolean;
+  divClasses?: string;
 };
 
 const LoadImage = ({
   source,
   alternative,
   classes,
-  lazy = false
+  lazy = false,
+  divClasses = ''
 }: LoadImageProps): JSX.Element => {
   const [loading, setLoading] = useState(true);
   const imageElement = useRef<HTMLImageElement>(null);
@@ -34,9 +36,10 @@ const LoadImage = ({
 
   const loadingClass = cn(classes, 'bg-transparent');
   const imageClass = cn('h-auto', classes);
+  const divClass = cn('w-full', divClasses);
 
   return (
-    <div className='w-full'>
+    <div className={divClass}>
       <div className={loading ? loadingClass : ''}>
         <img
           ref={imageElement}
