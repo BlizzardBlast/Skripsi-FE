@@ -8,13 +8,13 @@ export default function LeafImage(): JSX.Element {
       <LoadImage
         source={LeftLeaves}
         alternative='left-leaves'
-        classes='h-96 absolute left-0 top-20'
+        classes='h-96 absolute left-0 top-20 z-[-1]'
         lazy
       />
       <LoadImage
         source={RightLeaves}
         alternative='left-leaves'
-        classes='h-96 absolute right-0 top-20'
+        classes='h-96 absolute right-0 top-20 z-[-1]'
         lazy
       />
     </>

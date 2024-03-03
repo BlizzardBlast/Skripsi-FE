@@ -4,7 +4,7 @@ import LeafImage from '@/pages/home/leaf-image.tsx';
 import { Link } from 'react-router-dom';
 export default function HomeOne(): JSX.Element {
   return (
-    <div className='flex h-[70vh] flex-col items-center justify-center'>
+    <div className='flex min-h-[70vh] flex-col items-center justify-center py-5'>
       <LeafImage />
       <h1 className='mb-4 scroll-m-20 text-center text-5xl font-black tracking-tight'>
         Discover Your Coffee Preference

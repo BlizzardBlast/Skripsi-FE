@@ -6,8 +6,8 @@ import Paragraph from '@/components/typography/paragraph.tsx';
 
 export default function HomeTwo(): JSX.Element {
   return (
-    <div className="flex h-[70vh] items-center justify-around bg-[url('@/assets/coffee_beans_bg.svg')] bg-cover bg-center bg-no-repeat">
-      <div className='flex flex-[4] items-center justify-center'>
+    <div className="flex min-h-[70vh] items-center justify-around bg-[url('@/assets/coffee_beans_bg.svg')] bg-cover bg-center bg-no-repeat py-5">
+      <div className='flex flex-[4] items-center justify-center ps-3'>
         <LoadImage
           source={CoffeeLady}
           alternative='Coffee_Lady'
@@ -24,7 +24,7 @@ export default function HomeTwo(): JSX.Element {
         />
       </div>
       <div className='flex flex-[6] items-center justify-center'>
-        <div className='flex h-80 w-[80%] flex-col items-center justify-center overflow-y-auto rounded-3xl bg-tertiary-color px-7 text-center'>
+        <article className='flex min-h-80 w-[80%] flex-col items-center justify-start text-pretty rounded-3xl bg-tertiary-color px-7 text-center sm:justify-center'>
           <HeadingOne className='text-center'>
             Spice up your coffee break
           </HeadingOne>
@@ -32,7 +32,7 @@ export default function HomeTwo(): JSX.Element {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt minim veniam, quis nostrud exercitation
           </Paragraph>
-        </div>
+        </article>
       </div>
     </div>
   );
