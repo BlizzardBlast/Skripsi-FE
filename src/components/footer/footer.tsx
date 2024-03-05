@@ -3,10 +3,12 @@ import {
   firstColumnContent,
   resourcesContent
 } from '@/components/footer/footerResources.ts';
+import { IconContext } from '@react-icons/all-files';
+import { FaFacebook } from '@react-icons/all-files/fa/FaFacebook';
+import { FaInstagramSquare } from '@react-icons/all-files/fa/FaInstagramSquare';
+import { FaPinterest } from '@react-icons/all-files/fa/FaPinterest';
+import { FaTwitterSquare } from '@react-icons/all-files/fa/FaTwitterSquare';
 import { useMemo } from 'react';
-import { IconContext } from 'react-icons';
-import { FaFacebook, FaInstagramSquare, FaPinterest } from 'react-icons/fa';
-import { FaSquareXTwitter } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import Paragraph from '../typography/paragraph.tsx';
 
@@ -96,9 +98,9 @@ export default function Footer(): JSX.Element {
               href={'https://www.twitter.com'}
               target='_blank'
               rel='noreferrer'
-              aria-label='X'
+              aria-label='Twitter'
             >
-              <FaSquareXTwitter className='text-primary-text-color' />
+              <FaTwitterSquare className='text-primary-text-color' />
             </a>
             <a
               href={'https://www.pinterest.com'}

@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button.tsx';
 import { Dialog } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
+import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
