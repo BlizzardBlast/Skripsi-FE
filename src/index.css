@@ -95,4 +95,5 @@ body {
   src:
     local('Outfit'),
     url('./fonts/Outfit.ttf') format('truetype');
+  font-display: swap;
 }

@@ -16,7 +16,7 @@ export default function Header(): JSX.Element {
         aria-label='Global'
       >
         <div className='flex lg:flex-1'>
-          <Link to='#!' className='-m-1.5 p-1.5'>
+          <Link to='#!' className='-m-1.5 p-1.5' aria-label='Kofebin'>
             <span className='sr-only'>Kofebin</span>
             <LoadImage
               source={Logo}
@@ -41,18 +41,21 @@ export default function Header(): JSX.Element {
           <Link
             to='/coffee-beans-list'
             className='px-2 text-lg leading-6 text-white hover:text-primary-text-color'
+            aria-label='Coffee Beans List'
           >
             Coffee Beans List
           </Link>
           <Link
             to='/find-your-coffee'
             className='px-2 text-lg leading-6 text-white hover:text-primary-text-color'
+            aria-label='Find Your Coffee'
           >
             Find Your Coffee
           </Link>
           <Link
             to='/shop'
             className='px-2 text-lg leading-6 text-white hover:text-primary-text-color'
+            aria-label='Shop'
           >
             Shop
           </Link>
@@ -63,7 +66,9 @@ export default function Header(): JSX.Element {
             size={'sm'}
             className='my-0 rounded-full bg-white px-5 py-0 text-lg leading-6 text-primary-text-color hover:bg-primary-text-color hover:text-white'
           >
-            <Link to='/sign-in'>Sign In</Link>
+            <Link to='/sign-in' aria-label='Sign In'>
+              Sign In
+            </Link>
           </Button>
         </div>
       </nav>
@@ -76,7 +81,7 @@ export default function Header(): JSX.Element {
         <div className='fixed inset-0 z-10' />
         <Dialog.Panel className='fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-primary-color px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-secondary-color'>
           <div className='flex items-center justify-between'>
-            <Link to='#!' className='-m-1.5 p-1.5'>
+            <Link to='#!' className='-m-1.5 p-1.5' aria-label='Kofebin'>
               <span className='sr-only'>Kofebin</span>
               <LoadImage
                 source={Logo}
@@ -101,12 +106,14 @@ export default function Header(): JSX.Element {
                 <Link
                   to='/adopsi'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                  aria-label='Adopsi'
                 >
                   Adopsi
                 </Link>
                 <Link
                   to='/kontak'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                  aria-label='Hubungi Kami'
                 >
                   Hubungi Kami
                 </Link>
@@ -115,6 +122,7 @@ export default function Header(): JSX.Element {
                 <Link
                   to='/sign-in'
                   className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                  aria-label='Sign In'
                 >
                   Sign In
                 </Link>

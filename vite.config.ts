@@ -1,8 +1,9 @@
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
-import { defineConfig } from 'vitest/config';
 import tailwindcss from 'tailwindcss';
+import { compression } from 'vite-plugin-compression2';
+import { defineConfig } from 'vitest/config';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,8 +23,15 @@ export default defineConfig({
     legacy({
       targets: ['defaults', 'not IE 11']
     }),
-    react()
+    react(),
+    compression()
   ],
+  server: {
+    headers: {
+      'accept-encoding': ['gzip', 'br', 'compress'],
+      'content-encoding': 'gzip, br, compress'
+    }
+  },
   test: {
     globals: true,
     environment: 'jsdom',

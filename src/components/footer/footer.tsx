@@ -26,6 +26,7 @@ export default function Footer(): JSX.Element {
             key={content.link}
             to={content.link}
             className='leading-7 text-primary-text-color'
+            aria-label={content.title}
           >
             {content.title}
             <br />
@@ -42,6 +43,7 @@ export default function Footer(): JSX.Element {
             key={content.link}
             to={content.link}
             className='leading-7 text-primary-text-color'
+            aria-label={content.title}
           >
             {content.title}
             <br />
@@ -59,6 +61,7 @@ export default function Footer(): JSX.Element {
             key={content.link}
             to={content.link}
             className='leading-7 text-primary-text-color'
+            aria-label={content.title}
           >
             {content.title}
             <br />
@@ -77,6 +80,7 @@ export default function Footer(): JSX.Element {
               href={'https://www.facebook.com'}
               target='_blank'
               rel='noreferrer'
+              aria-label='Facebook'
             >
               <FaFacebook className='text-primary-text-color' />
             </a>
@@ -84,6 +88,7 @@ export default function Footer(): JSX.Element {
               href={'https://www.instagram.com'}
               target='_blank'
               rel='noreferrer'
+              aria-label='Instagram'
             >
               <FaInstagramSquare className='text-primary-text-color' />
             </a>
@@ -91,6 +96,7 @@ export default function Footer(): JSX.Element {
               href={'https://www.twitter.com'}
               target='_blank'
               rel='noreferrer'
+              aria-label='X'
             >
               <FaSquareXTwitter className='text-primary-text-color' />
             </a>
@@ -98,6 +104,7 @@ export default function Footer(): JSX.Element {
               href={'https://www.pinterest.com'}
               target='_blank'
               rel='noreferrer'
+              aria-label='Pinterest'
             >
               <FaPinterest className='text-primary-text-color' />
             </a>
