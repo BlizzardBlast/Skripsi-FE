@@ -2,7 +2,8 @@ import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import tailwindcss from 'tailwindcss';
-import { compression } from 'vite-plugin-compression2';
+import viteCompression from 'vite-plugin-compression';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { defineConfig } from 'vitest/config';
 
 // https://vitejs.dev/config/
@@ -13,25 +14,24 @@ export default defineConfig({
       plugins: [tailwindcss]
     }
   },
-  // server: {
-  //   port: 9001
-  // },
   // preview: {
-  //   port: 9001
+  //   port: 9000
   // },
   plugins: [
     legacy({
       targets: ['defaults', 'not IE 11']
     }),
     react(),
-    compression()
+    ViteImageOptimizer(),
+    viteCompression({ algorithm: 'brotliCompress' })
   ],
-  server: {
-    headers: {
-      'accept-encoding': ['gzip', 'br', 'compress'],
-      'content-encoding': 'gzip, br, compress'
-    }
-  },
+  // server: {
+  //   headers: {
+  //     'accept-encoding': ['gzip', 'br', 'compress'],
+  //     'content-encoding': 'gzip, br, compress'
+  //   },
+  //   port: 9000
+  // },
   test: {
     globals: true,
     environment: 'jsdom',
@@ -39,15 +39,15 @@ export default defineConfig({
   },
   build: {
     // generate .vite/manifest.json in outDir
-    // manifest: true,
+    manifest: true,
     // rollupOptions: {
     //   // overwrite default .html entry
     //   input: 'src/main.tsx'
     // }
-    // outDir: 'dist'
+    outDir: 'dist',
     // assetsDir: '',
-    // sourcemap: false,
-    // minify: true
+    sourcemap: true,
+    minify: true
   },
   resolve: {
     alias: {
