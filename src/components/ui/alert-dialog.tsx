@@ -1,4 +1,4 @@
-import { buttonVariants } from '@/components/ui/button.tsx';
+import { buttonVariants } from '@/components/ui/buttonVariants.ts';
 import { cn } from '@/lib/utils.ts';
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import * as React from 'react';
