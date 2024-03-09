@@ -18,7 +18,7 @@ export default function HomeOne(): JSX.Element {
       </div>
       <Button
         asChild
-        className='mt-6 rounded-2xl bg-[#E48F45] px-5 py-6 text-xl font-extralight tracking-tight hover:bg-[#994D1C]'
+        className='mt-6 rounded-2xl bg-primary-color px-5 py-6 text-xl font-extralight tracking-tight hover:bg-secondary-color'
       >
         <Link to='/find-your-coffee' aria-label='Discover Your Preference'>
           Discover Your Preference

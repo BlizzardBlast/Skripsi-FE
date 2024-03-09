@@ -21,6 +21,10 @@ const formSchema = z.object({
     .string()
     .min(1, { message: 'The e-mail has to be filled.' })
     .email('This is not a valid e-mail.'),
+  username: z
+    .string()
+    .min(3, { message: 'Username must be at least 3 characters long.' })
+    .max(20, { message: 'Username must be at most 20 characters long.' }),
   password: z
     .string()
     .min(8, { message: 'Password must be at least 8 characters long.' })
@@ -29,7 +33,8 @@ const formSchema = z.object({
         'Password must contain at least one lowercase letter, one uppercase letter, and one digit.'
     })
 });
-export default function SignInForm(): JSX.Element {
+
+export default function SignUpForm(): JSX.Element {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,10 +49,12 @@ export default function SignInForm(): JSX.Element {
       setIsLoading(false);
     }
   };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
+      username: '',
       password: ''
     }
   });
@@ -79,7 +86,23 @@ export default function SignInForm(): JSX.Element {
                   className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
                   placeholder='Enter your email'
                   {...field}
-                  autoComplete='email'
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='username'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input
+                  className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
+                  placeholder='Enter your preferred username'
+                  {...field}
                 />
               </FormControl>
               <FormMessage />
@@ -97,7 +120,6 @@ export default function SignInForm(): JSX.Element {
                   className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
                   placeholder='Enter a strong password'
                   {...field}
-                  autoComplete='off'
                 />
               </FormControl>
               <FormMessage />
@@ -105,12 +127,12 @@ export default function SignInForm(): JSX.Element {
           )}
         />
         <p>
-          Don&apos;t have an account?{' '}
+          Already have an account?{' '}
           <Link
-            to='/sign-up'
+            to='/sign-in'
             className='text-primary-color underline underline-offset-4'
           >
-            Sign Up
+            Sign In
           </Link>
         </p>
         <Button
@@ -118,7 +140,7 @@ export default function SignInForm(): JSX.Element {
           className='float-right rounded-full bg-primary-color'
           isLoading={isLoading}
         >
-          Sign In
+          Create Account
         </Button>
       </form>
     </Form>

@@ -2,13 +2,19 @@ import { Button } from '@/components/ui/button.tsx';
 import { Dialog } from '@headlessui/react';
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
 import LoadImage from '../loadImage/loadImage.tsx';
 
 export default function Header(): JSX.Element {
+  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isSignInPage = location.pathname === '/sign-in';
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <header className='bg-secondary-color'>
@@ -17,7 +23,7 @@ export default function Header(): JSX.Element {
         aria-label='Global'
       >
         <div className='flex lg:flex-1'>
-          <Link to='#!' className='-m-1.5 p-1.5' aria-label='Kofebin'>
+          <Link to='/' className='-m-1.5 p-1.5' aria-label='Kofebin'>
             <span className='sr-only'>Kofebin</span>
             <LoadImage
               source={Logo}
@@ -67,8 +73,11 @@ export default function Header(): JSX.Element {
             size={'sm'}
             className='my-0 rounded-full bg-white px-5 py-0 text-lg leading-6 text-primary-text-color hover:bg-primary-text-color hover:text-white'
           >
-            <Link to='/sign-in' aria-label='Sign In'>
-              Sign In
+            <Link
+              to={isSignInPage ? '/sign-up' : '/sign-in'}
+              aria-label={isSignInPage ? 'Sign Up' : 'Sign In'}
+            >
+              {isSignInPage ? 'Sign Up' : 'Sign In'}
             </Link>
           </Button>
         </div>
@@ -82,7 +91,7 @@ export default function Header(): JSX.Element {
         <div className='fixed inset-0 z-10' />
         <Dialog.Panel className='fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-primary-color px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-secondary-color'>
           <div className='flex items-center justify-between'>
-            <Link to='#!' className='-m-1.5 p-1.5' aria-label='Kofebin'>
+            <Link to='/' className='-m-1.5 p-1.5' aria-label='Kofebin'>
               <span className='sr-only'>Kofebin</span>
               <LoadImage
                 source={Logo}
@@ -121,11 +130,11 @@ export default function Header(): JSX.Element {
               </div>
               <div className='py-6'>
                 <Link
-                  to='/sign-in'
+                  to={isSignInPage ? '/sign-up' : '/sign-in'}
                   className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
-                  aria-label='Sign In'
+                  aria-label={isSignInPage ? 'Sign Up' : 'Sign In'}
                 >
-                  Sign In
+                  {isSignInPage ? 'Sign Up' : 'Sign In'}
                 </Link>
               </div>
             </div>
