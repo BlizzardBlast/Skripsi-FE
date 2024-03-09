@@ -1,21 +1,18 @@
 export const firstColumnContent = [
-  { title: 'Adopsi', link: '/adopsi' },
-  { title: 'Donasi', link: '/donasi' },
-  { title: 'Sukarelawan', link: '/sukarelawan' },
-  { title: 'Program Ambassador', link: '/program-ambassador' },
-  { title: 'Makanan dan Persediaan', link: '/sembako' },
-  { title: 'Penggalangan dana', link: '/program-fundraising' }
+  { title: 'Coffee Beans List', link: '/coffee-beans-list' },
+  { title: 'Find Your Coffee', link: '/find-your-coffee' },
+  { title: 'Shop', link: '/shop' }
 ];
 
 export const aboutContent = [
-  { title: 'Lowongan Kerja', link: '/lowongan-kerja' },
-  { title: 'Staf & Dewan Direksi', link: '/struktur-organisasi' },
-  { title: 'Berita dan Acara', link: '/berita-dan-acara' },
-  { title: 'Kontak', link: '/kontak' }
+  { title: 'Job Vacancy', link: '/lowongan-kerja' },
+  { title: 'Organizational Structure', link: '/organizational-structure' },
+  { title: 'News and Events', link: '/news-and-events' },
+  { title: 'Contact', link: '/contact' }
 ];
 
 export const resourcesContent = [
   { title: 'FAQ', link: '/faq' },
-  { title: 'Kemitraan', link: '/mitra' },
-  { title: 'Untuk Pengembang', link: '/pengembang' }
+  { title: 'Partnership', link: '/partnership' },
+  { title: 'For Developers', link: '/developer' }
 ];

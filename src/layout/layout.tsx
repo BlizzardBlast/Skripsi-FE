@@ -6,7 +6,9 @@ export default function Layout(): JSX.Element {
   return (
     <div className='w-full'>
       <Header />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

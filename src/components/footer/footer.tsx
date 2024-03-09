@@ -3,6 +3,7 @@ import {
   firstColumnContent,
   resourcesContent
 } from '@/components/footer/footerResources.ts';
+import LoadImage from '@/components/loadImage/loadImage.tsx';
 import { IconContext } from '@react-icons/all-files';
 import { FaFacebook } from '@react-icons/all-files/fa/FaFacebook';
 import { FaInstagramSquare } from '@react-icons/all-files/fa/FaInstagramSquare';
@@ -10,18 +11,15 @@ import { FaPinterest } from '@react-icons/all-files/fa/FaPinterest';
 import { FaTwitterSquare } from '@react-icons/all-files/fa/FaTwitterSquare';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../../assets/logo.png';
 import Paragraph from '../typography/paragraph.tsx';
 
 export default function Footer(): JSX.Element {
   return (
-    <div className='flex min-h-[20svh] flex-col justify-center gap-6 border-t-2 border-solid border-tertiary-color px-36 py-10 leading-7 sm:flex-row'>
+    <div className='flex min-h-[20svh] flex-col justify-center gap-6 px-36 py-10 leading-7 sm:flex-row'>
       <div>
         <Paragraph className='mb-3 text-primary-text-color'>
-          <b>
-            Bagaimana Anda
-            <br />
-            dapat membantu?
-          </b>
+          <b>Commerce</b>
         </Paragraph>
         {firstColumnContent.map((content) => (
           <Link
@@ -38,7 +36,7 @@ export default function Footer(): JSX.Element {
 
       <div>
         <Paragraph className='mb-3 text-primary-text-color'>
-          <b>Mengenai Kofebin</b>
+          <b>About Kofebin</b>
         </Paragraph>
         {aboutContent.map((content) => (
           <Link
@@ -56,7 +54,7 @@ export default function Footer(): JSX.Element {
 
       <div>
         <Paragraph className='mb-3 text-primary-text-color'>
-          <b>Sumber Daya</b>
+          <b>Resources</b>
         </Paragraph>
         {resourcesContent.map((content) => (
           <Link
@@ -74,7 +72,7 @@ export default function Footer(): JSX.Element {
 
       <div>
         <Paragraph className='mb-3 text-primary-text-color'>
-          <b>Ikuti Kami</b>
+          <b>Follow Us</b>
         </Paragraph>
         <IconContext.Provider value={useMemo(() => ({ size: '1.3rem' }), [])}>
           <div className='mt-1 flex flex-row gap-2'>
@@ -112,6 +110,9 @@ export default function Footer(): JSX.Element {
             </a>
           </div>
         </IconContext.Provider>
+      </div>
+      <div>
+        <LoadImage source={Logo} alternative='tailwind-logo' classes='w-48' />
       </div>
     </div>
   );
