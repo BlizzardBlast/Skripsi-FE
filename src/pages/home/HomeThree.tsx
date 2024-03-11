@@ -22,7 +22,7 @@ export default function HomeTwo(): JSX.Element {
           source={CherryHarvest}
           alternative='Coffee_Harvest'
           lazy
-          classes='h-80'
+          classes='h-80 w-80'
           divClasses='flex justify-center items-center'
         />
       </div>

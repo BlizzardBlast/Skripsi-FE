@@ -12,14 +12,14 @@ export default function HomeTwo(): JSX.Element {
           source={CoffeeLady}
           alternative='Coffee_Lady'
           lazy
-          classes='h-80'
+          classes='h-80 w-[9.49375rem]'
           divClasses='flex justify-center items-center'
         />
         <LoadImage
           source={DrinkLady}
           alternative='Coffee_Lady'
           lazy
-          classes='h-80'
+          classes='h-80 w-[10.21875rem]'
           divClasses='flex justify-center items-center'
         />
       </div>

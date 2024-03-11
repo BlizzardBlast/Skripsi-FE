@@ -1,5 +1,5 @@
+import Routes from '@/routes/routes.tsx';
 import { useEffect, type ReactElement } from 'react';
-import Routes from './routes/routes.tsx';
 
 function App(): ReactElement {
   useEffect(() => {

@@ -1,9 +1,11 @@
+import Logo from '@/assets/kofebin_logo.svg';
 import {
   aboutContent,
   firstColumnContent,
   resourcesContent
 } from '@/components/footer/footerResources.ts';
 import LoadImage from '@/components/loadImage/loadImage.tsx';
+import Paragraph from '@/components/typography/paragraph.tsx';
 import { IconContext } from '@react-icons/all-files';
 import { FaFacebook } from '@react-icons/all-files/fa/FaFacebook';
 import { FaInstagramSquare } from '@react-icons/all-files/fa/FaInstagramSquare';
@@ -11,8 +13,6 @@ import { FaPinterest } from '@react-icons/all-files/fa/FaPinterest';
 import { FaTwitterSquare } from '@react-icons/all-files/fa/FaTwitterSquare';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/logo.png';
-import Paragraph from '../typography/paragraph.tsx';
 
 export default function Footer(): JSX.Element {
   return (
@@ -112,7 +112,11 @@ export default function Footer(): JSX.Element {
         </IconContext.Provider>
       </div>
       <div>
-        <LoadImage source={Logo} alternative='tailwind-logo' classes='w-48' />
+        <LoadImage
+          source={Logo}
+          alternative='Kofebin Logo'
+          classes='w-48 h-14'
+        />
       </div>
     </div>
   );

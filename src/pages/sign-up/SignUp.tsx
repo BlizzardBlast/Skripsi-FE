@@ -12,7 +12,7 @@ export default function SignUpPage(): JSX.Element {
         <LoadImage
           source={BaristaGirlMakingCoffee}
           alternative='barista-image'
-          classes='w-[35vw]'
+          classes='w-[35vw] h-[35.5vw]'
           divClasses='flex items-center justify-center'
         />
       </div>

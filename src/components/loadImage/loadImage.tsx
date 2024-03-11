@@ -1,3 +1,4 @@
+import FallbackImage from '@/assets/fallback-image.png';
 import { cn } from '@/lib/utils.ts';
 import { useEffect, useRef, useState } from 'react';
 
@@ -17,6 +18,10 @@ const LoadImage = ({
   divClasses = ''
 }: LoadImageProps): JSX.Element => {
   const [loading, setLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  const handleError = (): void => {
+    setHasError(true);
+  };
   const imageElement = useRef<HTMLImageElement>(null);
 
   const handleImageLoad = (): void => {
@@ -43,10 +48,12 @@ const LoadImage = ({
       <div className={loading ? loadingClass : ''}>
         <img
           ref={imageElement}
-          src={source}
+          src={hasError ? FallbackImage : source}
           alt={alternative}
           className={imageClass}
           loading={lazy ? 'lazy' : 'eager'}
+          onError={handleError}
+          role='presentation'
         />
       </div>
     </div>

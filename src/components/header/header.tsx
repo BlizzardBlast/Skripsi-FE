@@ -1,11 +1,11 @@
+import Logo from '@/assets/kofebin_logo.svg';
+import LoadImage from '@/components/loadImage/loadImage.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { Dialog } from '@headlessui/react';
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Logo from '../../assets/logo.png';
-import LoadImage from '../loadImage/loadImage.tsx';
 
 export default function Header(): JSX.Element {
   const location = useLocation();
@@ -28,7 +28,7 @@ export default function Header(): JSX.Element {
             <LoadImage
               source={Logo}
               alternative='tailwind-logo'
-              classes='w-48'
+              classes='w-48 h-14'
             />
           </Link>
         </div>
@@ -96,7 +96,7 @@ export default function Header(): JSX.Element {
               <LoadImage
                 source={Logo}
                 alternative='tailwind-logo'
-                classes='w-48'
+                classes='w-48 h-14'
               />
             </Link>
             <button
