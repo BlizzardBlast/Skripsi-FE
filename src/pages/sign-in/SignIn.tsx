@@ -1,10 +1,17 @@
 import BaristaGirlMakingCoffee from '@/assets/baristagirlmakingcoffee.svg';
 import LoadImage from '@/components/loadImage/loadImage.tsx';
+import MetaTag from '@/components/metaTag/metaTag.tsx';
 import SignInForm from '@/pages/sign-in/sign-in-form.tsx';
 
 export default function SignInPage(): JSX.Element {
   return (
     <div className='flex min-h-[80vh] items-center justify-center py-5'>
+      <MetaTag
+        title='Kofebin | Sign In'
+        description='Sign In to Kofebin now!'
+        name='Frey Darmasurya'
+        type='website'
+      />
       <div className='flex flex-1 items-center justify-center'>
         <SignInForm />
       </div>

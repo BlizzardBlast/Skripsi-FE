@@ -53,7 +53,6 @@ const LoadImage = ({
           className={imageClass}
           loading={lazy ? 'lazy' : 'eager'}
           onError={handleError}
-          role='presentation'
         />
       </div>
     </div>

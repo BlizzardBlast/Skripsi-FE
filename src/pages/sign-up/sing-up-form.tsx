@@ -86,6 +86,7 @@ export default function SignUpForm(): JSX.Element {
                   className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
                   placeholder='Enter your email'
                   {...field}
+                  autoComplete='email'
                 />
               </FormControl>
               <FormMessage />
@@ -103,6 +104,7 @@ export default function SignUpForm(): JSX.Element {
                   className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
                   placeholder='Enter your preferred username'
                   {...field}
+                  autoComplete='username'
                 />
               </FormControl>
               <FormMessage />
@@ -120,6 +122,7 @@ export default function SignUpForm(): JSX.Element {
                   className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
                   placeholder='Enter a strong password'
                   {...field}
+                  autoComplete='off'
                 />
               </FormControl>
               <FormMessage />
