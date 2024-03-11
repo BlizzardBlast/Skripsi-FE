@@ -9,8 +9,6 @@ export default function SignInPage(): JSX.Element {
       <MetaTag
         title='Kofebin | Sign In'
         description='Sign In to Kofebin now!'
-        name='Frey Darmasurya'
-        type='website'
       />
       <div className='flex flex-1 items-center justify-center'>
         <SignInForm />

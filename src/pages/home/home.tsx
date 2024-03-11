@@ -9,8 +9,6 @@ export default function Home(): JSX.Element {
       <MetaTag
         title='Kofebin | Home Page'
         description='The home page for Kofebin.'
-        name='Frey Darmasurya'
-        type='website'
       />
       <HomeOne />
       <HomeTwo />

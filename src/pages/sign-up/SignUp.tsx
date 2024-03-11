@@ -9,8 +9,6 @@ export default function SignUpPage(): JSX.Element {
       <MetaTag
         title='Kofebin | Sign Up'
         description='Sign Up in Kofebin now!'
-        name='Frey Darmasurya'
-        type='website'
       />
       <div className='flex flex-1 items-center justify-center'>
         <SignUpForm />
