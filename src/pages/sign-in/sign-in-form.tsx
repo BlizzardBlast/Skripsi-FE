@@ -8,12 +8,11 @@ import {
   FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { PasswordInput } from '@/components/ui/password-input.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
 import { simulateFetch, simulatedData } from '@/utils/simulate-fetch.tsx';
 import wrapAsyncFunction from '@/utils/wrapAsyncFunction.ts';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FaEye } from '@react-icons/all-files/fa/FaEye';
-import { FaEyeSlash } from '@react-icons/all-files/fa/FaEyeSlash';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -35,7 +34,6 @@ const formSchema = z.object({
 export default function SignInForm(): JSX.Element {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [isPasswordShown, setIsPasswordShown] = useState(false);
   const { toast } = useToast();
 
   const fetchData = async (): Promise<void> => {
@@ -107,25 +105,12 @@ export default function SignInForm(): JSX.Element {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input
+                <PasswordInput
                   className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
                   placeholder='Enter a strong password'
-                  type={isPasswordShown ? 'text' : 'password'}
                   {...field}
-                  autoComplete='off'
                 />
               </FormControl>
-              <button
-                type='button'
-                className='absolute right-14 top-[51%] -translate-y-2/4 cursor-pointer text-primary-text-color hover:text-gray-600'
-                onClick={() => {
-                  setIsPasswordShown(
-                    (prevIsPasswordShown) => !prevIsPasswordShown
-                  );
-                }}
-              >
-                {isPasswordShown ? <FaEye /> : <FaEyeSlash />}
-              </button>
               <FormMessage />
             </FormItem>
           )}
