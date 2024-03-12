@@ -8,6 +8,7 @@ import {
   FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/components/ui/use-toast.ts';
 import { simulateFetch, simulatedData } from '@/utils/simulate-fetch.tsx';
 import wrapAsyncFunction from '@/utils/wrapAsyncFunction.ts';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -35,13 +36,23 @@ export default function SignInForm(): JSX.Element {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const { toast } = useToast();
 
   const fetchData = async (): Promise<void> => {
     setIsLoading(true);
     try {
       await simulateFetch(simulatedData, 1000);
+      toast({
+        title: 'You have signed in!',
+        description: 'Sign in is successful.'
+      });
     } catch (error) {
       const err = error as Error;
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.'
+      });
       throw err;
     } finally {
       setIsLoading(false);
