@@ -9,6 +9,7 @@ type RouteErrorType = {
   internal: boolean;
   status: number;
   statusText: string;
+  message?: string;
 };
 
 export default function RootErrorElement(): JSX.Element {
@@ -20,7 +21,9 @@ export default function RootErrorElement(): JSX.Element {
       <h1 className='mb-10 scroll-m-20 text-9xl font-extrabold text-primary-text-color'>
         {err?.status === 404 ? 404 : 'Unknown Error'}
       </h1>
-      <span className='text-primary-text-color'>{err.error.message}</span>
+      <span className='text-primary-text-color'>
+        {err?.error?.message ?? err?.message ?? 'Unknown Error'}
+      </span>
     </div>
   );
 }
