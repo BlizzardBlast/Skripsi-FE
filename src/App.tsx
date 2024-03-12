@@ -10,6 +10,7 @@ function App(): ReactElement {
       window.top.location.href = window.self.location.href;
     }
   }, []);
+
   return (
     <HelmetProvider context={helmetContext}>
       <Routes />

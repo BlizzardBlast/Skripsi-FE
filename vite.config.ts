@@ -14,9 +14,6 @@ export default defineConfig({
       plugins: [tailwindcss]
     }
   },
-  // preview: {
-  //   port: 9000
-  // },
   plugins: [
     legacy({
       targets: ['defaults', 'not IE 11']
@@ -25,17 +22,16 @@ export default defineConfig({
     ViteImageOptimizer(),
     viteCompression({ algorithm: 'brotliCompress' })
   ],
-  // server: {
-  //   headers: {
-  //     'accept-encoding': ['gzip', 'br', 'compress'],
-  //     'content-encoding': 'gzip, br, compress'
-  //   },
-  //   port: 9000
-  // },
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: ['./vitest.setup.ts']
+    setupFiles: ['./vitest.setup.ts'],
+    reporters: ['html'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      enabled: true
+    }
   },
   build: {
     // generate .vite/manifest.json in outDir
