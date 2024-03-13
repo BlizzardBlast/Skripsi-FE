@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const LoginInstance = axios.create({
-  baseURL: process.env.FETCH_URL,
+  baseURL: 'http://localhost:8000/',
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Headers':

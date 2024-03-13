@@ -14,13 +14,11 @@ const Login = async ({
   values: LoginProps;
 }): Promise<LoginReturnType> => {
   try {
-    const response: AxiosResponse<LoginReturnType> = await LoginInstance.post(
-      'login',
-      {
-        username: values.username,
+    const response: AxiosResponse<LoginReturnType> =
+      await LoginInstance.postForm('sign-in', {
+        email: values.email,
         password: values.password
-      }
-    );
+      });
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {

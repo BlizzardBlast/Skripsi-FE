@@ -10,7 +10,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { PasswordInput } from '@/components/ui/password-input.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
-import { simulateFetch, simulatedData } from '@/utils/simulate-fetch.tsx';
+import Login from '@/services/login/login-service.ts';
 import wrapAsyncFunction from '@/utils/wrapAsyncFunction.ts';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
@@ -36,26 +36,6 @@ export default function SignInForm(): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const fetchData = async (): Promise<void> => {
-    setIsLoading(true);
-    try {
-      await simulateFetch(simulatedData, 1000);
-      toast({
-        title: 'You have signed in!',
-        description: 'Sign in is successful.'
-      });
-    } catch (error) {
-      const err = error as Error;
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
-      });
-      throw err;
-    } finally {
-      setIsLoading(false);
-    }
-  };
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -65,12 +45,28 @@ export default function SignInForm(): JSX.Element {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>): Promise<void> {
+    setIsLoading(true);
     try {
-      await fetchData();
-      console.log(values);
+      const loginData = {
+        email: values.email,
+        password: values.password
+      };
+      await Login({ values: loginData });
+      toast({
+        title: 'You have signed in!',
+        description: 'Sign in is successful.'
+      });
       navigate('/');
     } catch (error) {
-      console.log(error);
+      const err = error as Error;
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.'
+      });
+      console.log(err);
+    } finally {
+      setIsLoading(false);
     }
   }
 
