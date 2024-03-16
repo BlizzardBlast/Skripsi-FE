@@ -1,5 +1,6 @@
 import Layout from '@/layout/layout.tsx';
 import Home from '@/pages/home/home.tsx';
+import Shop from '@/pages/shop/shop-page.tsx';
 import SignInPage from '@/pages/sign-in/SignIn.tsx';
 import SignUpPage from '@/pages/sign-up/SignUp.tsx';
 import RootErrorElement from '@/routes/Error Element/root.tsx';
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/sign-up',
         element: <SignUpPage />
+      },
+      {
+        path: '/shop',
+        element: <Shop />
       }
     ],
     errorElement: <RootErrorElement />
