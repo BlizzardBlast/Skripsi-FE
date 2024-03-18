@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const LoginInstance = axios.create({
+export const AxiosInstance = axios.create({
   baseURL: 'http://localhost:8000/',
   headers: {
     'Content-Type': 'application/json',

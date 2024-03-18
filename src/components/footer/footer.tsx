@@ -16,16 +16,16 @@ import { Link } from 'react-router-dom';
 
 export default function Footer(): JSX.Element {
   return (
-    <div className='flex min-h-[20svh] flex-col justify-center gap-6 px-36 py-10 leading-7 sm:flex-row'>
+    <div className='flex min-h-[20svh] flex-col justify-center gap-6 bg-secondary-color px-36 py-10 leading-7 sm:flex-row'>
       <div>
-        <Paragraph className='mb-3 text-primary-text-color'>
+        <Paragraph className='mb-3 text-white'>
           <b>Commerce</b>
         </Paragraph>
         {firstColumnContent.map((content) => (
           <Link
             key={content.link}
             to={content.link}
-            className='leading-7 text-primary-text-color'
+            className='leading-7 text-white'
             aria-label={content.title}
           >
             {content.title}
@@ -35,14 +35,14 @@ export default function Footer(): JSX.Element {
       </div>
 
       <div>
-        <Paragraph className='mb-3 text-primary-text-color'>
+        <Paragraph className='mb-3 text-white'>
           <b>About Kofebin</b>
         </Paragraph>
         {aboutContent.map((content) => (
           <Link
             key={content.link}
             to={content.link}
-            className='leading-7 text-primary-text-color'
+            className='leading-7 text-white'
             aria-label={content.title}
           >
             {content.title}
@@ -53,14 +53,14 @@ export default function Footer(): JSX.Element {
       </div>
 
       <div>
-        <Paragraph className='mb-3 text-primary-text-color'>
+        <Paragraph className='mb-3 text-white'>
           <b>Resources</b>
         </Paragraph>
         {resourcesContent.map((content) => (
           <Link
             key={content.link}
             to={content.link}
-            className='leading-7 text-primary-text-color'
+            className='leading-7 text-white'
             aria-label={content.title}
           >
             {content.title}
@@ -71,7 +71,7 @@ export default function Footer(): JSX.Element {
       </div>
 
       <div>
-        <Paragraph className='mb-3 text-primary-text-color'>
+        <Paragraph className='mb-3 text-white'>
           <b>Follow Us</b>
         </Paragraph>
         <IconContext.Provider value={useMemo(() => ({ size: '1.3rem' }), [])}>
@@ -82,7 +82,7 @@ export default function Footer(): JSX.Element {
               rel='noreferrer'
               aria-label='Facebook'
             >
-              <FaFacebook className='text-primary-text-color' />
+              <FaFacebook className='text-white' />
             </a>
             <a
               href={'https://www.instagram.com'}
@@ -90,7 +90,7 @@ export default function Footer(): JSX.Element {
               rel='noreferrer'
               aria-label='Instagram'
             >
-              <FaInstagramSquare className='text-primary-text-color' />
+              <FaInstagramSquare className='text-white' />
             </a>
             <a
               href={'https://www.twitter.com'}
@@ -98,7 +98,7 @@ export default function Footer(): JSX.Element {
               rel='noreferrer'
               aria-label='Twitter'
             >
-              <FaTwitterSquare className='text-primary-text-color' />
+              <FaTwitterSquare className='text-white' />
             </a>
             <a
               href={'https://www.pinterest.com'}
@@ -106,7 +106,7 @@ export default function Footer(): JSX.Element {
               rel='noreferrer'
               aria-label='Pinterest'
             >
-              <FaPinterest className='text-primary-text-color' />
+              <FaPinterest className='text-white' />
             </a>
           </div>
         </IconContext.Provider>

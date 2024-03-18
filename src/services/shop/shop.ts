@@ -1,24 +1,14 @@
 import { AxiosInstance } from '@/helper/instance/axios-instance.ts';
 import { type ErrorResponses } from '@/types/services/error';
-import {
-  type LoginProps,
-  type LoginReturnType
-} from '@/types/services/login/login.ts';
+import { type GetProductResponse } from '@/types/services/shop/shop.ts';
 import handleApiError from '@/utils/handle-api-error.ts';
 import { AxiosError, type AxiosResponse } from 'axios';
 
 // Login Service
-const Login = async ({
-  values
-}: {
-  values: LoginProps;
-}): Promise<LoginReturnType> => {
+const GetProduct = async (): Promise<GetProductResponse> => {
   try {
-    const response: AxiosResponse<LoginReturnType> =
-      await AxiosInstance.postForm('sign-in', {
-        email: values.email,
-        password: values.password
-      });
+    const response: AxiosResponse<GetProductResponse> =
+      await AxiosInstance.get('getProduct');
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
@@ -29,4 +19,4 @@ const Login = async ({
   }
 };
 
-export default Login;
+export default GetProduct;

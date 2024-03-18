@@ -1,12 +1,6 @@
+import { type Product } from '@/types/services/shop/shop.ts';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
-
-interface Product {
-  id: number;
-  name: string;
-  characteristics: string;
-  price: string;
-}
 
 interface CartItem {
   product: Product;
