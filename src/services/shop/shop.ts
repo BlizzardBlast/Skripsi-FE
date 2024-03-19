@@ -4,11 +4,10 @@ import { type GetProductResponse } from '@/types/services/shop/shop.ts';
 import handleApiError from '@/utils/handle-api-error.ts';
 import { AxiosError, type AxiosResponse } from 'axios';
 
-// Login Service
 const GetProduct = async (): Promise<GetProductResponse> => {
   try {
     const response: AxiosResponse<GetProductResponse> =
-      await AxiosInstance.get('getProduct');
+      await AxiosInstance.get('api/getProduct');
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {

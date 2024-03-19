@@ -1,4 +1,5 @@
 import Logo from '@/assets/kofebin_logo.svg';
+import useUserData from '@/components/header/useUserData.ts';
 import LoadImage from '@/components/loadImage/loadImage.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { Dialog } from '@headlessui/react';
@@ -10,6 +11,7 @@ import { Link, useLocation } from 'react-router-dom';
 export default function Header(): JSX.Element {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const user = useUserData();
   const isSignInPage = location.pathname === '/sign-in';
 
   useEffect(() => {
