@@ -2,16 +2,20 @@ import Logo from '@/assets/kofebin_logo.svg';
 import useUserData from '@/components/header/useUserData.ts';
 import LoadImage from '@/components/loadImage/loadImage.tsx';
 import { Button } from '@/components/ui/button.tsx';
+import useSignedIn from '@/zustand/useSignedIn.ts';
 import { Dialog } from '@headlessui/react';
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import { FaShoppingCart } from '@react-icons/all-files/fa/FaShoppingCart';
+import { FaUserCircle } from '@react-icons/all-files/fa/FaUserCircle';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 export default function Header(): JSX.Element {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const user = useUserData();
+  useUserData();
+  const isSignedIn = useSignedIn((state) => state.isSignedIn);
   const isSignInPage = location.pathname === '/sign-in';
 
   useEffect(() => {
@@ -70,18 +74,29 @@ export default function Header(): JSX.Element {
           </Link>
         </div>
         <div className='hidden gap-10 lg:flex lg:flex-1 lg:justify-end'>
-          <Button
-            asChild
-            size={'sm'}
-            className='my-0 rounded-full bg-white px-5 py-0 text-lg leading-6 text-primary-text-color hover:bg-primary-text-color hover:text-white'
-          >
-            <Link
-              to={isSignInPage ? '/sign-up' : '/sign-in'}
-              aria-label={isSignInPage ? 'Sign Up' : 'Sign In'}
+          {!isSignedIn ? (
+            <Button
+              asChild
+              size={'sm'}
+              className='my-0 rounded-full bg-white px-5 py-0 text-lg leading-6 text-primary-text-color hover:bg-primary-text-color hover:text-white'
             >
-              {isSignInPage ? 'Sign Up' : 'Sign In'}
-            </Link>
-          </Button>
+              <Link
+                to={isSignInPage ? '/sign-up' : '/sign-in'}
+                aria-label={isSignInPage ? 'Sign Up' : 'Sign In'}
+              >
+                {isSignInPage ? 'Sign Up' : 'Sign In'}
+              </Link>
+            </Button>
+          ) : (
+            <div className='mt-1 flex flex-row gap-5'>
+              <Link to={'/cart'} aria-label='Cart'>
+                <FaShoppingCart className='cursor-pointer text-2xl text-white' />
+              </Link>
+              <Link to={'/profile'} aria-label='Profile'>
+                <FaUserCircle className='cursor-pointer text-2xl text-white' />
+              </Link>
+            </div>
+          )}
         </div>
       </nav>
       <Dialog
@@ -130,15 +145,34 @@ export default function Header(): JSX.Element {
                   Hubungi Kami
                 </Link>
               </div>
-              <div className='py-6'>
-                <Link
-                  to={isSignInPage ? '/sign-up' : '/sign-in'}
-                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
-                  aria-label={isSignInPage ? 'Sign Up' : 'Sign In'}
-                >
-                  {isSignInPage ? 'Sign Up' : 'Sign In'}
-                </Link>
-              </div>
+              {!isSignedIn ? (
+                <div className='py-6'>
+                  <Link
+                    to={isSignInPage ? '/sign-up' : '/sign-in'}
+                    className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                    aria-label={isSignInPage ? 'Sign Up' : 'Sign In'}
+                  >
+                    {isSignInPage ? 'Sign Up' : 'Sign In'}
+                  </Link>
+                </div>
+              ) : (
+                <div className='space-y-2 py-6'>
+                  <Link
+                    to={'/cart'}
+                    className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                    aria-label={'/cart'}
+                  >
+                    Cart
+                  </Link>
+                  <Link
+                    to={'/profile'}
+                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                    aria-label={'/profile'}
+                  >
+                    Profile
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </Dialog.Panel>

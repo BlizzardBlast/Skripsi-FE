@@ -12,6 +12,7 @@ import { PasswordInput } from '@/components/ui/password-input.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
 import Login from '@/services/login/login-service.ts';
 import wrapAsyncFunction from '@/utils/wrapAsyncFunction.ts';
+import useSignedIn from '@/zustand/useSignedIn.ts';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -35,6 +36,7 @@ export default function SignInForm(): JSX.Element {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const signIn = useSignedIn((state) => state.signIn);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,7 +53,7 @@ export default function SignInForm(): JSX.Element {
         email: values.email,
         password: values.password
       };
-      await Login({ values: loginData });
+      await Login({ values: loginData, signIn });
       toast({
         title: 'You have signed in!',
         description: 'Sign in is successful.'

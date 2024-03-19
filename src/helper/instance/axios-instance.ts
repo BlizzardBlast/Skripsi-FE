@@ -1,3 +1,4 @@
+import { VITE_FETCH_URL } from '@/utils/urls.ts';
 import axios, {
   type AxiosResponse,
   type InternalAxiosRequestConfig
@@ -5,7 +6,7 @@ import axios, {
 import Cookies from 'js-cookie';
 
 export const AxiosInstance = axios.create({
-  baseURL: 'http://localhost:8000/',
+  baseURL: VITE_FETCH_URL,
   withCredentials: true,
   withXSRFToken: true,
   headers: {

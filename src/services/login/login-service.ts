@@ -8,9 +8,11 @@ import handleApiError from '@/utils/handle-api-error.ts';
 import { AxiosError, type AxiosResponse } from 'axios';
 
 const Login = async ({
-  values
+  values,
+  signIn
 }: {
   values: LoginProps;
+  signIn: () => void;
 }): Promise<LoginReturnType> => {
   try {
     const response: AxiosResponse<LoginReturnType> =
@@ -18,6 +20,7 @@ const Login = async ({
         email: values.email,
         password: values.password
       });
+    signIn();
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
