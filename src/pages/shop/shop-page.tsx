@@ -28,7 +28,7 @@ export default function Shop(): JSX.Element {
   );
   const addToCart = useCartStore((state) => state.addToCart);
   const { toast } = useToast();
-  const [selectedTag, renderSelectableTag] = useSelectableTag({ tags });
+  const [, renderSelectableTag] = useSelectableTag({ tags });
 
   useEffect(() => {
     const fetchProduct = async (): Promise<void> => {

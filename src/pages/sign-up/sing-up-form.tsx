@@ -74,6 +74,7 @@ export default function SignUpForm(): JSX.Element {
   async function onSubmit(values: z.infer<typeof formSchema>): Promise<void> {
     try {
       await fetchData();
+      console.log(values);
       navigate('/');
     } catch (error) {
       console.log(error);
