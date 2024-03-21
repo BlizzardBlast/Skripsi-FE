@@ -106,7 +106,7 @@ export default function Shop(): JSX.Element {
                 <input
                   id={`product-${product.id}`}
                   type='text'
-                  value={quantities[index]}
+                  value={quantities[index] ?? ''}
                   onChange={(event) => {
                     handleQuantityChange(index, event);
                   }}
