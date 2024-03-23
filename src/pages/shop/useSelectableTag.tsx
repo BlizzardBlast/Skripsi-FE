@@ -7,6 +7,7 @@ export default function useSelectableTag({
   tags: string[];
 }): readonly [string, () => ReactNode] {
   const [selectedTag, setSelectedTag] = useState<string>('');
+
   const renderSelectableTag = (): ReactNode => {
     return (
       <div className='m-5 ms-0 flex flex-wrap gap-10'>

@@ -21,7 +21,6 @@ export default function ProductDetail(): JSX.Element {
   const location: LocationState = useLocation();
   const product = location.state.product;
   const [quantity, setQuantity] = useState<string>('');
-  console.log(quantity);
   const { id } = useParams();
   const addToCart = useCartStore((state) => state.addToCart);
   const { toast } = useToast();

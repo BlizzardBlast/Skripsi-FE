@@ -5,6 +5,7 @@ import Spinner from '@/components/spinner/spinner.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
 import useSelectableTag from '@/pages/shop/useSelectableTag.tsx';
+import FilterByBean from '@/services/filter-by-bean/filter-by-bean.ts';
 import GetProduct from '@/services/shop/shop.ts';
 import { type GetProductResponse } from '@/types/services/shop/shop.ts';
 import useCartStore from '@/zustand/useCartStore.ts';
@@ -32,29 +33,53 @@ export default function Shop(): JSX.Element {
   const navigate = useNavigate();
   const addToCart = useCartStore((state) => state.addToCart);
   const { toast } = useToast();
-  const [, renderSelectableTag] = useSelectableTag({ tags });
+  const [selectedTag, renderSelectableTag] = useSelectableTag({ tags });
 
   useEffect(() => {
-    const fetchProduct = async (): Promise<void> => {
-      setIsLoading(true);
-      try {
-        const result = await GetProduct();
-        setProducts(result);
-      } catch (error) {
-        const err = error as Error;
-        toast({
-          variant: 'destructive',
-          title: 'Uh oh! Something went wrong.',
-          description: 'Product could not be fetched.'
-        });
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    if (selectedTag !== '') {
+      const filterFunction = async (): Promise<void> => {
+        setIsLoading(true);
+        try {
+          const filteredProducts = await FilterByBean({
+            beanType: selectedTag
+          });
+          setProducts(filteredProducts);
+        } catch (error) {
+          const err = error as Error;
+          toast({
+            variant: 'destructive',
+            title: 'Uh oh! Something went wrong.',
+            description: 'Product could not be fetched.'
+          });
+          console.error(err);
+        } finally {
+          setIsLoading(false);
+        }
+      };
 
-    fetchProduct().catch(() => {});
-  }, [toast]);
+      filterFunction().catch(() => {});
+    } else {
+      const fetchProduct = async (): Promise<void> => {
+        setIsLoading(true);
+        try {
+          const result = await GetProduct();
+          setProducts(result);
+        } catch (error) {
+          const err = error as Error;
+          toast({
+            variant: 'destructive',
+            title: 'Uh oh! Something went wrong.',
+            description: 'Product could not be fetched.'
+          });
+          console.error(err);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+
+      fetchProduct().catch(() => {});
+    }
+  }, [selectedTag, toast]);
 
   const handleQuantityChange = (
     index: number,
@@ -136,7 +161,9 @@ export default function Shop(): JSX.Element {
             ))}
           </div>
         ) : (
-          <Spinner className='border-black border-b-transparent' />
+          <div className='h-[24.4rem]'>
+            <Spinner className='border-black border-b-transparent' />
+          </div>
         )}
       </div>
     </div>
