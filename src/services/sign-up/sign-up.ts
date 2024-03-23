@@ -21,7 +21,6 @@ const SignUp = async ({
         name: values.name,
         password: values.password
       });
-    console.log(response);
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {

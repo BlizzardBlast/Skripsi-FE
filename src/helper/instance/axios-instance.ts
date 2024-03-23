@@ -37,7 +37,7 @@ const onRequest = async (
 // A function that calls '/api/csrf-cookie' to set the CSRF cookies. The
 // default is 'sanctum/csrf-cookie' but you can configure it to be anything.
 const setCSRFToken = async (): Promise<AxiosResponse<unknown, unknown>> => {
-  return await AxiosInstance.get('/csrf-cookie'); // resolves to '/api/csrf-cookie'.
+  return await AxiosInstance.get('sanctum/csrf-cookie'); // resolves to '/api/csrf-cookie'.
 };
 
 // attach your interceptor
