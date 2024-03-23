@@ -67,6 +67,7 @@ export default function SignInForm(): JSX.Element {
         description: 'There was a problem with your request.'
       });
       console.log(err);
+      throw err;
     } finally {
       setIsLoading(false);
     }

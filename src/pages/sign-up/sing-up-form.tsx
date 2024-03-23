@@ -10,7 +10,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { PasswordInput } from '@/components/ui/password-input.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
-import { simulateFetch, simulatedData } from '@/utils/simulate-fetch.tsx';
+import SignUp from '@/services/sign-up/sign-up.ts';
 import wrapAsyncFunction from '@/utils/wrapAsyncFunction.ts';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
@@ -24,6 +24,10 @@ const formSchema = z.object({
     .min(1, { message: 'The e-mail has to be filled.' })
     .email('This is not a valid e-mail.'),
   username: z
+    .string()
+    .min(3, { message: 'Username must be at least 3 characters long.' })
+    .max(20, { message: 'Username must be at most 20 characters long.' }),
+  name: z
     .string()
     .min(3, { message: 'Username must be at least 3 characters long.' })
     .max(20, { message: 'Username must be at most 20 characters long.' }),
@@ -41,14 +45,31 @@ export default function SignUpForm(): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const fetchData = async (): Promise<void> => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: '',
+      username: '',
+      name: '',
+      password: ''
+    }
+  });
+
+  async function onSubmit(values: z.infer<typeof formSchema>): Promise<void> {
     setIsLoading(true);
     try {
-      await simulateFetch(simulatedData, 1000);
+      const signUpData = {
+        email: values.email,
+        username: values.username,
+        name: values.name,
+        password: values.password
+      };
+      await SignUp({ values: signUpData });
       toast({
         title: 'You have signed up!',
         description: 'Sign up is successful! Please sign in.'
       });
+      navigate('/');
     } catch (error) {
       const err = error as Error;
       toast({
@@ -56,28 +77,10 @@ export default function SignUpForm(): JSX.Element {
         title: 'Uh oh! Something went wrong.',
         description: 'There was a problem with your request.'
       });
+      console.log(err);
       throw err;
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: '',
-      username: '',
-      password: ''
-    }
-  });
-
-  async function onSubmit(values: z.infer<typeof formSchema>): Promise<void> {
-    try {
-      await fetchData();
-      console.log(values);
-      navigate('/');
-    } catch (error) {
-      console.log(error);
     }
   }
 
@@ -117,6 +120,24 @@ export default function SignUpForm(): JSX.Element {
                   placeholder='Enter your preferred username'
                   {...field}
                   autoComplete='username'
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='name'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input
+                  className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
+                  placeholder='What is your name?'
+                  {...field}
+                  autoComplete='name'
                 />
               </FormControl>
               <FormMessage />
