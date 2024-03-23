@@ -8,6 +8,7 @@ type LoadImageProps = {
   classes: string;
   lazy?: boolean;
   divClasses?: string;
+  onClick?: () => void;
 };
 
 const LoadImage = ({
@@ -15,7 +16,8 @@ const LoadImage = ({
   alternative,
   classes,
   lazy = false,
-  divClasses = ''
+  divClasses = '',
+  onClick
 }: LoadImageProps): JSX.Element => {
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -44,7 +46,7 @@ const LoadImage = ({
   const divClass = cn('w-full', divClasses);
 
   return (
-    <div className={divClass}>
+    <div className={divClass} onClick={onClick}>
       <div className={loading ? loadingClass : ''}>
         <img
           ref={imageElement}

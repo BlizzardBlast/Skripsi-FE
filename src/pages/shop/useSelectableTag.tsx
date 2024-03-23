@@ -9,7 +9,7 @@ export default function useSelectableTag({
   const [selectedTag, setSelectedTag] = useState<string>('');
   const renderSelectableTag = (): ReactNode => {
     return (
-      <div className='m-5 ms-0 flex gap-10'>
+      <div className='m-5 ms-0 flex flex-wrap gap-10'>
         {tags.map((tag) => (
           <button
             key={tag}

@@ -1,6 +1,7 @@
 /* eslint-disable security/detect-object-injection */
 import LoadImage from '@/components/loadImage/loadImage.tsx';
 import MetaTag from '@/components/metaTag/metaTag.tsx';
+import Spinner from '@/components/spinner/spinner.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
 import useSelectableTag from '@/pages/shop/useSelectableTag.tsx';
@@ -8,10 +9,12 @@ import GetProduct from '@/services/shop/shop.ts';
 import { type GetProductResponse } from '@/types/services/shop/shop.ts';
 import useCartStore from '@/zustand/useCartStore.ts';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const tags = ['Arabica', 'Robusta', 'Excelsa', 'Liberica'];
 
 export default function Shop(): JSX.Element {
+  const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<GetProductResponse>([
     {
       id: 0,
@@ -26,12 +29,14 @@ export default function Shop(): JSX.Element {
   const [quantities, setQuantities] = useState<string[]>(
     Array(products?.length).fill('')
   );
+  const navigate = useNavigate();
   const addToCart = useCartStore((state) => state.addToCart);
   const { toast } = useToast();
   const [, renderSelectableTag] = useSelectableTag({ tags });
 
   useEffect(() => {
     const fetchProduct = async (): Promise<void> => {
+      setIsLoading(true);
       try {
         const result = await GetProduct();
         setProducts(result);
@@ -43,11 +48,13 @@ export default function Shop(): JSX.Element {
           description: 'Product could not be fetched.'
         });
         console.error(err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchProduct().catch(() => {});
-  }, []);
+  }, [toast]);
 
   const handleQuantityChange = (
     index: number,
@@ -87,43 +94,50 @@ export default function Shop(): JSX.Element {
           Shop
         </h1>
         {renderSelectableTag()}
-        <div className='flex flex-row flex-wrap gap-5'>
-          {products.map((product, index) => (
-            <div
-              key={product.id}
-              className='flex flex-col rounded-2xl bg-white px-3 py-3 font-normal drop-shadow-[3px_3px_3px_#E48F45]'
-            >
-              <LoadImage
-                classes='w-52 h-52 mb-2 rounded-xl'
-                source='errorImage'
-                alternative={product.name}
-              />
-              <p>{product.name}</p>
-              <p>Characteristic: {product.type}</p>
-              <p>Price/gram: Rp. {product.price}</p>
-              <div>
-                <label htmlFor={`product-${product.id}`}>Qty (gram): </label>
-                <input
-                  id={`product-${product.id}`}
-                  type='text'
-                  value={quantities[index] ?? ''}
-                  onChange={(event) => {
-                    handleQuantityChange(index, event);
-                  }}
-                  className='w-14 rounded-full border border-black px-3'
-                />
-              </div>
-              <Button
-                className='mt-3 justify-self-center rounded-full bg-primary-color text-center hover:bg-secondary-color'
-                onClick={() => {
-                  handleAddToCart(index);
-                }}
+        {!isLoading ? (
+          <div className='flex flex-row flex-wrap gap-5'>
+            {products.map((product, index) => (
+              <div
+                key={product.id}
+                className='flex flex-col rounded-2xl bg-white px-3 py-3 font-normal drop-shadow-[3px_3px_3px_#E48F45]'
               >
-                Add to Cart
-              </Button>
-            </div>
-          ))}
-        </div>
+                <LoadImage
+                  classes='w-52 h-52 mb-2 rounded-xl cursor-pointer'
+                  source='errorImage'
+                  alternative={product.name}
+                  onClick={() => {
+                    navigate(`/product/${product.id}`, { state: { product } });
+                  }}
+                />
+                <p>{product.name}</p>
+                <p>Characteristic: {product.type}</p>
+                <p>Price/gram: Rp. {product.price}</p>
+                <div>
+                  <label htmlFor={`product-${product.id}`}>Qty (gram): </label>
+                  <input
+                    id={`product-${product.id}`}
+                    type='text'
+                    value={quantities[index] ?? ''}
+                    onChange={(event) => {
+                      handleQuantityChange(index, event);
+                    }}
+                    className='w-14 rounded-full border border-black px-3'
+                  />
+                </div>
+                <Button
+                  className='mt-3 justify-self-center rounded-full bg-primary-color text-center hover:bg-secondary-color'
+                  onClick={() => {
+                    handleAddToCart(index);
+                  }}
+                >
+                  Add to Cart
+                </Button>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <Spinner className='border-black border-b-transparent' />
+        )}
       </div>
     </div>
   );

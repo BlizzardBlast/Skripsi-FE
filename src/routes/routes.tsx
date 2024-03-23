@@ -1,5 +1,6 @@
 import Layout from '@/layout/layout.tsx';
 import Home from '@/pages/home/home.tsx';
+import ProductDetail from '@/pages/product/product-detail.tsx';
 import Shop from '@/pages/shop/shop-page.tsx';
 import SignInPage from '@/pages/sign-in/SignIn.tsx';
 import SignUpPage from '@/pages/sign-up/SignUp.tsx';
@@ -26,6 +27,15 @@ const router = createBrowserRouter([
       {
         path: '/shop',
         element: <Shop />
+      },
+      {
+        path: '/product',
+        children: [
+          {
+            path: ':id',
+            element: <ProductDetail />
+          }
+        ]
       }
     ],
     errorElement: <RootErrorElement />
