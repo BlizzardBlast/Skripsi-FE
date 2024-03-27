@@ -41,6 +41,10 @@ const LoadImage = ({
     }
   }, [imageElement]);
 
+  useEffect(() => {
+    setHasError(false);
+  }, [source]);
+
   const loadingClass = cn(classes, 'bg-transparent');
   const imageClass = cn('h-auto', classes);
   const divClass = cn('w-full', divClasses);

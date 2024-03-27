@@ -5,7 +5,7 @@ import SignUpForm from '@/pages/sign-up/sing-up-form.tsx';
 
 export default function SignUpPage(): JSX.Element {
   return (
-    <div className='flex min-h-[80vh] items-center justify-center py-5'>
+    <div className='flex min-h-[80vh] flex-col flex-wrap items-center justify-center py-5 md:flex-row'>
       <MetaTag
         title='Kofebin | Sign Up'
         description='Sign Up in Kofebin now!'

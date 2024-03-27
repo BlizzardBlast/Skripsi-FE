@@ -2,9 +2,10 @@ import LoadImage from '@/components/loadImage/loadImage.tsx';
 import MetaTag from '@/components/metaTag/metaTag.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
+import GetProductImage from '@/services/get-product-image/get-product-image.ts';
 import { type Product } from '@/types/services/shop/shop.ts';
 import useCartStore from '@/zustand/useCartStore.ts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 type LocationState = {
@@ -20,10 +21,26 @@ type LocationState = {
 export default function ProductDetail(): JSX.Element {
   const location: LocationState = useLocation();
   const product = location.state.product;
+
   const [quantity, setQuantity] = useState<string>('');
+  const [productImage, setProductImage] = useState<string | undefined>('');
+
   const { id } = useParams();
   const addToCart = useCartStore((state) => state.addToCart);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const fetchProductImage = async (): Promise<void> => {
+      try {
+        const result = await GetProductImage({ id: id as string });
+        setProductImage(result);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchProductImage().catch(() => {});
+  }, []);
 
   const handleQuantityChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -53,21 +70,24 @@ export default function ProductDetail(): JSX.Element {
         title={`Kofebin | ${product.name}`}
         description='Purchase your preferred coffee beans now!'
       />
-      <div className='flex h-5/6 w-5/6 flex-wrap items-center justify-center rounded-2xl bg-white px-10 py-10 text-center drop-shadow-[3px_3px_3px_#E48F45] sm:text-left'>
+      <div className='flex h-5/6 w-5/6 flex-col flex-wrap items-center justify-center gap-5 rounded-2xl bg-white px-10 py-10 text-center drop-shadow-[3px_3px_3px_#E48F45] sm:text-left lg:flex-row'>
         <div className='flex flex-[4] flex-col'>
           <LoadImage
-            classes='w-60 h-60 mb-2 rounded-xl'
-            source='errorImage'
+            classes='w-96 h-96 mb-2 rounded-xl'
+            source={productImage as string}
             alternative={product.name}
+            divClasses='flex justify-center items-center'
           />
-          <span className='text-2xl font-bold'>{product.name}</span>
-          <span className='font-bold'>Canis Lupus Lupus</span>
-          <span>Origin: Sumatra</span>
         </div>
-        <div className='flex min-h-[40vh] flex-[6] flex-col flex-wrap justify-between'>
-          <span className='font-bold'>{product.description}</span>
-          <div className='flex flex-wrap items-center justify-between'>
-            <div className='flex h-44 w-60 flex-col justify-center rounded-2xl bg-tertiary-color p-3'>
+        <div className='flex min-h-96 flex-[6] flex-col flex-wrap justify-between gap-5'>
+          <div className='flex flex-col'>
+            <span className='text-2xl font-bold'>{product.name}</span>
+            <span className='font-bold'>Canis Lupus Lupus</span>
+            <span>Origin: Sumatra</span>
+            <span className='font-bold'>{product.description}</span>
+          </div>
+          <div className='flex flex-wrap items-center justify-between gap-5'>
+            <div className='flex h-44 min-w-60 flex-col justify-center rounded-2xl bg-tertiary-color p-3'>
               <span className='font-bold'>Characteristic Sheet</span>
               <span>Type: {product.type}</span>
               <span>Suitable For: Evening Coffee</span>
@@ -75,7 +95,7 @@ export default function ProductDetail(): JSX.Element {
               <span>Taste Characteristic:</span>
               <span>Hmm</span>
             </div>
-            <div className='flex h-44 w-60 flex-col justify-between rounded-2xl bg-secondary-color p-3 text-white'>
+            <div className='flex h-44 min-w-60 flex-col justify-between rounded-2xl bg-secondary-color p-3 text-white'>
               <span>Item Control</span>
               <div className='w-full'>
                 <div>

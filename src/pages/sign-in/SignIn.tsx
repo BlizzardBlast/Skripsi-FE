@@ -5,7 +5,7 @@ import SignInForm from '@/pages/sign-in/sign-in-form.tsx';
 
 export default function SignInPage(): JSX.Element {
   return (
-    <div className='flex min-h-[80vh] items-center justify-center py-5'>
+    <div className='flex min-h-[80vh] flex-col flex-wrap items-center justify-center py-5 md:flex-row'>
       <MetaTag
         title='Kofebin | Sign In'
         description='Sign In to Kofebin now!'
