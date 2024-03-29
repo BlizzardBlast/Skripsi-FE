@@ -1,5 +1,5 @@
-import LoadImage from '@/components/loadImage/loadImage.tsx';
-import MetaTag from '@/components/metaTag/metaTag.tsx';
+import LoadImage from '@/components/load-image/load-image';
+import MetaTag from '@/components/meta-tag/meta-tag';
 import { Button } from '@/components/ui/button.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
 import GetProductImage from '@/services/get-product-image/get-product-image.ts';

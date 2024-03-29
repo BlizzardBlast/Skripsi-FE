@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input';
 import { PasswordInput } from '@/components/ui/password-input.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
 import Login from '@/services/login/login-service.ts';
-import wrapAsyncFunction from '@/utils/wrapAsyncFunction.ts';
+import wrapAsyncFunction from '@/utils/wrap-async-function';
 import useSignedIn from '@/zustand/useSignedIn.ts';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';

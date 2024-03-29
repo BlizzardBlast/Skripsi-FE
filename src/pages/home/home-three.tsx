@@ -1,9 +1,9 @@
 import CherryHarvest from '@/assets/cherryharvest.svg';
-import LoadImage from '@/components/loadImage/loadImage.tsx';
+import LoadImage from '@/components/load-image/load-image';
 import HeadingOne from '@/components/typography/headingOne.tsx';
 import Paragraph from '@/components/typography/paragraph.tsx';
 
-export default function HomeTwo(): JSX.Element {
+export default function HomeThree(): JSX.Element {
   return (
     <div className='flex min-h-[70vh] items-center justify-around bg-primary-color py-5'>
       <div className='flex flex-[6] items-center justify-center'>

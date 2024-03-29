@@ -1,6 +1,6 @@
 import CoffeeLady from '@/assets/ladywithacupofcoffee.svg';
 import DrinkLady from '@/assets/ladywithadrink.svg';
-import LoadImage from '@/components/loadImage/loadImage.tsx';
+import LoadImage from '@/components/load-image/load-image';
 import HeadingOne from '@/components/typography/headingOne.tsx';
 import Paragraph from '@/components/typography/paragraph.tsx';
 

@@ -1,6 +1,6 @@
 /* eslint-disable security/detect-object-injection */
-import LoadImage from '@/components/loadImage/loadImage.tsx';
-import MetaTag from '@/components/metaTag/metaTag.tsx';
+import LoadImage from '@/components/load-image/load-image';
+import MetaTag from '@/components/meta-tag/meta-tag';
 import Spinner from '@/components/spinner/spinner.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';

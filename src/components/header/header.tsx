@@ -1,6 +1,6 @@
 import Logo from '@/assets/kofebin_logo.svg';
 import useUserData from '@/components/header/useUserData.ts';
-import LoadImage from '@/components/loadImage/loadImage.tsx';
+import LoadImage from '@/components/load-image/load-image';
 import { Button } from '@/components/ui/button.tsx';
 import {
   DropdownMenu,
@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useToast } from '@/components/ui/use-toast.ts';
 import SignOut from '@/services/sign-out/sign-out.ts';
-import wrapAsyncFunction from '@/utils/wrapAsyncFunction.ts';
+import wrapAsyncFunction from '@/utils/wrap-async-function';
 import useSignedIn from '@/zustand/useSignedIn.ts';
 import { Dialog } from '@headlessui/react';
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';

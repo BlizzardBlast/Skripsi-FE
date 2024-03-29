@@ -1,7 +1,7 @@
-import MetaTag from '@/components/metaTag/metaTag';
-import HomeThree from '@/pages/home/HomeThree.tsx';
-import HomeOne from '@/pages/home/homeOne.tsx';
-import HomeTwo from '@/pages/home/homeTwo.tsx';
+import MetaTag from '@/components/meta-tag/meta-tag';
+import HomeThree from '@/pages/home/home-three';
+import HomeOne from '@/pages/home/home-one';
+import HomeTwo from '@/pages/home/home-two';
 
 export default function Home(): JSX.Element {
   return (

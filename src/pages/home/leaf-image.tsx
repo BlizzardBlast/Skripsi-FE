@@ -1,6 +1,6 @@
 import LeftLeaves from '@/assets/left_leaves.png';
 import RightLeaves from '@/assets/right_leaves.png';
-import LoadImage from '@/components/loadImage/loadImage.tsx';
+import LoadImage from '@/components/load-image/load-image';
 
 export default function LeafImage(): JSX.Element {
   return (

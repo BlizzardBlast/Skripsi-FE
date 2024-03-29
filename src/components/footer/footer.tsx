@@ -3,8 +3,8 @@ import {
   aboutContent,
   firstColumnContent,
   resourcesContent
-} from '@/components/footer/footerResources.ts';
-import LoadImage from '@/components/loadImage/loadImage.tsx';
+} from '@/components/footer/footer-resources';
+import LoadImage from '@/components/load-image/load-image';
 import Paragraph from '@/components/typography/paragraph.tsx';
 import { IconContext } from '@react-icons/all-files';
 import { FaFacebook } from '@react-icons/all-files/fa/FaFacebook';

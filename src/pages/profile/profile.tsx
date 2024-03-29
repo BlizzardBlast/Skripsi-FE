@@ -1,7 +1,7 @@
 import LadyCoffee from '@/assets/lady_coffee.svg';
 import useUserData from '@/components/header/useUserData.ts';
-import LoadImage from '@/components/loadImage/loadImage.tsx';
-import MetaTag from '@/components/metaTag/metaTag.tsx';
+import LoadImage from '@/components/load-image/load-image';
+import MetaTag from '@/components/meta-tag/meta-tag';
 import { Button } from '@/components/ui/button.tsx';
 import {
   Form,
@@ -14,7 +14,7 @@ import {
 import { Input } from '@/components/ui/input.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
 import UpdateProfile from '@/services/profile/update-profile.ts';
-import wrapAsyncFunction from '@/utils/wrapAsyncFunction.ts';
+import wrapAsyncFunction from '@/utils/wrap-async-function';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FaRegUser } from '@react-icons/all-files/fa/FaRegUser';
 import { useState } from 'react';

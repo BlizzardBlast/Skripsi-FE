@@ -1,4 +1,4 @@
-import MetaTag from '@/components/metaTag/metaTag.tsx';
+import MetaTag from '@/components/meta-tag/meta-tag';
 
 export default function BrewingPage(): JSX.Element {
   return (
