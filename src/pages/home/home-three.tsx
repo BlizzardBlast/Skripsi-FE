@@ -5,9 +5,9 @@ import Paragraph from '@/components/typography/paragraph.tsx';
 
 export default function HomeThree(): JSX.Element {
   return (
-    <div className='flex min-h-[70vh] items-center justify-around bg-primary-color py-5'>
+    <div className='flex min-h-[70vh] flex-col items-center justify-around bg-primary-color py-10 md:flex-row'>
       <div className='flex flex-[6] items-center justify-center'>
-        <article className='flex min-h-80 w-[80%] flex-col items-center justify-start text-pretty rounded-3xl px-7 text-center text-white sm:justify-center'>
+        <article className='flex min-h-80 w-[80%] flex-col items-center justify-center text-pretty rounded-3xl px-7 text-center text-white'>
           <HeadingOne className='text-center'>
             Coffee beans from all over the world
           </HeadingOne>

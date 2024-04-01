@@ -4,8 +4,8 @@ import Home from '@/pages/home/home.tsx';
 import ProductDetail from '@/pages/product/product-detail.tsx';
 import ProfilePage from '@/pages/profile/profile.tsx';
 import Shop from '@/pages/shop/shop-page.tsx';
-import SignInPage from '@/pages/sign-in/SignIn.tsx';
-import SignUpPage from '@/pages/sign-up/SignUp.tsx';
+import SignInPage from '@/pages/sign-in/sign-in';
+import SignUpPage from '@/pages/sign-up/sign-up';
 import RootErrorElement from '@/routes/Error Element/root.tsx';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 

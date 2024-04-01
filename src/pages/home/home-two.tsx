@@ -6,7 +6,7 @@ import Paragraph from '@/components/typography/paragraph.tsx';
 
 export default function HomeTwo(): JSX.Element {
   return (
-    <div className="flex min-h-[70vh] items-center justify-around bg-[url('@/assets/coffee_beans_bg.svg')] bg-cover bg-center bg-no-repeat py-5">
+    <div className="flex min-h-[70vh] flex-col items-center justify-around gap-10 bg-[url('@/assets/coffee_beans_bg.svg')] bg-cover bg-center bg-no-repeat py-10 md:flex-row">
       <div className='flex flex-[4] items-center justify-center ps-3'>
         <LoadImage
           source={CoffeeLady}
@@ -24,7 +24,7 @@ export default function HomeTwo(): JSX.Element {
         />
       </div>
       <div className='flex flex-[6] items-center justify-center'>
-        <article className='flex min-h-80 w-[80%] flex-col items-center justify-start text-pretty rounded-3xl bg-tertiary-color px-7 text-center sm:justify-center'>
+        <article className='flex min-h-80 w-[80%] flex-col items-center justify-center text-pretty rounded-3xl bg-tertiary-color px-7 text-center'>
           <HeadingOne className='text-center'>
             Spice up your coffee break
           </HeadingOne>

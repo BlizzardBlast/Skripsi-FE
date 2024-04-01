@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer(): JSX.Element {
   return (
-    <div className='flex min-h-[20svh] flex-col justify-center gap-6 bg-secondary-color px-36 py-10 leading-7 sm:flex-row'>
+    <div className='flex min-h-[20svh] flex-col justify-center gap-6 bg-secondary-color px-36 py-10 text-center leading-7 md:flex-row md:text-left'>
       <div>
         <Paragraph className='mb-3 text-white'>
           <b>Commerce</b>
@@ -75,7 +75,7 @@ export default function Footer(): JSX.Element {
           <b>Follow Us</b>
         </Paragraph>
         <IconContext.Provider value={useMemo(() => ({ size: '1.3rem' }), [])}>
-          <div className='mt-1 flex flex-row gap-2'>
+          <div className='mt-1 flex flex-row justify-center gap-2'>
             <a
               href={'https://www.facebook.com'}
               target='_blank'
@@ -116,6 +116,7 @@ export default function Footer(): JSX.Element {
           source={Logo}
           alternative='Kofebin Logo'
           classes='w-48 h-14'
+          divClasses='flex justify-center'
         />
       </div>
     </div>

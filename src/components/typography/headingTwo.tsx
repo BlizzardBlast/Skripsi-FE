@@ -1,12 +1,20 @@
+import { cn } from '@/lib/utils.ts';
 import { type ReactNode } from 'react';
 
 export default function HeadingTwo({
-  children
+  children,
+  className
 }: Readonly<{
   children: ReactNode;
+  className?: string;
 }>): JSX.Element {
   return (
-    <h2 className='scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0'>
+    <h2
+      className={cn(
+        'scroll-m-20 text-3xl font-semibold tracking-tight',
+        className
+      )}
+    >
       {children}
     </h2>
   );
