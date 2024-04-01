@@ -1,5 +1,6 @@
 import Layout from '@/layout/layout.tsx';
 import BrewingPage from '@/pages/brewing/brewing.tsx';
+import CartPage from '@/pages/cart/cart-page.tsx';
 import Home from '@/pages/home/home.tsx';
 import ProductDetail from '@/pages/product/product-detail.tsx';
 import ProfilePage from '@/pages/profile/profile.tsx';
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <ProfilePage />
+      },
+      {
+        path: '/cart',
+        element: <CartPage />
       },
       {
         path: '/brewing',

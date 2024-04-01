@@ -125,7 +125,9 @@ export default function Header(): JSX.Element {
             </Button>
           ) : (
             <div className='mt-1 flex flex-row gap-5'>
-              <FaShoppingCart className='cursor-pointer text-2xl text-white' />
+              <Link to={'/cart'} aria-label='Cart'>
+                <FaShoppingCart className='cursor-pointer text-2xl text-white' />
+              </Link>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Link to={'/profile'} aria-label='Profile'>
