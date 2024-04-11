@@ -1,10 +1,8 @@
 /* eslint-disable security/detect-object-injection */
 import LoadImage from '@/components/load-image/load-image.tsx';
 import { Button } from '@/components/ui/button.tsx';
-import { useToast } from '@/components/ui/use-toast.ts';
+import useHandleProduct from '@/pages/shop/useHandleProduct.ts';
 import { type GetProductResponse } from '@/types/services/shop/shop.ts';
-import useCartStore from '@/zustand/useCartStore.ts';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 type ProductListProps = {
@@ -15,38 +13,10 @@ export default function ProductList({
   products
 }: Readonly<ProductListProps>): JSX.Element {
   const navigate = useNavigate();
-  const { toast } = useToast();
-  const [quantities, setQuantities] = useState<string[]>(
-    Array(products?.length).fill('')
-  );
-  const addToCart = useCartStore((state) => state.addToCart);
-
-  const handleQuantityChange = (
-    index: number,
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    const { value } = event.target;
-    const onlyNumbersQuantity = value.replace(/\D/g, '');
-    const newQuantities = [...quantities];
-    newQuantities[index] = onlyNumbersQuantity;
-    setQuantities(newQuantities);
-  };
-
-  const handleAddToCart = (index: number): void => {
-    const quantity = parseInt(quantities[index]);
-    if (!isNaN(quantity) && quantity > 0) {
-      addToCart(products?.[index], quantity);
-      const newQuantities = [...quantities];
-      newQuantities[index] = '';
-      setQuantities(newQuantities);
-    } else {
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'Please input a correct number.'
-      });
-    }
-  };
+  const { quantities, handleQuantityChange, handleAddToCart } =
+    useHandleProduct({
+      products
+    });
 
   if (products.length === 0) {
     return (
