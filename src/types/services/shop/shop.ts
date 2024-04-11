@@ -8,4 +8,8 @@ export type Product = {
   updated_at: string;
 };
 
+export type GetProductProps = {
+  signal: AbortSignal | null;
+};
+
 export type GetProductResponse = Product[];
