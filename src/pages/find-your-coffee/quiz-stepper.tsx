@@ -1,5 +1,6 @@
 /* eslint-disable security/detect-object-injection */
 import QuizStepOne from '@/pages/find-your-coffee/quiz-one.tsx';
+import QuizStepTwo from '@/pages/find-your-coffee/quiz-two.tsx';
 import QuizStepZero from '@/pages/find-your-coffee/quiz-zero.tsx';
 import { useState } from 'react';
 
@@ -28,7 +29,8 @@ export default function QuizStepper(): JSX.Element {
 
   const steps = [
     <QuizStepZero key={'quiz-zero'} handleNextStep={handleNextStep} />,
-    <QuizStepOne key={'quiz-one'} handleNextStep={handleNextStepWithAnswer} />
+    <QuizStepOne key={'quiz-one'} handleNextStep={handleNextStepWithAnswer} />,
+    <QuizStepTwo key={'quiz-two'} handleNextStep={handleNextStepWithAnswer} />
   ];
 
   if (step >= 0 && step < steps.length) {
