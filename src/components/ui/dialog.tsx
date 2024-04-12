@@ -32,10 +32,11 @@ const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
     className?: string;
+    dialogOverlayClassName?: string;
   }
->(({ className, children, ...props }, ref) => (
+>(({ className, dialogOverlayClassName, children, ...props }, ref) => (
   <DialogPortal>
-    <DialogOverlay />
+    <DialogOverlay className={dialogOverlayClassName} />
     <DialogPrimitive.Content
       ref={ref}
       className={cn(

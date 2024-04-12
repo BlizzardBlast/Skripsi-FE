@@ -3,6 +3,7 @@ import LoadImage from '@/components/load-image/load-image.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import useHandleProduct from '@/pages/shop/useHandleProduct.ts';
 import { type GetProductResponse } from '@/types/services/shop/shop.ts';
+import ConvertToRupiah from '@/utils/convert-to-rupiah.ts';
 import { useNavigate } from 'react-router-dom';
 
 type ProductListProps = {
@@ -43,7 +44,7 @@ export default function ProductList({
           />
           <p>{product.name}</p>
           <p>Characteristic: {product.type}</p>
-          <p>Price/gram: Rp. {product.price}</p>
+          <p>Price/gram: {ConvertToRupiah(product.price)}</p>
           <div>
             <label htmlFor={`product-${product.id}`}>Qty (gram): </label>
             <input

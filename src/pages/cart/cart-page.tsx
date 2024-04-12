@@ -2,10 +2,11 @@
 import TrashIcon from '@/assets/trash_icon.svg';
 import LoadImage from '@/components/load-image/load-image.tsx';
 import MetaTag from '@/components/meta-tag/meta-tag';
-import HeadingFour from '@/components/typography/headingFour.tsx';
 import HeadingOne from '@/components/typography/headingOne.tsx';
 import Paragraph from '@/components/typography/paragraph.tsx';
 import { Button } from '@/components/ui/button.tsx';
+import PaymentDialog from '@/pages/cart/payment-dialog.tsx';
+import ConvertToRupiah from '@/utils/convert-to-rupiah.ts';
 import useCartStore from '@/zustand/useCartStore.ts';
 
 export default function CartPage(): JSX.Element {
@@ -15,13 +16,6 @@ export default function CartPage(): JSX.Element {
   );
   const removeProduct = useCartStore((state) => state.removeProduct);
   const quantities = cart.map((product) => String(product.quantity));
-  const totalPrice = (): number => {
-    let sum = 0;
-    cart.forEach((product) => {
-      sum = sum + product.product.price * product.quantity;
-    });
-    return sum;
-  };
 
   const handleQuantityChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -85,7 +79,7 @@ export default function CartPage(): JSX.Element {
                   {product.product.name}
                 </Paragraph>
                 <Paragraph className='text-nowrap font-semibold'>
-                  Price: {product.product.price}
+                  Price: {ConvertToRupiah(product.product.price)}
                 </Paragraph>
               </div>
             </div>
@@ -133,12 +127,7 @@ export default function CartPage(): JSX.Element {
             </div>
           </div>
         ))}
-        <div className='text-right'>
-          <HeadingFour>Total: {totalPrice()}</HeadingFour>
-          <Button className='bg-tertiary-color text-primary-text-color hover:bg-secondary-color hover:text-white'>
-            Continue
-          </Button>
-        </div>
+        <PaymentDialog cart={cart} />
       </div>
     </div>
   );
