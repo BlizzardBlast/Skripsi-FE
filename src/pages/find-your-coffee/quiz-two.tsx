@@ -1,5 +1,6 @@
 import Paragraph from '@/components/typography/paragraph.tsx';
 import { Button } from '@/components/ui/button.tsx';
+import { motion } from 'framer-motion';
 
 type QuizStepTwoProps = {
   handleNextStep: (newAnswer: string) => void;
@@ -9,10 +10,15 @@ export default function QuizStepTwo({
   handleNextStep
 }: Readonly<QuizStepTwoProps>): JSX.Element {
   return (
-    <div
+    <motion.div
       className={`min-h-[80vh] w-full bg-[url('@/assets/fyc1_bg.svg')] bg-cover bg-center bg-no-repeat text-white`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
+      exit={{ opacity: 0 }}
+      key={'quiz-two-motion-div'}
     >
-      <div className='float-right flex w-1/3 flex-col gap-10 p-20'>
+      <div className='float-right flex w-full flex-col gap-10 p-20 md:w-2/5'>
         <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>
           Bean Type
         </h1>
@@ -48,6 +54,6 @@ export default function QuizStepTwo({
           </Button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

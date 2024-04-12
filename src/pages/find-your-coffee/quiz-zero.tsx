@@ -1,5 +1,6 @@
 import Paragraph from '@/components/typography/paragraph.tsx';
 import { Button } from '@/components/ui/button.tsx';
+import { motion } from 'framer-motion';
 
 type QuizStepZeroProps = {
   handleNextStep: () => void;
@@ -9,10 +10,15 @@ export default function QuizStepZero({
   handleNextStep
 }: Readonly<QuizStepZeroProps>): JSX.Element {
   return (
-    <div
+    <motion.div
       className={`min-h-[80vh] w-full bg-[url('@/assets/fyc_bg.svg')] bg-cover bg-center bg-no-repeat text-white`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
+      exit={{ opacity: 0 }}
+      key={'quiz-zero-motion-div'}
     >
-      <div className='flex w-1/3 flex-col gap-10 p-20'>
+      <div className='flex w-full flex-col gap-10 p-20 md:w-2/5'>
         <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>
           Coffee
         </h1>
@@ -28,6 +34,6 @@ export default function QuizStepZero({
           Next
         </Button>
       </div>
-    </div>
+    </motion.div>
   );
 }

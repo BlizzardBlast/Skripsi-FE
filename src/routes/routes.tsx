@@ -1,6 +1,7 @@
 import Layout from '@/layout/layout.tsx';
 import BrewingPage from '@/pages/brewing/brewing.tsx';
 import CartPage from '@/pages/cart/cart-page.tsx';
+import FindYourCoffeeResultPage from '@/pages/find-your-coffee-result/find-your-coffee-result.tsx';
 import FindYourCoffeePage from '@/pages/find-your-coffee/find-your-coffee.tsx';
 import Home from '@/pages/home/home.tsx';
 import ProductDetail from '@/pages/product/product-detail.tsx';
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: '/find-your-coffee',
         element: <FindYourCoffeePage />
+      },
+      {
+        path: '/find-your-coffee/result',
+        element: <FindYourCoffeeResultPage />
       },
       {
         path: '/shop',

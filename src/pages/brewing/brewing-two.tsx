@@ -13,7 +13,7 @@ import {
 export default function BrewingSectionTwo(): JSX.Element {
   return (
     <div className='flex min-h-[70vh] flex-col items-center justify-around bg-secondary-color p-5 md:flex-row'>
-      <Carousel className='w-[90%]'>
+      <Carousel className='w-[80%] sm:w-[90%]'>
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem key={index}>
