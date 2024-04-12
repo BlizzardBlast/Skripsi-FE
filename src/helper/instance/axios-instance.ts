@@ -1,4 +1,4 @@
-import { VITE_FETCH_URL } from '@/utils/urls.ts';
+import { env } from '@/utils/env';
 import axios, {
   type AxiosResponse,
   type InternalAxiosRequestConfig
@@ -6,7 +6,7 @@ import axios, {
 import Cookies from 'js-cookie';
 
 export const AxiosInstance = axios.create({
-  baseURL: VITE_FETCH_URL,
+  baseURL: env.VITE_FETCH_URL,
   withCredentials: true,
   withXSRFToken: true,
   headers: {

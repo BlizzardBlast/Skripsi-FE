@@ -40,7 +40,7 @@ export default function ProductDetail(): JSX.Element {
     };
 
     fetchProductImage().catch(() => {});
-  }, []);
+  }, [id]);
 
   const handleQuantityChange = (
     event: React.ChangeEvent<HTMLInputElement>

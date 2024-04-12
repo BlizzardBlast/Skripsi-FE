@@ -3,7 +3,7 @@ import Paragraph from '@/components/typography/paragraph.tsx';
 export default function BrewingSectionOne(): JSX.Element {
   return (
     <div
-      className={`flex min-h-[70vh] flex-col items-center justify-center text-pretty bg-[url('@/assets/brewing_page_bg.svg')] bg-cover bg-center bg-no-repeat py-5`}
+      className={`flex min-h-[70vh] w-full flex-col items-center justify-center text-pretty bg-[url('@/assets/brewing_page_bg.svg')] bg-cover bg-center bg-no-repeat py-5`}
     >
       <h1 className='mb-4 scroll-m-20 text-center text-5xl font-black tracking-tight'>
         Brewing

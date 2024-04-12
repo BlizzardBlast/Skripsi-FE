@@ -2,6 +2,7 @@ import Paragraph from '@/components/typography/paragraph.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import LeafImage from '@/pages/home/leaf-image.tsx';
 import { Link } from 'react-router-dom';
+
 export default function HomeOne(): JSX.Element {
   return (
     <div className='flex min-h-[70vh] flex-col items-center justify-center py-5'>
