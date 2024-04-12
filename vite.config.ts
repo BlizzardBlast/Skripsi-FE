@@ -2,6 +2,7 @@ import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import tailwindcss from 'tailwindcss';
+import { chunkSplitPlugin } from 'vite-plugin-chunk-split';
 import viteCompression from 'vite-plugin-compression';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { defineConfig } from 'vitest/config';
@@ -20,6 +21,7 @@ export default defineConfig({
     }),
     react(),
     ViteImageOptimizer(),
+    chunkSplitPlugin(),
     viteCompression({ algorithm: 'brotliCompress' })
   ],
   test: {
