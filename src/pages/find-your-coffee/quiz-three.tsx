@@ -1,9 +1,10 @@
 import Paragraph from '@/components/typography/paragraph.tsx';
 import { Button } from '@/components/ui/button.tsx';
+import wrapAsyncFunction from '@/utils/wrap-async-function.ts';
 import { motion } from 'framer-motion';
 
 type QuizStepThreeProps = {
-  handleNextStep: (newAnswer: string) => void;
+  handleNextStep: (newAnswer: string) => Promise<void>;
 };
 
 export default function QuizStepThree({
@@ -30,17 +31,17 @@ export default function QuizStepThree({
         <div className='flex gap-5'>
           <Button
             className='h-auto w-[10rem] text-wrap rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
-            onClick={() => {
-              handleNextStep('Light');
-            }}
+            onClick={wrapAsyncFunction(async () => {
+              await handleNextStep('Light');
+            })}
           >
             I like a coffee that is light
           </Button>
           <Button
             className='h-auto w-[10rem] text-wrap rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
-            onClick={() => {
-              handleNextStep('Heavy');
-            }}
+            onClick={wrapAsyncFunction(async () => {
+              await handleNextStep('Heavy');
+            })}
           >
             I like a coffee that is heavy
           </Button>
