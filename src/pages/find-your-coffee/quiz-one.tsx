@@ -39,7 +39,7 @@ export default function QuizStepOne({
         </Paragraph>
         <div className='flex gap-5'>
           <Button
-            className='w-[5rem] rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
+            className='h-auto w-[5rem] rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={() => {
               handleNextStep('Arabica');
             }}
@@ -47,7 +47,7 @@ export default function QuizStepOne({
             Arabica
           </Button>
           <Button
-            className='w-[5rem] rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
+            className='h-auto w-[5rem] rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={() => {
               handleNextStep('Robusta');
             }}

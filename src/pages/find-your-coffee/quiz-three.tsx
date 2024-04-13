@@ -29,7 +29,7 @@ export default function QuizStepThree({
         </Paragraph>
         <div className='flex gap-5'>
           <Button
-            className='w-[10rem] text-wrap rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
+            className='h-auto w-[10rem] text-wrap rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={() => {
               handleNextStep('Light');
             }}
@@ -37,7 +37,7 @@ export default function QuizStepThree({
             I like a coffee that is light
           </Button>
           <Button
-            className='w-[10rem] text-wrap rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
+            className='h-auto w-[10rem] text-wrap rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={() => {
               handleNextStep('Heavy');
             }}

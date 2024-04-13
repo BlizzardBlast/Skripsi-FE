@@ -9,7 +9,7 @@ import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const MAX_STEP = 5;
+const MAX_STEP = 4;
 
 export default function QuizStepper(): JSX.Element {
   const navigate = useNavigate();

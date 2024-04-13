@@ -28,7 +28,7 @@ export default function QuizStepZero({
           minim veniam, quis nostrud exercitation
         </Paragraph>
         <Button
-          className='w-[5rem] rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
+          className='h-auto w-[5rem] rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
           onClick={handleNextStep}
         >
           Next
