@@ -12,7 +12,7 @@ export default function FindYourCoffeeResultPage(): JSX.Element {
         description='Here is your preferred coffee beans!'
       />
       <div
-        className={`min-h-[80vh] w-full bg-[url('@/assets/fyc_bg.webp')] bg-cover bg-center bg-no-repeat text-white`}
+        className={`min-h-[80vh] w-full bg-[url('@/assets/fyc_bg.webp')] bg-cover bg-fixed bg-center bg-no-repeat text-white`}
       >
         <div className='flex w-full flex-col gap-10 p-20 md:w-2/5'>
           <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>

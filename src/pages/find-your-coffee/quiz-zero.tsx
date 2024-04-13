@@ -11,7 +11,7 @@ export default function QuizStepZero({
 }: Readonly<QuizStepZeroProps>): JSX.Element {
   return (
     <motion.div
-      className={`min-h-[80vh] w-full bg-[url('@/assets/fyc_bg.webp')] bg-cover bg-center bg-no-repeat text-white`}
+      className={`min-h-[80vh] w-full bg-[url('@/assets/fyc_bg.webp')] bg-cover bg-fixed bg-center bg-no-repeat text-white`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}

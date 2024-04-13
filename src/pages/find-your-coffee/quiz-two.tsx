@@ -11,20 +11,20 @@ export default function QuizStepTwo({
 }: Readonly<QuizStepTwoProps>): JSX.Element {
   return (
     <motion.div
-      className={`min-h-[80vh] w-full bg-[url('@/assets/fyc1_bg.svg')] bg-cover bg-center bg-no-repeat text-white`}
+      className={`min-h-[80vh] w-full bg-[url('@/assets/fyc2_bg.webp')] bg-cover bg-fixed bg-center bg-no-repeat text-white`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
       exit={{ opacity: 0 }}
       key={'quiz-two-motion-div'}
     >
-      <div className='float-right flex w-full flex-col gap-10 p-20 md:w-2/5'>
+      <div className='flex w-full flex-col gap-10 p-20 md:w-2/5'>
         <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>
-          Bean Type
+          Acidity
         </h1>
         <Paragraph className='text-xl'>
-          Generally, coffee beans can be separated into many types, but
-          generally it is split into Arabica and Robusta
+          Acidity is one of the factor in the coffee Generally the higher the
+          coffee is planted
         </Paragraph>
         <Paragraph className='text-xl'>
           Arabica tends to have a higher caffeine content and has a more bold or
@@ -39,20 +39,20 @@ export default function QuizStepTwo({
         </Paragraph>
         <div className='flex gap-5'>
           <Button
-            className='w-[5rem] rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
+            className='w-[10rem] text-wrap rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={() => {
-              handleNextStep('Arabica');
+              handleNextStep('Bold');
             }}
           >
-            Arabica
+            I like my coffee to be bolder
           </Button>
           <Button
-            className='w-[5rem] rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
+            className='w-[10rem] text-wrap rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={() => {
-              handleNextStep('Robusta');
+              handleNextStep('Sour');
             }}
           >
-            Robusta
+            I like my coffee to be more sour
           </Button>
         </div>
       </div>

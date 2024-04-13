@@ -11,7 +11,7 @@ export default function QuizStepFour({
 }: Readonly<QuizStepFourProps>): JSX.Element {
   return (
     <motion.div
-      className={`min-h-[80vh] w-full bg-[url('@/assets/fyc1_bg.svg')] bg-cover bg-center bg-no-repeat text-white`}
+      className={`min-h-[80vh] w-full bg-[url('@/assets/fyc1_bg.svg')] bg-cover bg-fixed bg-center bg-no-repeat text-white`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
