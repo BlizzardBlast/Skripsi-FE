@@ -10,63 +10,71 @@ import Shop from '@/pages/shop/shop-page.tsx';
 import SignInPage from '@/pages/sign-in/sign-in';
 import SignUpPage from '@/pages/sign-up/sign-up';
 import RootErrorElement from '@/routes/Error Element/root.tsx';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import useSignedIn from '@/zustand/useSignedIn.ts';
+import type { Router as RemixRouter } from '@remix-run/router';
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter
+} from 'react-router-dom';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Layout />,
-    children: [
-      {
-        path: '/',
-        element: <Home />
-      },
-      {
-        path: '/sign-in',
-        element: <SignInPage />
-      },
-      {
-        path: '/sign-up',
-        element: <SignUpPage />
-      },
-      {
-        path: '/profile',
-        element: <ProfilePage />
-      },
-      {
-        path: '/cart',
-        element: <CartPage />
-      },
-      {
-        path: '/brewing',
-        element: <BrewingPage />
-      },
-      {
-        path: '/find-your-coffee',
-        element: <FindYourCoffeePage />
-      },
-      {
-        path: '/find-your-coffee/result',
-        element: <FindYourCoffeeResultPage />
-      },
-      {
-        path: '/shop',
-        element: <Shop />
-      },
-      {
-        path: '/product',
-        children: [
-          {
-            path: ':id',
-            element: <ProductDetail />
-          }
-        ]
-      }
-    ],
-    errorElement: <RootErrorElement />
-  }
-]);
+const router = (isSignedIn: boolean): RemixRouter =>
+  createBrowserRouter([
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          element: <Home />
+        },
+        {
+          path: '/sign-in',
+          element: !isSignedIn ? <SignInPage /> : <Navigate to='/' />
+        },
+        {
+          path: '/sign-up',
+          element: !isSignedIn ? <SignUpPage /> : <Navigate to='/' />
+        },
+        {
+          path: '/profile',
+          element: !isSignedIn ? <Navigate to='/' /> : <ProfilePage />
+        },
+        {
+          path: '/cart',
+          element: !isSignedIn ? <Navigate to='/' /> : <CartPage />
+        },
+        {
+          path: '/brewing',
+          element: <BrewingPage />
+        },
+        {
+          path: '/find-your-coffee',
+          element: <FindYourCoffeePage />
+        },
+        {
+          path: '/find-your-coffee/result',
+          element: <FindYourCoffeeResultPage />
+        },
+        {
+          path: '/shop',
+          element: <Shop />
+        },
+        {
+          path: '/product',
+          children: [
+            {
+              path: ':id',
+              element: <ProductDetail />
+            }
+          ]
+        }
+      ],
+      errorElement: <RootErrorElement />
+    }
+  ]);
 
 export default function Routes(): JSX.Element {
-  return <RouterProvider router={router} />;
+  const isSignedIn = useSignedIn((state) => state.isSignedIn);
+  return <RouterProvider router={router(isSignedIn)} />;
 }
