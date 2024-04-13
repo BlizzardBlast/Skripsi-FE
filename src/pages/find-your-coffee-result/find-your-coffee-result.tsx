@@ -18,7 +18,9 @@ export default function FindYourCoffeeResultPage(): JSX.Element {
           <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>
             Your Coffee Type is: MUEHEHEHEHE
           </h1>
-          <Paragraph>Note: This page is not done yet.</Paragraph>
+          <Paragraph className='text-xl'>
+            Note: This page is not done yet.
+          </Paragraph>
           <Button
             className='w-[15rem] rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={() => {

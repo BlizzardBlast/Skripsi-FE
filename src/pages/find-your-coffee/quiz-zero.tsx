@@ -22,7 +22,7 @@ export default function QuizStepZero({
         <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>
           Coffee
         </h1>
-        <Paragraph>
+        <Paragraph className='text-xl'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation

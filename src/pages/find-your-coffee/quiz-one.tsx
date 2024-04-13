@@ -22,19 +22,21 @@ export default function QuizStepOne({
         <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>
           Bean Type
         </h1>
-        <Paragraph>
+        <Paragraph className='text-xl'>
           Generally, coffee beans can be separated into many types, but
           generally it is split into Arabica and Robusta
         </Paragraph>
-        <Paragraph>
+        <Paragraph className='text-xl'>
           Arabica tends to have a higher caffeine content and has a more bold or
           bitter flavor
         </Paragraph>
-        <Paragraph>
+        <Paragraph className='text-xl'>
           Robutsta on the other hand tends to have a more acidic flavor because
           it is usually harvested in higher altitute
         </Paragraph>
-        <Paragraph>So, which one would you prefer?</Paragraph>
+        <Paragraph className='text-xl'>
+          So, which one would you prefer?
+        </Paragraph>
         <div className='flex gap-5'>
           <Button
             className='w-[5rem] rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'

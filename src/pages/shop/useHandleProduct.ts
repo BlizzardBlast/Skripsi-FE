@@ -2,6 +2,7 @@
 import { useToast } from '@/components/ui/use-toast.ts';
 import { type GetProductResponse } from '@/types/services/shop/shop.ts';
 import useCartStore from '@/zustand/useCartStore.ts';
+import useSignedIn from '@/zustand/useSignedIn.ts';
 import { useState } from 'react';
 type UseHandleProductProps = {
   products: GetProductResponse;
@@ -23,6 +24,7 @@ export default function useHandleProduct({
     Array(products?.length).fill('')
   );
   const addToCart = useCartStore((state) => state.addToCart);
+  const isSignedIn = useSignedIn((state) => state.isSignedIn);
   const { toast } = useToast();
   const handleQuantityChange = (
     index: number,
@@ -36,12 +38,27 @@ export default function useHandleProduct({
   };
 
   const handleAddToCart = (index: number): void => {
+    if (!isSignedIn) {
+      const newQuantities = [...quantities];
+      newQuantities[index] = '';
+      setQuantities(newQuantities);
+      toast({
+        variant: 'destructive',
+        title: 'You must be signed in.',
+        description: 'Please sign in to add products to cart.'
+      });
+      return;
+    }
     const quantity = parseInt(quantities[index]);
     if (!isNaN(quantity) && quantity > 0) {
       addToCart(products?.[index], quantity);
       const newQuantities = [...quantities];
       newQuantities[index] = '';
       setQuantities(newQuantities);
+      toast({
+        title: 'Product added!',
+        description: 'Product has been added to cart successfully.'
+      });
     } else {
       toast({
         variant: 'destructive',
