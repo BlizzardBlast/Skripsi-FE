@@ -4,6 +4,7 @@ import path from 'path';
 import tailwindcss from 'tailwindcss';
 import { chunkSplitPlugin } from 'vite-plugin-chunk-split';
 import viteCompression from 'vite-plugin-compression';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { defineConfig } from 'vitest/config';
 
 // https://vitejs.dev/config/
@@ -19,6 +20,7 @@ export default defineConfig({
       targets: ['defaults', 'not IE 11']
     }),
     react(),
+    ViteImageOptimizer(),
     chunkSplitPlugin(),
     viteCompression({ algorithm: 'brotliCompress' })
   ],

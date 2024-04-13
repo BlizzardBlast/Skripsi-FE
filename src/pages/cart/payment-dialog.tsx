@@ -12,7 +12,7 @@ import {
 import useDialogBody from '@/pages/cart/useDialogBody.tsx';
 import ConvertToRupiah from '@/utils/convert-to-rupiah.ts';
 import { type CartItem } from '@/zustand/useCartStore.ts';
-import Visa from '@/assets/visa.svg';
+import Visa from '@/assets/visa.webp';
 import Mastercard from '@/assets/mastercard.svg';
 
 type PaymentDialogProps = {
