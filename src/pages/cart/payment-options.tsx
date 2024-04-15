@@ -89,8 +89,12 @@ export default function PaymentOptions({
         <PayPalButtons
           createOrder={createOrder}
           onApprove={onApprove}
-          onCancel={function (data) {
-            console.log(data);
+          onCancel={function () {
+            toast({
+              variant: 'destructive',
+              title: 'Payment cancelled',
+              description: 'You have cancelled the payment. Please try again.'
+            });
           }}
           onError={function (error) {
             toast({
