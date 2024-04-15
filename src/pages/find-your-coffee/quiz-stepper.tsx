@@ -6,7 +6,7 @@ import QuizStepOne from '@/pages/find-your-coffee/quiz-one.tsx';
 import QuizStepThree from '@/pages/find-your-coffee/quiz-three.tsx';
 import QuizStepTwo from '@/pages/find-your-coffee/quiz-two.tsx';
 import QuizStepZero from '@/pages/find-your-coffee/quiz-zero.tsx';
-import SetUserPreferences from '@/services/quiz/get-user-preferences.ts';
+import SetUserPreferences from '@/services/quiz/set-user-preferences';
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

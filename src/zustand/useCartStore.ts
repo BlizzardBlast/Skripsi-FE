@@ -21,7 +21,19 @@ const useCartStore = create<CartState>()(
       (set) => ({
         cart: [],
         addToCart: (product, quantity) => {
-          set((state) => ({ cart: [...state.cart, { product, quantity }] }));
+          set((state) => {
+            const existingProductIndex = state.cart.findIndex(
+              (item) => item.product.id === product.id
+            );
+
+            if (existingProductIndex !== -1) {
+              const updatedCart = [...state.cart];
+              updatedCart[existingProductIndex].quantity += quantity;
+              return { cart: updatedCart };
+            } else {
+              return { cart: [...state.cart, { product, quantity }] };
+            }
+          });
         },
         changeProductQuantity: (index, quantity) => {
           set((state) => {
