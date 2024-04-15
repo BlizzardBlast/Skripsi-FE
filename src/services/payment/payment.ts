@@ -8,9 +8,10 @@ export const CreatePayment = async (
   amount: number
 ): Promise<GetPaymentResponse> => {
   try {
-    const response: AxiosResponse<GetPaymentResponse> = await AxiosInstance.get(
-      `api/create/${amount}`
-    );
+    const response: AxiosResponse<GetPaymentResponse> =
+      await AxiosInstance.postForm(`api/createPayment`, {
+        amount
+      });
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
