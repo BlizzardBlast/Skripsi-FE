@@ -1,3 +1,1 @@
-export type GetPaymentResponse = {
-  message: string;
-};
+export type GetPaymentResponse = string;

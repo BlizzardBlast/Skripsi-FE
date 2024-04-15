@@ -21,12 +21,11 @@ export const CreatePayment = async (
   }
 };
 
-export const CompletePayment = async (): Promise<GetPaymentResponse> => {
+export const CompletePayment = async (): Promise<void> => {
   try {
     const response: AxiosResponse<GetPaymentResponse> =
       await AxiosInstance.post('api/complete', {});
     console.log(response);
-    return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
       throw new Error(handleApiError(error as AxiosError<ErrorResponses>));
