@@ -1,11 +1,13 @@
 import Mastercard from '@/assets/mastercard.svg';
 import Paypal from '@/assets/paypal.webp';
 import LoadImage from '@/components/load-image/load-image.tsx';
+import { useToast } from '@/components/ui/use-toast.ts';
 import { CompletePayment, CreatePayment } from '@/services/payment/payment.ts';
 import ConvertRupiahToGbp from '@/utils/convert-rupiah-to-gbp.ts';
 import wrapAsyncFunction from '@/utils/wrap-async-function.ts';
 import { PayPalButtons } from '@paypal/react-paypal-js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type PaymentOptionsProps = {
   totalPrice: number;
@@ -14,15 +16,36 @@ type PaymentOptionsProps = {
 export default function PaymentOptions({
   totalPrice
 }: Readonly<PaymentOptionsProps>): JSX.Element | null {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [paymentSuccess, setPaymentSuccess] = useState<boolean>(false);
   const [paymentOption, setPaymentOption] = useState<
     '' | 'paypal' | 'mastercard'
   >('');
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (paymentSuccess) {
+      toast({
+        title: 'Payment Success',
+        description:
+          'Your payment has been successfully processed. Redirecting you to the homepage in three seconds.'
+      });
+      timeoutId = setTimeout(() => {
+        navigate('/');
+      }, 3000);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [paymentSuccess, navigate, toast]);
 
   async function createOrder(): Promise<string> {
     return await CreatePayment(ConvertRupiahToGbp(totalPrice));
   }
   async function onApprove(): Promise<void> {
     await CompletePayment();
+    setPaymentSuccess(true);
   }
 
   const handlePaypalPayment = async (): Promise<void> => {
@@ -32,6 +55,9 @@ export default function PaymentOptions({
       console.error(error);
     }
   };
+  if (paymentSuccess) {
+    return <span className='text-green-400'>Payment Success</span>;
+  }
   if (paymentOption === '') {
     return (
       <div className='grid grid-cols-12'>
@@ -67,6 +93,12 @@ export default function PaymentOptions({
             console.log(data);
           }}
           onError={function (error) {
+            toast({
+              variant: 'destructive',
+              title: 'Uh oh! Something went wrong.',
+              description:
+                'Something went wrong with the payment. Please try again.'
+            });
             console.error(error);
           }}
         />
