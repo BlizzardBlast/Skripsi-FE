@@ -1,5 +1,6 @@
 /* eslint-disable security/detect-object-injection */
 import Spinner from '@/components/spinner/spinner.tsx';
+import { useToast } from '@/components/ui/use-toast.ts';
 import QuizStepFive from '@/pages/find-your-coffee/quiz-five.tsx';
 import QuizStepFour from '@/pages/find-your-coffee/quiz-four.tsx';
 import QuizStepOne from '@/pages/find-your-coffee/quiz-one.tsx';
@@ -18,6 +19,7 @@ export default function QuizStepper(): JSX.Element {
   const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [answer, setAnswer] = useState(['']);
+  const { toast } = useToast();
 
   const handleNextStep = async (): Promise<void> => {
     if (step < MAX_STEP) {
@@ -30,6 +32,11 @@ export default function QuizStepper(): JSX.Element {
         setIsLoading(false);
       } catch (error) {
         console.error(error);
+        toast({
+          variant: 'destructive',
+          title: 'Something went wrong!',
+          description: 'An unexpected error occurred. Please try again later.'
+        });
         setIsLoading(false);
       }
     }
@@ -54,6 +61,11 @@ export default function QuizStepper(): JSX.Element {
         setIsLoading(false);
       } catch (error) {
         console.error(error);
+        toast({
+          variant: 'destructive',
+          title: 'Something went wrong!',
+          description: 'An unexpected error occurred. Please try again later.'
+        });
         setIsLoading(false);
       }
     }

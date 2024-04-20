@@ -36,11 +36,16 @@ export default function ProductDetail(): JSX.Element {
         setProductImage(result);
       } catch (error) {
         console.error(error);
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: 'There was a problem with fetching the product image.'
+        });
       }
     };
 
     fetchProductImage().catch(() => {});
-  }, [id]);
+  }, [id, toast]);
 
   const handleQuantityChange = (
     event: React.ChangeEvent<HTMLInputElement>

@@ -1,5 +1,6 @@
 import LoadImage from '@/components/load-image/load-image.tsx';
 import Spinner from '@/components/spinner/spinner.tsx';
+import Paragraph from '@/components/typography/paragraph.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import useFetchCoffeePreference from '@/pages/find-your-coffee-result/useFetchCoffeePreference.ts';
 import useHandleProduct from '@/pages/shop/useHandleProduct.ts';
@@ -16,6 +17,12 @@ export default function CoffeeRecommendationList(): JSX.Element {
 
   if (isLoading) {
     return <Spinner className='m-auto border-black border-b-transparent' />;
+  }
+
+  if (products?.length === 0) {
+    return (
+      <Paragraph className='text-center text-2xl'>No product found</Paragraph>
+    );
   }
 
   return (

@@ -4,7 +4,6 @@ import LoadImage from '@/components/load-image/load-image.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
 import { CompletePayment, CreatePayment } from '@/services/payment/payment.ts';
 import ConvertRupiahToGbp from '@/utils/convert-rupiah-to-gbp.ts';
-import wrapAsyncFunction from '@/utils/wrap-async-function.ts';
 import { PayPalButtons } from '@paypal/react-paypal-js';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -48,16 +47,10 @@ export default function PaymentOptions({
     setPaymentSuccess(true);
   }
 
-  const handlePaypalPayment = async (): Promise<void> => {
-    try {
-      setPaymentOption('paypal');
-    } catch (error) {
-      console.error(error);
-    }
-  };
   if (paymentSuccess) {
     return <span className='text-green-400'>Payment Success</span>;
   }
+
   if (paymentOption === '') {
     return (
       <div className='grid grid-cols-12'>
@@ -69,7 +62,9 @@ export default function PaymentOptions({
             lazy
             classes='w-[5rem] h-[1.396875rem] cursor-pointer'
             divClasses='w-auto'
-            onClick={wrapAsyncFunction(handlePaypalPayment)}
+            onClick={() => {
+              setPaymentOption('paypal');
+            }}
           />
           <LoadImage
             source={Mastercard}
