@@ -50,11 +50,15 @@ const router = (isSignedIn: boolean): RemixRouter =>
         },
         {
           path: '/find-your-coffee',
-          element: <FindYourCoffeePage />
+          element: !isSignedIn ? <Navigate to='/' /> : <FindYourCoffeePage />
         },
         {
           path: '/find-your-coffee/result',
-          element: <FindYourCoffeeResultPage />
+          element: !isSignedIn ? (
+            <Navigate to='/' />
+          ) : (
+            <FindYourCoffeeResultPage />
+          )
         },
         {
           path: '/shop',

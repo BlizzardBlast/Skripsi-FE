@@ -94,13 +94,15 @@ export default function Header(): JSX.Element {
           >
             Brewing
           </Link>
-          <Link
-            to='/find-your-coffee'
-            className='px-2 text-lg leading-6 text-white hover:text-primary-text-color'
-            aria-label='Find Your Coffee'
-          >
-            Find Your Coffee
-          </Link>
+          {isSignedIn && (
+            <Link
+              to='/find-your-coffee'
+              className='px-2 text-lg leading-6 text-white hover:text-primary-text-color'
+              aria-label='Find Your Coffee'
+            >
+              Find Your Coffee
+            </Link>
+          )}
           <Link
             to='/shop'
             className='px-2 text-lg leading-6 text-white hover:text-primary-text-color'
@@ -198,13 +200,15 @@ export default function Header(): JSX.Element {
                 >
                   Brewing
                 </Link>
-                <Link
-                  to='/find-your-coffee'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
-                  aria-label='Find Your Coffee'
-                >
-                  Find Your Coffee
-                </Link>
+                {isSignedIn && (
+                  <Link
+                    to='/find-your-coffee'
+                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                    aria-label='Find Your Coffee'
+                  >
+                    Find Your Coffee
+                  </Link>
+                )}
                 <Link
                   to='/shop'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'

@@ -12,7 +12,7 @@ export default function HomeTwo(): JSX.Element {
         className='flex flex-[4] items-center justify-center ps-3'
         initial={{ opacity: 0, x: -10 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: 'easeInOut' }}
       >
@@ -35,7 +35,7 @@ export default function HomeTwo(): JSX.Element {
         className='flex flex-[6] items-center justify-center'
         initial={{ opacity: 0, x: 10 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: 'easeInOut' }}
       >
