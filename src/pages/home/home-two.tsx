@@ -10,7 +10,7 @@ export default function HomeTwo(): JSX.Element {
     <div className="flex min-h-[70vh] flex-col items-center justify-around gap-10 bg-[url('@/assets/coffee_beans_bg.svg')] bg-cover bg-center bg-no-repeat py-10 md:flex-row">
       <motion.div
         className='flex flex-[4] items-center justify-center ps-3'
-        initial={{ opacity: 0, x: -10 }}
+        initial={{ opacity: 0, x: -100 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         animate={{ opacity: 1, x: 0 }}
@@ -33,7 +33,7 @@ export default function HomeTwo(): JSX.Element {
       </motion.div>
       <motion.div
         className='flex flex-[6] items-center justify-center'
-        initial={{ opacity: 0, x: 10 }}
+        initial={{ opacity: 0, x: 100 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         animate={{ opacity: 1, x: 0 }}
