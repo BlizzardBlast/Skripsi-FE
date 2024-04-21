@@ -2,6 +2,7 @@ import LoadImage from '@/components/load-image/load-image';
 import MetaTag from '@/components/meta-tag/meta-tag';
 import { Button } from '@/components/ui/button.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
+import CharacteristicsTag from '@/pages/product/characteristics-tag.tsx';
 import GetProductImage from '@/services/get-product-image/get-product-image.ts';
 import { type Product } from '@/types/services/shop/shop.ts';
 import useCartStore from '@/zustand/useCartStore.ts';
@@ -99,18 +100,17 @@ export default function ProductDetail(): JSX.Element {
         <div className='flex min-h-96 flex-[6] flex-col flex-wrap justify-between gap-5'>
           <div className='flex flex-col'>
             <span className='text-2xl font-bold'>{product.name}</span>
-            <span className='font-bold'>Canis Lupus Lupus</span>
-            <span>Origin: Sumatra</span>
+            <span className='font-bold'>{product.subname}</span>
+            <span>Origin: {product.origin}</span>
             <span className='font-bold'>{product.description}</span>
           </div>
-          <div className='flex flex-wrap items-center justify-between gap-5'>
-            <div className='flex h-44 min-w-60 flex-col justify-center rounded-2xl bg-tertiary-color p-3'>
+          <div className='flex flex-wrap items-center justify-center gap-5 sm:justify-between'>
+            <div className='flex min-h-44 min-w-60 flex-col justify-center rounded-2xl bg-tertiary-color p-3'>
               <span className='font-bold'>Characteristic Sheet</span>
               <span>Type: {product.type}</span>
-              <span>Suitable For: Evening Coffee</span>
               <br />
               <span>Taste Characteristic:</span>
-              <span>Hmm</span>
+              <CharacteristicsTag product={product} />
             </div>
             <div className='flex h-44 min-w-60 flex-col justify-between rounded-2xl bg-secondary-color p-3 text-white'>
               <span>Item Control</span>

@@ -19,9 +19,15 @@ export default function useFetchProduct({
     {
       id: 0,
       name: '',
+      subname: '',
+      origin: '',
       type: '',
       price: 0,
       description: '',
+      acidity: '',
+      flavor: '',
+      aftertaste: '',
+      sweetness: '',
       created_at: '',
       updated_at: ''
     }
