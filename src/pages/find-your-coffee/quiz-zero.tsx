@@ -11,15 +11,21 @@ export default function QuizStepZero({
   handleNextStep
 }: Readonly<QuizStepZeroProps>): JSX.Element {
   return (
-    <motion.div
+    <div
       className={`min-h-[80vh] w-full bg-[url('@/assets/fyc_bg.webp')] bg-cover bg-fixed bg-center bg-no-repeat text-white`}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, ease: 'easeInOut' }}
-      exit={{ opacity: 0 }}
-      key={'quiz-zero-motion-div'}
     >
-      <div className='flex w-full flex-col gap-10 p-20 md:w-2/5'>
+      <motion.div
+        className='flex w-full flex-col gap-10 p-20 md:w-2/5'
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{
+          duration: 0.5,
+          ease: 'easeInOut',
+          type: 'spring',
+          bounce: 0.5
+        }}
+        key={'quiz-zero-motion-div'}
+      >
         <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>
           Coffee
         </h1>
@@ -34,7 +40,7 @@ export default function QuizStepZero({
         >
           Next
         </Button>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }

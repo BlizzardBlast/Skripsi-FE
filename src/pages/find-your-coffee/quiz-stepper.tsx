@@ -95,11 +95,7 @@ export default function QuizStepper(): JSX.Element {
   }
 
   if (step >= 0 && step < steps.length) {
-    return (
-      <AnimatePresence mode='wait' initial={false}>
-        {steps[step]}
-      </AnimatePresence>
-    );
+    return <AnimatePresence mode='wait'>{steps[step]}</AnimatePresence>;
   }
 
   throw new Error('Step not found');
