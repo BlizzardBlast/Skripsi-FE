@@ -10,9 +10,11 @@ export default function BrewingSectionOne(): JSX.Element {
       </h1>
       <div className='w-8/12'>
         <Paragraph className='text-center text-2xl text-white'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation
+          Brewing is the cornerstone of coffee perfection. Explore the myriad
+          methods available, each with its own unique flavor profile. Whether
+          you prefer the rich depth of a French press or the clarity of a
+          pour-over, mastering the art of brewing unlocks a world of coffee
+          delights.
         </Paragraph>
       </div>
     </div>

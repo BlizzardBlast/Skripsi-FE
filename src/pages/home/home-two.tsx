@@ -45,8 +45,9 @@ export default function HomeTwo(): JSX.Element {
             Spice up your coffee break
           </HeadingOne>
           <Paragraph className='mt-5 text-2xl'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt minim veniam, quis nostrud exercitation
+            Maximize your coffee break for stress relief and energy during work.
+            Kofebin invites you to explore world-class coffees—no cheap sachets
+            or sugar galore franchise coffee shop, just pure enjoyment.
           </Paragraph>
         </article>
       </motion.div>

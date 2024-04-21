@@ -22,9 +22,11 @@ export default function HomeOne(): JSX.Element {
       </motion.h1>
       <motion.div className='w-8/12' variants={homeOneComponentVariants(0.1)}>
         <Paragraph className='text-center text-2xl'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation
+          At Kofebin, we firmly believe in the uniqueness of individual coffee
+          preferences. That&apos;s why we invite you to embark on a journey of
+          discovery with us. The world of coffee is far richer and more diverse
+          than you may imagine. Join us as we explore and uncover the perfect
+          coffee tailored to your discerning palate.
         </Paragraph>
       </motion.div>
       <motion.div

@@ -25,8 +25,9 @@ export default function HomeThree(): JSX.Element {
             Coffee beans from all over the world
           </HeadingOne>
           <Paragraph className='mt-5 text-2xl'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut nostrud exercitation
+            Handpicked from the world&apos;s top coffee regions, our collection
+            at Kofebin is dedicated to bringing you the finest brews available
+            anywhere.
           </Paragraph>
         </article>
       </motion.div>
