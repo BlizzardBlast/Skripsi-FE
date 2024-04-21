@@ -18,7 +18,7 @@ export default function Shop(): JSX.Element {
         description='Purchase your preferred coffee beans now!'
       />
       <div className='min-h-[80vh] w-full px-20'>
-        <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>
+        <h1 className='mb-4 scroll-m-20 text-center text-5xl font-bold tracking-tight sm:text-left'>
           Shop
         </h1>
         {renderSelectableTag()}

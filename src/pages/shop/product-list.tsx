@@ -28,34 +28,36 @@ export default function ProductList({
   }
 
   return (
-    <div className='flex flex-row flex-wrap gap-5'>
+    <div className='flex flex-row flex-wrap justify-center gap-5 sm:justify-normal'>
       {products.map((product, index) => (
         <div
           key={product.id}
-          className='flex flex-col rounded-2xl bg-white px-3 py-3 font-normal drop-shadow-[3px_3px_3px_#E48F45]'
+          className='flex h-[26rem] w-[14rem] flex-col justify-between rounded-2xl bg-white px-3 py-3 font-normal drop-shadow-[3px_3px_3px_#E48F45]'
         >
-          <LoadImage
-            classes='w-52 h-52 mb-2 rounded-xl cursor-pointer'
-            source='errorImage'
-            alternative={product.name}
-            onClick={() => {
-              navigate(`/product/${product.id}`, { state: { product } });
-            }}
-          />
-          <p>{product.name}</p>
-          <p>Characteristic: {product.type}</p>
-          <p>Price/gram: {ConvertToRupiah(product.price)}</p>
           <div>
-            <label htmlFor={`product-${product.id}`}>Qty (gram): </label>
-            <input
-              id={`product-${product.id}`}
-              type='text'
-              value={quantities[index] ?? ''}
-              onChange={(event) => {
-                handleQuantityChange(index, event);
+            <LoadImage
+              classes='w-52 h-52 mb-2 rounded-xl cursor-pointer'
+              source='errorImage'
+              alternative={product.name}
+              onClick={() => {
+                navigate(`/product/${product.id}`, { state: { product } });
               }}
-              className='w-14 rounded-full border border-black px-3'
             />
+            <p className='text-lg'>{product.name}</p>
+            <p>Characteristic: {product.type}</p>
+            <p>Price/gram: {ConvertToRupiah(product.price)}</p>
+            <div>
+              <label htmlFor={`product-${product.id}`}>Qty (gram): </label>
+              <input
+                id={`product-${product.id}`}
+                type='text'
+                value={quantities[index] ?? ''}
+                onChange={(event) => {
+                  handleQuantityChange(index, event);
+                }}
+                className='w-14 rounded-full border border-black px-3'
+              />
+            </div>
           </div>
           <Button
             className='mt-3 justify-self-center rounded-full bg-primary-color text-center hover:bg-secondary-color'
