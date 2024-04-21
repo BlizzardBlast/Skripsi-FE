@@ -11,9 +11,9 @@ export default function QuizStepOne({
 }: Readonly<QuizStepOneProps>): JSX.Element {
   return (
     <div
-      className={`min-h-[80vh] w-full bg-[url('@/assets/fyc1_bg.svg')] bg-cover bg-fixed bg-center bg-no-repeat text-white`}
+      className={`min-h-[80vh] w-full bg-[url('@/assets/fyc2_bg.webp')] bg-cover bg-fixed bg-center bg-no-repeat text-white`}
     >
-      <div className='float-right flex w-full flex-col gap-10 bg-black bg-opacity-30 p-20 backdrop-blur-sm md:w-2/5'>
+      <div className='flex w-full flex-col gap-10 bg-black bg-opacity-30 p-20 backdrop-blur-sm md:w-2/5'>
         <motion.h1
           className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'
           initial={{ opacity: 0, y: 100 }}
@@ -25,7 +25,7 @@ export default function QuizStepOne({
             bounce: 0.5
           }}
         >
-          Bean Type
+          Acidity
         </motion.h1>
         <motion.p
           className='text-xl'
@@ -39,8 +39,8 @@ export default function QuizStepOne({
             delay: 0.1
           }}
         >
-          Generally, coffee beans can be separated into many types, but
-          generally it is split into Arabica and Robusta
+          Acidity is one of the factor in the coffee Generally the higher the
+          coffee is planted
         </motion.p>
         <motion.p
           className='text-xl'
@@ -87,7 +87,7 @@ export default function QuizStepOne({
           So, which one would you prefer?
         </motion.p>
         <motion.div
-          className='flex gap-5'
+          className='flex flex-wrap gap-5'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
@@ -97,20 +97,28 @@ export default function QuizStepOne({
           }}
         >
           <Button
-            className='h-auto w-[5rem] rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
+            className='h-auto w-[5rem] text-wrap rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={wrapAsyncFunction(async () => {
-              await handleNextStep('Arabica');
+              await handleNextStep('low');
             })}
           >
-            Arabica
+            Low
           </Button>
           <Button
-            className='h-auto w-[5rem] rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
+            className='h-auto w-[5rem] text-wrap rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={wrapAsyncFunction(async () => {
-              await handleNextStep('Robusta');
+              await handleNextStep('medium');
             })}
           >
-            Robusta
+            Medium
+          </Button>
+          <Button
+            className='h-auto w-[5rem] text-wrap rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
+            onClick={wrapAsyncFunction(async () => {
+              await handleNextStep('high');
+            })}
+          >
+            High
           </Button>
         </motion.div>
       </div>

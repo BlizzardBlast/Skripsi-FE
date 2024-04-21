@@ -10,12 +10,11 @@ const SetUserPreferences = async (
   try {
     const response: AxiosResponse<SetUserPreferencesResponse> =
       await AxiosInstance.postForm('api/setUserPref', {
-        type: answer[0],
-        acidity: answer[1],
-        mouthfeel: answer[2],
+        acidity: answer[0],
+        flavor: answer[1],
+        aftertaste: answer[2],
         sweetness: answer[3]
       });
-    console.log(response);
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
