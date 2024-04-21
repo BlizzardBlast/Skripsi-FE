@@ -5,6 +5,7 @@ import { useToast } from '@/components/ui/use-toast.ts';
 import GetProductImage from '@/services/get-product-image/get-product-image.ts';
 import { type Product } from '@/types/services/shop/shop.ts';
 import useCartStore from '@/zustand/useCartStore.ts';
+import useSignedIn from '@/zustand/useSignedIn.ts';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -27,6 +28,7 @@ export default function ProductDetail(): JSX.Element {
 
   const { id } = useParams();
   const addToCart = useCartStore((state) => state.addToCart);
+  const isSignedIn = useSignedIn((state) => state.isSignedIn);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -56,6 +58,15 @@ export default function ProductDetail(): JSX.Element {
   };
 
   const handleAddToCart = (): void => {
+    if (!isSignedIn) {
+      setQuantity('');
+      toast({
+        variant: 'destructive',
+        title: 'You must be signed in.',
+        description: 'Please sign in to add products to cart.'
+      });
+      return;
+    }
     const qty = parseInt(quantity);
     if (!isNaN(qty) && qty > 0) {
       addToCart(product, qty);
@@ -66,6 +77,7 @@ export default function ProductDetail(): JSX.Element {
         title: 'Uh oh! Something went wrong.',
         description: 'Please input a correct number.'
       });
+      setQuantity('');
     }
   };
 
