@@ -30,8 +30,9 @@ export default function useFetchCoffeePreference(): UseFetchCoffeePreferenceRetu
         description: 'There was a problem with your request.'
       });
       console.error(error);
+      setIsLoading(false);
     });
-  }, []);
+  }, [toast]);
 
   return { isLoading, products } as const;
 }

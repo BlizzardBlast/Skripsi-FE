@@ -12,7 +12,7 @@ export default function FindYourCoffeeResultPage(): JSX.Element {
         className={`min-h-[80vh] w-full bg-quaternary-color text-primary-text-color`}
       >
         <div className='flex w-full flex-col gap-10 p-20'>
-          <h1 className='mb-4 scroll-m-20 text-center text-5xl font-bold tracking-tight'>
+          <h1 className='mb-4 scroll-m-20 break-words text-center text-5xl font-bold tracking-tight'>
             Your Coffee Recommendations
           </h1>
           <CoffeeRecommendationList />
