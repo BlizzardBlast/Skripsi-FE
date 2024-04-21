@@ -3,29 +3,24 @@ import { Button } from '@/components/ui/button.tsx';
 import LeafImage from '@/pages/home/leaf-image.tsx';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { homeOneComponentVariants } from '@/pages/home/variants.ts';
 
 export default function HomeOne(): JSX.Element {
   return (
-    <div className='flex min-h-[70vh] flex-col items-center justify-center py-5'>
+    <motion.div
+      className='flex min-h-[70vh] flex-col items-center justify-center py-5'
+      initial='offscreen'
+      whileInView='onscreen'
+      viewport={{ once: true, amount: 0.5 }}
+    >
       <LeafImage />
       <motion.h1
         className='mb-4 scroll-m-20 text-center text-5xl font-black tracking-tight'
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeInOut' }}
+        variants={homeOneComponentVariants()}
       >
         Discover Your Coffee Preference
       </motion.h1>
-      <motion.div
-        className='w-8/12'
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeInOut' }}
-      >
+      <motion.div className='w-8/12' variants={homeOneComponentVariants(0.1)}>
         <Paragraph className='text-center text-2xl'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -34,10 +29,7 @@ export default function HomeOne(): JSX.Element {
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: 'easeInOut' }}
+        variants={homeOneComponentVariants(0.2)}
       >
         <Button
           asChild
@@ -48,6 +40,6 @@ export default function HomeOne(): JSX.Element {
           </Link>
         </Button>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
