@@ -5,7 +5,7 @@ import ProductList from '@/pages/shop/product-list.tsx';
 import useFetchProduct from '@/pages/shop/useFetchProduct.ts';
 import useSelectableTag from '@/pages/shop/useSelectableTag.tsx';
 
-const tags = ['Arabica', 'Robusta', 'Excelsa', 'Liberica'];
+const tags = ['Arabica', 'Robusta', 'Bourbon'];
 
 export default function Shop(): JSX.Element {
   const [selectedTag, renderSelectableTag] = useSelectableTag({ tags });

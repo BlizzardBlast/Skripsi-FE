@@ -15,7 +15,7 @@ export default function useSelectableTag({
           <button
             key={tag}
             className={cn(
-              'w-24 cursor-pointer rounded-full bg-tertiary-color px-5 py-1 hover:bg-secondary-color  hover:text-white',
+              'w-[7rem] cursor-pointer rounded-full bg-tertiary-color px-5 py-1 hover:bg-secondary-color  hover:text-white',
               {
                 'bg-primary-color text-white hover:bg-secondary-color':
                   selectedTag === tag
