@@ -19,7 +19,7 @@ export default function QuizStepThree({
       exit={{ opacity: 0 }}
       key={'quiz-three-motion-div'}
     >
-      <div className='float-right flex w-full flex-col gap-10 p-20 md:w-2/5'>
+      <div className='float-right flex min-h-[80vh] w-full flex-col gap-10 bg-black bg-opacity-30 p-20 backdrop-blur-sm md:w-2/5'>
         <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>
           Mouthefeel
         </h1>
@@ -30,7 +30,7 @@ export default function QuizStepThree({
         </Paragraph>
         <div className='flex gap-5'>
           <Button
-            className='h-auto w-[10rem] text-wrap rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
+            className='h-auto w-[10rem] text-wrap rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={wrapAsyncFunction(async () => {
               await handleNextStep('Light');
             })}
@@ -38,7 +38,7 @@ export default function QuizStepThree({
             I like a coffee that is light
           </Button>
           <Button
-            className='h-auto w-[10rem] text-wrap rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
+            className='h-auto w-[10rem] text-wrap rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={wrapAsyncFunction(async () => {
               await handleNextStep('Heavy');
             })}

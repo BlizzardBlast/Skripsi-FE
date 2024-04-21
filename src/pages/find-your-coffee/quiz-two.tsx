@@ -19,7 +19,7 @@ export default function QuizStepTwo({
       exit={{ opacity: 0 }}
       key={'quiz-two-motion-div'}
     >
-      <div className='flex w-full flex-col gap-10 p-20 md:w-2/5'>
+      <div className='flex w-full flex-col gap-10 bg-black bg-opacity-30 p-20 backdrop-blur-sm md:w-2/5'>
         <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>
           Acidity
         </h1>
@@ -40,7 +40,7 @@ export default function QuizStepTwo({
         </Paragraph>
         <div className='flex gap-5'>
           <Button
-            className='h-auto w-[15rem] text-wrap rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
+            className='h-auto w-[15rem] text-wrap rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={wrapAsyncFunction(async () => {
               await handleNextStep('Neutral');
             })}
@@ -48,7 +48,7 @@ export default function QuizStepTwo({
             I dont like my coffee to have sour or fruity flavor
           </Button>
           <Button
-            className='h-auto w-[15rem] text-wrap rounded-full bg-white text-primary-text-color hover:bg-quaternary-color hover:text-[#6B240C]'
+            className='h-auto w-[15rem] text-wrap rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
             onClick={wrapAsyncFunction(async () => {
               await handleNextStep('Sour');
             })}
