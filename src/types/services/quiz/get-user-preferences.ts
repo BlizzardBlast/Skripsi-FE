@@ -3,12 +3,12 @@ export type GetUserPreferencesResponse = Array<{
   name: string;
   subname: string;
   origin: string;
-  characteristic: string;
   type: string;
   price: number;
   description: string;
   acidity: string;
-  mouthfeel: string;
+  flavor: string;
+  aftertaste: string;
   sweetness: string;
   created_at: string | null;
   updated_at: string | null;
