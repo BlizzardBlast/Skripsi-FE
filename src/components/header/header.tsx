@@ -3,6 +3,14 @@ import useUserData from '@/components/header/useUserData.ts';
 import LoadImage from '@/components/load-image/load-image';
 import { Button } from '@/components/ui/button.tsx';
 import {
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  Dialog as DialogShadcn,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog.tsx';
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
@@ -29,6 +37,7 @@ export default function Header(): JSX.Element {
   const location = useLocation();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const user = useUserData();
   const { toast } = useToast();
   const isSignedIn = useSignedIn((state) => state.isSignedIn);
@@ -36,13 +45,16 @@ export default function Header(): JSX.Element {
   const signOut = useSignedIn((state) => state.signOut);
 
   const handleSignOut = async (): Promise<void> => {
+    setIsLoading(true);
     try {
       await SignOut({ signOut });
       toast({
         title: 'You have signed out!',
         description: 'Sign out is successful!'
       });
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       const err = error as Error;
       toast({
         variant: 'destructive',
@@ -130,34 +142,55 @@ export default function Header(): JSX.Element {
               <Link to={'/cart'} aria-label='Cart'>
                 <FaShoppingCart className='cursor-pointer text-2xl text-white' />
               </Link>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Link to={'/profile'} aria-label='Profile'>
-                    <FaUserCircle className='cursor-pointer text-2xl text-white' />
-                  </Link>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className='absolute right-0 w-56'>
-                  <DropdownMenuLabel>{user?.username}</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem
-                      onClick={() => {
-                        navigate('/profile');
-                      }}
-                    >
-                      <FaRegUser className='mr-2 h-4 w-4' />
-                      <span>Profile</span>
-                    </DropdownMenuItem>
+              <DialogShadcn>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Link to={'/profile'} aria-label='Profile'>
+                      <FaUserCircle className='cursor-pointer text-2xl text-white' />
+                    </Link>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className='absolute right-0 w-56'>
+                    <DropdownMenuLabel>{user?.username}</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem
+                        onClick={() => {
+                          navigate('/profile');
+                        }}
+                      >
+                        <FaRegUser className='mr-2 h-4 w-4' />
+                        <span>Profile</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DialogTrigger asChild>
+                        <DropdownMenuItem>
+                          <IoLogOutOutline className='mr-2 h-4 w-4' />
+                          <span>Sign out</span>
+                        </DropdownMenuItem>
+                      </DialogTrigger>
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <DialogContent
+                  className='sm:max-w-[425px]'
+                  dialogOverlayClassName='bg-black opacity-50'
+                >
+                  <DialogHeader>
+                    <DialogTitle className='text-2xl'>
+                      Sign Out Confirmation
+                    </DialogTitle>
+                  </DialogHeader>
+                  Are you sure you want to sign out?
+                  <DialogFooter>
+                    <Button
                       onClick={wrapAsyncFunction(handleSignOut)}
+                      isLoading={isLoading}
                     >
-                      <IoLogOutOutline className='mr-2 h-4 w-4' />
-                      <span>Sign out</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                      Yes
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </DialogShadcn>
             </div>
           )}
         </div>
@@ -243,13 +276,38 @@ export default function Header(): JSX.Element {
                   >
                     Profile
                   </Link>
-                  <span
-                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
-                    aria-label={'Sign Out'}
-                    onClick={wrapAsyncFunction(handleSignOut)}
-                  >
-                    Sign Out
-                  </span>
+                  <DialogShadcn>
+                    <DialogTrigger asChild>
+                      <button
+                        className='-mx-3 block w-full rounded-lg px-3 py-2 text-left text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                        aria-label={'Sign Out'}
+                        type='button'
+                      >
+                        Sign Out
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent
+                      className='sm:max-w-[425px]'
+                      dialogOverlayClassName='bg-black opacity-50'
+                    >
+                      <DialogHeader>
+                        <DialogTitle className='text-2xl'>
+                          Sign Out Confirmation
+                        </DialogTitle>
+                      </DialogHeader>
+                      <span className='text-center sm:text-left'>
+                        Are you sure you want to sign out?
+                      </span>
+                      <DialogFooter>
+                        <Button
+                          onClick={wrapAsyncFunction(handleSignOut)}
+                          isLoading={isLoading}
+                        >
+                          Yes
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </DialogShadcn>
                 </div>
               )}
             </div>
