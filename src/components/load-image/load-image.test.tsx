@@ -1,7 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import LoadImage from '@/components/load-image/load-image';
 import FallbackImg from '@/assets/fallback-image.png';
+import LoadImage from '@/components/load-image/load-image';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
 describe('LoadImage', () => {
   const defaultProps = {
