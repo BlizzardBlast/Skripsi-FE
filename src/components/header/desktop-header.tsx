@@ -1,4 +1,5 @@
 import Logo from '@/assets/kofebin_logo.svg';
+import useHandleSignOut from '@/components/header/useHandleSignOut';
 import useUserData from '@/components/header/useUserData.ts';
 import LoadImage from '@/components/load-image/load-image';
 import { Button } from '@/components/ui/button.tsx';
@@ -19,8 +20,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import { useToast } from '@/components/ui/use-toast.ts';
-import SignOut from '@/services/sign-out/sign-out.ts';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
 import useSignedIn from '@/zustand/useSignedIn.ts';
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
@@ -28,7 +27,6 @@ import { FaRegUser } from '@react-icons/all-files/fa/FaRegUser';
 import { FaShoppingCart } from '@react-icons/all-files/fa/FaShoppingCart';
 import { FaUserCircle } from '@react-icons/all-files/fa/FaUserCircle';
 import { IoLogOutOutline } from '@react-icons/all-files/io5/IoLogOutOutline';
-import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 type DesktopHeaderProps = {
@@ -40,33 +38,10 @@ export default function DesktopHeader({
 }: Readonly<DesktopHeaderProps>): JSX.Element {
   const navigate = useNavigate();
   const user = useUserData();
-  const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
   const isSignedIn = useSignedIn((state) => state.isSignedIn);
   const isSignInPage = location.pathname === '/sign-in';
-  const signOut = useSignedIn((state) => state.signOut);
+  const { isLoading, handleSignOut } = useHandleSignOut();
 
-  const handleSignOut = async (): Promise<void> => {
-    setIsLoading(true);
-    try {
-      await SignOut({ signOut });
-      toast({
-        title: 'You have signed out!',
-        description: 'Sign out is successful!'
-      });
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      const err = error as Error;
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
-      });
-      console.error(err);
-      throw err;
-    }
-  };
   return (
     <nav
       className='mx-auto flex items-center justify-between p-2 lg:px-8'

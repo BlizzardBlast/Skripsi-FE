@@ -1,4 +1,5 @@
 import Logo from '@/assets/kofebin_logo.svg';
+import useHandleSignOut from '@/components/header/useHandleSignOut';
 import LoadImage from '@/components/load-image/load-image';
 import { Button } from '@/components/ui/button.tsx';
 import {
@@ -9,13 +10,10 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog.tsx';
-import { useToast } from '@/components/ui/use-toast';
-import SignOut from '@/services/sign-out/sign-out';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
 import useSignedIn from '@/zustand/useSignedIn';
 import { Dialog } from '@headlessui/react';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 type MobileHeaderProps = {
@@ -27,32 +25,9 @@ export default function MobileHeader({
   mobileMenuOpen,
   setMobileMenuOpen
 }: Readonly<MobileHeaderProps>): JSX.Element {
-  const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
   const isSignedIn = useSignedIn((state) => state.isSignedIn);
   const isSignInPage = location.pathname === '/sign-in';
-  const signOut = useSignedIn((state) => state.signOut);
-  const handleSignOut = async (): Promise<void> => {
-    setIsLoading(true);
-    try {
-      await SignOut({ signOut });
-      toast({
-        title: 'You have signed out!',
-        description: 'Sign out is successful!'
-      });
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      const err = error as Error;
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
-      });
-      console.error(err);
-      throw err;
-    }
-  };
+  const { isLoading, handleSignOut } = useHandleSignOut();
   return (
     <Dialog
       as='div'
