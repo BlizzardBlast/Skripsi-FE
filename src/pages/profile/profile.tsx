@@ -1,5 +1,4 @@
 import LadyCoffee from '@/assets/lady_coffee.svg';
-import useUserData from '@/components/header/useUserData.ts';
 import LoadImage from '@/components/load-image/load-image';
 import MetaTag from '@/components/meta-tag/meta-tag';
 import { Button } from '@/components/ui/button.tsx';
@@ -12,84 +11,15 @@ import {
   FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input.tsx';
-import { useToast } from '@/components/ui/use-toast.ts';
-import UpdateProfile from '@/services/profile/update-profile.ts';
+import useProfileFormUtils from '@/pages/profile/useProfileFormUtils';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { FaRegUser } from '@react-icons/all-files/fa/FaRegUser';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { z } from 'zod';
 
-const formSchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: 'The e-mail has to be filled.' })
-    .email('This is not a valid e-mail.'),
-  username: z
-    .string()
-    .min(3, { message: 'Username must be at least 3 characters long.' })
-    .max(20, { message: 'Username must be at most 20 characters long.' }),
-  name: z
-    .string()
-    .min(3, { message: 'Name must be at least 3 characters long.' })
-    .max(20, { message: 'Name must be at most 20 characters long.' }),
-  // password: z
-  //   .string()
-  //   .min(8, { message: 'Password must be at least 8 characters long.' })
-  //   .refine((value) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(value), {
-  //     message:
-  //       'Password must contain at least one lowercase letter, one uppercase letter, and one digit.'
-  //   }),
-  preferences: z.string().optional()
-});
+const FORM_INPUT_CLASSNAME =
+  'rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0';
 
 export default function ProfilePage(): JSX.Element {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
-  const user = useUserData();
-  const { toast } = useToast();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    values: {
-      email: user?.email ?? '',
-      username: user?.username ?? '',
-      name: 'Hmmm',
-      // password: '*********',
-      preferences: user?.preferences ?? ''
-    }
-  });
-
-  async function onSubmit(values: z.infer<typeof formSchema>): Promise<void> {
-    setIsLoading(true);
-    try {
-      const profileData = {
-        new_email: values.email,
-        new_username: values.username,
-        new_name: values.name
-        // password: values.password,
-        // preferences: values.preferences
-      };
-      await UpdateProfile({ values: profileData, id: user?.id as number });
-      toast({
-        title: 'You updated your profile!',
-        description: 'Profile Data has been updated.'
-      });
-      navigate('/');
-    } catch (error) {
-      const err = error as Error;
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
-      });
-      console.error(err);
-      throw err;
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  const { isLoading, onSubmit, form } = useProfileFormUtils();
 
   return (
     <div className='flex min-h-[80vh] flex-col flex-wrap items-center justify-center py-5 md:flex-row'>
@@ -115,7 +45,7 @@ export default function ProfilePage(): JSX.Element {
                     <FormLabel>E-mail</FormLabel>
                     <FormControl>
                       <Input
-                        className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
+                        className={FORM_INPUT_CLASSNAME}
                         placeholder='Enter your email'
                         {...field}
                         autoComplete='email'
@@ -133,7 +63,7 @@ export default function ProfilePage(): JSX.Element {
                     <FormLabel>Username</FormLabel>
                     <FormControl>
                       <Input
-                        className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
+                        className={FORM_INPUT_CLASSNAME}
                         placeholder='Enter your preferred username'
                         {...field}
                         autoComplete='username'
@@ -151,7 +81,7 @@ export default function ProfilePage(): JSX.Element {
                     <FormLabel>Name</FormLabel>
                     <FormControl>
                       <Input
-                        className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
+                        className={FORM_INPUT_CLASSNAME}
                         placeholder='What is your name?'
                         {...field}
                         autoComplete='name'
@@ -169,7 +99,7 @@ export default function ProfilePage(): JSX.Element {
                     <FormLabel>Password</FormLabel>
                     <FormControl>
                       <PasswordInput
-                        className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
+                        className={FORM_INPUT_CLASSNAME}
                         placeholder='Enter a strong password'
                         {...field}
                       />
@@ -186,7 +116,7 @@ export default function ProfilePage(): JSX.Element {
                     <FormLabel>Preference</FormLabel>
                     <FormControl>
                       <Input
-                        className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
+                        className={FORM_INPUT_CLASSNAME}
                         placeholder='What is your preference?'
                         {...field}
                         autoComplete='preferences'

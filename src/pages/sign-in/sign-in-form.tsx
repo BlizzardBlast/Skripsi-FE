@@ -9,89 +9,15 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { PasswordInput } from '@/components/ui/password-input.tsx';
-import { useToast } from '@/components/ui/use-toast.ts';
-import Login from '@/services/login/login-service.ts';
+import useSignInForm from '@/pages/sign-in/useSignInForm';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
-import useSignedIn from '@/zustand/useSignedIn.ts';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import { z } from 'zod';
+import { Link } from 'react-router-dom';
 
-const formSchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: 'The e-mail has to be filled.' })
-    .email('This is not a valid e-mail.'),
-  password: z
-    .string()
-    .min(8, { message: 'Password must be at least 8 characters long.' })
-    .refine((value) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(value), {
-      message:
-        'Password must contain at least one lowercase letter, one uppercase letter, and one digit.'
-    })
-});
+const FORM_INPUT_CLASSNAME =
+  'rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0';
+
 export default function SignInForm(): JSX.Element {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
-  const abortControllerRef = useRef<AbortController | null>(null);
-  const { toast } = useToast();
-  const signIn = useSignedIn((state) => state.signIn);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: '',
-      password: ''
-    }
-  });
-
-  async function onSubmit(values: z.infer<typeof formSchema>): Promise<void> {
-    setIsLoading(true);
-    if (abortControllerRef.current != null) {
-      abortControllerRef.current.abort();
-    }
-
-    abortControllerRef.current = new AbortController();
-    try {
-      const loginData = {
-        email: values.email,
-        password: values.password
-      };
-      await Login({
-        values: loginData,
-        signIn,
-        signal: abortControllerRef.current.signal
-      });
-      toast({
-        title: 'You have signed in!',
-        description: 'Sign in is successful.'
-      });
-      navigate('/');
-    } catch (error) {
-      const err = error as Error;
-      if (err.name === 'CanceledError') {
-        return;
-      }
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
-      });
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    return () => {
-      if (abortControllerRef.current != null) {
-        abortControllerRef.current.abort();
-      }
-    };
-  }, []);
+  const { isLoading, onSubmit, form } = useSignInForm();
 
   return (
     <Form {...form}>
@@ -107,7 +33,7 @@ export default function SignInForm(): JSX.Element {
               <FormLabel>E-mail</FormLabel>
               <FormControl>
                 <Input
-                  className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
+                  className={FORM_INPUT_CLASSNAME}
                   placeholder='Enter your email'
                   {...field}
                   autoComplete='email'
@@ -125,7 +51,7 @@ export default function SignInForm(): JSX.Element {
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <PasswordInput
-                  className='rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0'
+                  className={FORM_INPUT_CLASSNAME}
                   placeholder='Enter a strong password'
                   {...field}
                 />
