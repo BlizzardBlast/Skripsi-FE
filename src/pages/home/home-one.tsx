@@ -21,7 +21,7 @@ export default function HomeOne(): JSX.Element {
         Discover Your Coffee Preference
       </motion.h1>
       <motion.div className='w-8/12' variants={homeOneComponentVariants(0.1)}>
-        <Paragraph className='text-center text-2xl'>
+        <Paragraph className='text-center text-2xl' testId='paragraph-home-one'>
           At Kofebin, we firmly believe in the uniqueness of individual coffee
           preferences. That&apos;s why we invite you to embark on a journey of
           discovery with us. The world of coffee is far richer and more diverse

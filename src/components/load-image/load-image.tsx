@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 
 type LoadImageProps = {
   source: string;
+  testId?: string;
   alternative: string;
   classes: string;
   lazy?: boolean;
@@ -13,6 +14,7 @@ type LoadImageProps = {
 
 const LoadImage = ({
   source,
+  testId,
   alternative,
   classes,
   lazy = false,
@@ -50,7 +52,7 @@ const LoadImage = ({
   const divClass = cn('w-full', divClasses);
 
   return (
-    <div className={divClass} onClick={onClick}>
+    <div className={divClass} onClick={onClick} data-testid='img_div'>
       <div className={loading ? loadingClass : ''}>
         <img
           ref={imageElement}
@@ -59,6 +61,7 @@ const LoadImage = ({
           className={imageClass}
           loading={lazy ? 'lazy' : 'eager'}
           onError={handleError}
+          data-testid={testId}
         />
       </div>
     </div>
