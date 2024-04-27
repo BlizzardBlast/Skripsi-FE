@@ -3,7 +3,9 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 
-const intersectionObserverMock = () => ({
+const intersectionObserverMock = (): {
+  observe: () => null;
+} => ({
   observe: () => null
 });
 window.IntersectionObserver = vi
