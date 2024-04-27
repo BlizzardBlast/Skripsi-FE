@@ -1,3 +1,9 @@
-# Skripsi-FE
+# Kofebin-FE
 
-Skripsi bagian Front-End menggunakan React Js.
+Front-End dari website Kofebin yang dibuat dengan React.
+
+## Author
+
+- Frey Darmasurya
+- Grady
+- Kay
