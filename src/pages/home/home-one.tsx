@@ -1,11 +1,13 @@
 import Paragraph from '@/components/typography/paragraph.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import LeafImage from '@/pages/home/leaf-image.tsx';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { homeOneComponentVariants } from '@/pages/home/variants.ts';
+import useSignedIn from '@/zustand/useSignedIn';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export default function HomeOne(): JSX.Element {
+  const isSignedIn = useSignedIn((state) => state.isSignedIn);
   return (
     <motion.div
       className='flex min-h-[70vh] flex-col items-center justify-center py-5'
@@ -37,7 +39,10 @@ export default function HomeOne(): JSX.Element {
           asChild
           className='mt-6 rounded-2xl bg-primary-color px-5 py-6 text-xl font-extralight tracking-tight hover:bg-secondary-color'
         >
-          <Link to='/find-your-coffee' aria-label='Discover Your Preference'>
+          <Link
+            to={isSignedIn ? '/find-your-coffee' : '/sign-in'}
+            aria-label='Discover Your Preference'
+          >
             Discover Your Preference
           </Link>
         </Button>
