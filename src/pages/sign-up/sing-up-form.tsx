@@ -13,7 +13,7 @@ import { useToast } from '@/components/ui/use-toast.ts';
 import SignUp from '@/services/sign-up/sign-up.ts';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
@@ -43,6 +43,7 @@ const formSchema = z.object({
 export default function SignUpForm(): JSX.Element {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const abortControllerRef = useRef<AbortController | null>(null);
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -57,6 +58,11 @@ export default function SignUpForm(): JSX.Element {
 
   async function onSubmit(values: z.infer<typeof formSchema>): Promise<void> {
     setIsLoading(true);
+    if (abortControllerRef.current != null) {
+      abortControllerRef.current.abort();
+    }
+
+    abortControllerRef.current = new AbortController();
     try {
       const signUpData = {
         email: values.email,
@@ -64,7 +70,10 @@ export default function SignUpForm(): JSX.Element {
         name: values.name,
         password: values.password
       };
-      await SignUp({ values: signUpData });
+      await SignUp({
+        values: signUpData,
+        signal: abortControllerRef.current.signal
+      });
       toast({
         title: 'You have signed up!',
         description: 'Sign up is successful! Please sign in.'
@@ -72,17 +81,27 @@ export default function SignUpForm(): JSX.Element {
       navigate('/');
     } catch (error) {
       const err = error as Error;
+      if (err.name === 'CanceledError') {
+        return;
+      }
       toast({
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
         description: 'There was a problem with your request.'
       });
       console.error(err);
-      throw err;
     } finally {
       setIsLoading(false);
     }
   }
+
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current != null) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
 
   return (
     <Form {...form}>
