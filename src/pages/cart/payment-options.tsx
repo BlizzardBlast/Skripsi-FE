@@ -81,6 +81,7 @@ export default function PaymentOptions({
   if (paymentOption === 'paypal') {
     return (
       <div className='mt-3'>
+        <script src='https://www.paypal.com/sdk/js?client-id=%VITE_PAYPAL_CLIENT_ID%&currency=GBP&intent=capture'></script>
         <PayPalButtons
           createOrder={createOrder}
           onApprove={onApprove}

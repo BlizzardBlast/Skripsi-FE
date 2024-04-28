@@ -31,7 +31,6 @@ export default function PaymentDialog({
 
   return (
     <PayPalScriptProvider options={initialPaypalOptions}>
-      <script src='https://www.paypal.com/sdk/js?client-id=%VITE_PAYPAL_CLIENT_ID%&currency=GBP&intent=capture'></script>
       <div className='text-right'>
         <HeadingFour>Total: {ConvertToRupiah(totalPrice)}</HeadingFour>
         <Dialog>
