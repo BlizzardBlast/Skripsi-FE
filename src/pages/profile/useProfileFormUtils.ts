@@ -12,13 +12,14 @@ type UseProfileFormUtilsReturnType = {
   isLoading: boolean;
   onSubmit: (values: z.infer<typeof profileValidationSchema>) => Promise<void>;
   form: ReturnType<typeof useForm<z.infer<typeof profileValidationSchema>>>;
+  isPending: boolean;
 };
 
 export default function useProfileFormUtils(): UseProfileFormUtilsReturnType {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const user = useUserData();
+  const { user, isPending } = useUserData();
   const form = useForm<z.infer<typeof profileValidationSchema>>({
     resolver: zodResolver(profileValidationSchema),
     values: {
@@ -61,5 +62,5 @@ export default function useProfileFormUtils(): UseProfileFormUtilsReturnType {
     }
   }
 
-  return { isLoading, onSubmit, form } as const;
+  return { isLoading, onSubmit, form, isPending } as const;
 }

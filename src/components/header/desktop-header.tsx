@@ -37,7 +37,7 @@ export default function DesktopHeader({
   setMobileMenuOpen
 }: Readonly<DesktopHeaderProps>): JSX.Element {
   const navigate = useNavigate();
-  const user = useUserData();
+  const { user, isPending } = useUserData();
   const isSignedIn = useSignedIn((state) => state.isSignedIn);
   const isSignInPage = location.pathname === '/sign-in';
   const { isLoading, handleSignOut } = useHandleSignOut();
@@ -114,14 +114,16 @@ export default function DesktopHeader({
               <FaShoppingCart className='cursor-pointer text-2xl text-white' />
             </Link>
             <DialogShadcn>
-              <DropdownMenu>
+              <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
-                  <Link to={'/profile'} aria-label='Profile'>
+                  <div>
                     <FaUserCircle className='cursor-pointer text-2xl text-white' />
-                  </Link>
+                  </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className='absolute right-0 w-56'>
-                  <DropdownMenuLabel>{user?.username}</DropdownMenuLabel>
+                  <DropdownMenuLabel>
+                    {isPending ? 'Loading...' : user?.username}
+                  </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuGroup>
                     <DropdownMenuItem
