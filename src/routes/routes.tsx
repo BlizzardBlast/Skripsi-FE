@@ -1,14 +1,13 @@
-import Layout from '@/layout/layout.tsx';
-import BrewingPage from '@/pages/brewing/brewing.tsx';
-import ProductDetail from '@/pages/product/product-detail.tsx';
-import Shop from '@/pages/shop/shop-page.tsx';
 import RootErrorElement from '@/routes/Error Element/root.tsx';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    lazy: async () => {
+      const { default: Layout } = await import('@/layout/layout.tsx');
+      return { Component: Layout };
+    },
     children: [
       {
         path: '/',
@@ -55,7 +54,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/brewing',
-        element: <BrewingPage />
+        lazy: async () => {
+          const { default: BrewingPage } = await import(
+            '@/pages/brewing/brewing.tsx'
+          );
+          return { Component: BrewingPage };
+        }
       },
       {
         path: '/find-your-coffee',
@@ -77,14 +81,22 @@ const router = createBrowserRouter([
       },
       {
         path: '/shop',
-        element: <Shop />
+        lazy: async () => {
+          const { default: Shop } = await import('@/pages/shop/shop-page.tsx');
+          return { Component: Shop };
+        }
       },
       {
         path: '/product',
         children: [
           {
             path: ':id',
-            element: <ProductDetail />
+            lazy: async () => {
+              const { default: ProductDetail } = await import(
+                '@/pages/product/product-detail.tsx'
+              );
+              return { Component: ProductDetail };
+            }
           }
         ]
       }
