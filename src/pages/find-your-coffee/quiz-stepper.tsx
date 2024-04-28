@@ -18,6 +18,7 @@ export default function QuizStepper(): JSX.Element {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
   const [answer, setAnswer] = useState(['']);
   const { toast } = useToast();
 
@@ -29,6 +30,8 @@ export default function QuizStepper(): JSX.Element {
       try {
         await SetUserPreferences(answer);
         navigate('/find-your-coffee/result');
+        setIsLoading(false);
+        setIsNavigating(true);
       } catch (error) {
         console.error(error);
         toast({
@@ -36,7 +39,6 @@ export default function QuizStepper(): JSX.Element {
           title: 'Something went wrong!',
           description: 'An unexpected error occurred. Please try again later.'
         });
-      } finally {
         setIsLoading(false);
       }
     }
@@ -58,6 +60,8 @@ export default function QuizStepper(): JSX.Element {
         setAnswer(tempAnswerArray);
         await SetUserPreferences(tempAnswerArray);
         navigate('/find-your-coffee/result');
+        setIsLoading(false);
+        setIsNavigating(true);
       } catch (error) {
         console.error(error);
         toast({
@@ -65,7 +69,6 @@ export default function QuizStepper(): JSX.Element {
           title: 'Something went wrong!',
           description: 'An unexpected error occurred. Please try again later.'
         });
-      } finally {
         setIsLoading(false);
       }
     }
@@ -86,7 +89,7 @@ export default function QuizStepper(): JSX.Element {
     <QuizStepFive key={'quiz-five'} handleNextStep={handleNextStepWithAnswer} />
   ];
 
-  if (isLoading) {
+  if (isLoading || isNavigating) {
     return (
       <div>
         <Spinner className='border-black border-b-transparent' />
