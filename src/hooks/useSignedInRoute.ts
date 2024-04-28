@@ -21,5 +21,5 @@ export default function useSignedInRoute(): void {
     if (isSignedIn && publicRoutes.includes(location.pathname)) {
       navigate('/');
     }
-  }, []);
+  }, [isSignedIn, location.pathname, navigate]);
 }
