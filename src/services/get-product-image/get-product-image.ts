@@ -5,13 +5,17 @@ import handleApiError from '@/utils/handle-api-error.ts';
 import { AxiosError, type AxiosResponse } from 'axios';
 
 const GetProductImage = async ({
-  id
+  id,
+  signal
 }: {
   id: string | number;
+  signal: AbortSignal | null;
 }): Promise<string> => {
   try {
     const response: AxiosResponse<GetProductImageResponse> =
-      await AxiosInstance.get(`api/getProductImage/${id}`);
+      await AxiosInstance.get(`api/getProductImage/${id}`, {
+        signal: signal as AbortSignal
+      });
     return response.data.image_base64;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {

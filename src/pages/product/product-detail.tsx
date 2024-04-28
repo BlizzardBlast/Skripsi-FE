@@ -7,7 +7,7 @@ import GetProductImage from '@/services/get-product-image/get-product-image.ts';
 import { type Product } from '@/types/services/shop/shop.ts';
 import useCartStore from '@/zustand/useCartStore.ts';
 import useSignedIn from '@/zustand/useSignedIn.ts';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 type LocationState = {
@@ -26,6 +26,7 @@ export default function ProductDetail(): JSX.Element {
 
   const [quantity, setQuantity] = useState<string>('');
   const [productImage, setProductImage] = useState<string | undefined>('');
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const { id } = useParams();
   const addToCart = useCartStore((state) => state.addToCart);
@@ -34,11 +35,23 @@ export default function ProductDetail(): JSX.Element {
 
   useEffect(() => {
     const fetchProductImage = async (): Promise<void> => {
+      if (abortControllerRef.current != null) {
+        abortControllerRef.current.abort();
+      }
+
+      abortControllerRef.current = new AbortController();
       try {
-        const result = await GetProductImage({ id: id as string });
+        const result = await GetProductImage({
+          id: id as string,
+          signal: abortControllerRef.current.signal
+        });
         setProductImage(result);
       } catch (error) {
-        console.error(error);
+        const err = error as Error;
+        if (err.name === 'CanceledError') {
+          return;
+        }
+        console.error(err);
         toast({
           variant: 'destructive',
           title: 'Uh oh! Something went wrong.',
@@ -49,6 +62,14 @@ export default function ProductDetail(): JSX.Element {
 
     fetchProductImage().catch(() => {});
   }, [id, toast]);
+
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current != null) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
 
   const handleQuantityChange = (
     event: React.ChangeEvent<HTMLInputElement>
