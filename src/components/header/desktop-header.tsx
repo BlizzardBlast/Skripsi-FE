@@ -116,9 +116,9 @@ export default function DesktopHeader({
             <DialogShadcn>
               <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
-                  <div>
-                    <FaUserCircle className='cursor-pointer text-2xl text-white' />
-                  </div>
+                  <button type='button' aria-label='user-profile-trigger'>
+                    <FaUserCircle className='text-2xl text-white' />
+                  </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className='absolute right-0 w-56'>
                   <DropdownMenuLabel>
