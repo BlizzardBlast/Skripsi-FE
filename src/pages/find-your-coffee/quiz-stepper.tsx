@@ -29,7 +29,6 @@ export default function QuizStepper(): JSX.Element {
       try {
         await SetUserPreferences(answer);
         navigate('/find-your-coffee/result');
-        setIsLoading(false);
       } catch (error) {
         console.error(error);
         toast({
@@ -37,6 +36,7 @@ export default function QuizStepper(): JSX.Element {
           title: 'Something went wrong!',
           description: 'An unexpected error occurred. Please try again later.'
         });
+      } finally {
         setIsLoading(false);
       }
     }
@@ -58,7 +58,6 @@ export default function QuizStepper(): JSX.Element {
         setAnswer(tempAnswerArray);
         await SetUserPreferences(tempAnswerArray);
         navigate('/find-your-coffee/result');
-        setIsLoading(false);
       } catch (error) {
         console.error(error);
         toast({
@@ -66,6 +65,7 @@ export default function QuizStepper(): JSX.Element {
           title: 'Something went wrong!',
           description: 'An unexpected error occurred. Please try again later.'
         });
+      } finally {
         setIsLoading(false);
       }
     }
