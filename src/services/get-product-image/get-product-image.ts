@@ -19,6 +19,7 @@ const GetProductImage = async ({
     return response.data.image_base64;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
+      if (error.name === 'CanceledError') throw error;
       throw new Error(handleApiError(error as AxiosError<ErrorResponses>));
     } else {
       throw new Error('Error tidak terduga terjadi');
