@@ -130,13 +130,14 @@ export default function DesktopHeader({
                       onClick={() => {
                         navigate('/profile');
                       }}
+                      className='cursor-pointer'
                     >
                       <FaRegUser className='mr-2 h-4 w-4' />
                       <span>Profile</span>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DialogTrigger asChild>
-                      <DropdownMenuItem>
+                      <DropdownMenuItem className='cursor-pointer'>
                         <IoLogOutOutline className='mr-2 h-4 w-4' />
                         <span>Sign out</span>
                       </DropdownMenuItem>
