@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer(): JSX.Element {
   return (
-    <div className='flex min-h-[20svh] flex-col justify-center gap-6 bg-secondary-color px-36 py-10 text-center leading-7 md:flex-row md:text-left'>
+    <div className='flex min-h-[20svh] flex-col justify-center gap-6 bg-secondary-color px-10 py-10 text-center leading-7 sm:px-36 md:flex-row md:text-left'>
       <div>
         <Paragraph className='mb-3 text-white'>
           <b>Commerce</b>
