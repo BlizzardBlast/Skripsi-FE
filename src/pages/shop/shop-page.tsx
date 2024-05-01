@@ -26,7 +26,7 @@ export default function Shop(): JSX.Element {
           <ProductList products={products} />
         ) : (
           <div className='flex h-[24.4rem] justify-center sm:justify-normal'>
-            <Spinner className='border-black border-b-transparent' />
+            <Spinner />
           </div>
         )}
       </div>

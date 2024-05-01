@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button.tsx';
-import wrapAsyncFunction from '@/utils/wrap-async-function.ts';
+import ChoiceButton from '@/pages/find-your-coffee/components/choice-button';
+import MotionHeading from '@/pages/find-your-coffee/components/motion-heading';
 import { motion } from 'framer-motion';
 
 type QuizStepOneProps = {
@@ -14,19 +14,7 @@ export default function QuizStepOne({
       className={`min-h-[80vh] w-full bg-[url('@/assets/fyc2_bg.webp')] bg-cover bg-fixed bg-center bg-no-repeat text-white`}
     >
       <div className='flex w-full flex-col gap-10 bg-black bg-opacity-30 p-20 backdrop-blur-sm md:w-2/5'>
-        <motion.h1
-          className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.5,
-            ease: 'easeInOut',
-            type: 'spring',
-            bounce: 0.5
-          }}
-        >
-          Acidity
-        </motion.h1>
+        <MotionHeading title='Acidity' />
         <motion.p
           className='text-xl'
           initial={{ opacity: 0, y: 100 }}
@@ -96,30 +84,21 @@ export default function QuizStepOne({
             delay: 0.5
           }}
         >
-          <Button
-            className='h-auto w-[5rem] text-wrap rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
-            onClick={wrapAsyncFunction(async () => {
-              await handleNextStep('low');
-            })}
-          >
-            Low
-          </Button>
-          <Button
-            className='h-auto w-[5rem] text-wrap rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
-            onClick={wrapAsyncFunction(async () => {
-              await handleNextStep('medium');
-            })}
-          >
-            Medium
-          </Button>
-          <Button
-            className='h-auto w-[5rem] text-wrap rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
-            onClick={wrapAsyncFunction(async () => {
-              await handleNextStep('high');
-            })}
-          >
-            High
-          </Button>
+          <ChoiceButton
+            handleNextStep={handleNextStep}
+            value='low'
+            text='Low'
+          />
+          <ChoiceButton
+            handleNextStep={handleNextStep}
+            value='medium'
+            text='Medium'
+          />
+          <ChoiceButton
+            handleNextStep={handleNextStep}
+            value='high'
+            text='High'
+          />
         </motion.div>
       </div>
     </div>

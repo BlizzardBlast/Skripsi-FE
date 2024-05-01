@@ -1,11 +1,10 @@
 /* eslint-disable security/detect-object-injection */
 import Spinner from '@/components/spinner/spinner.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
-import QuizStepFive from '@/pages/find-your-coffee/quiz-five.tsx';
 import QuizStepFour from '@/pages/find-your-coffee/quiz-four.tsx';
+import QuizStepOne from '@/pages/find-your-coffee/quiz-one';
 import QuizStepThree from '@/pages/find-your-coffee/quiz-three';
 import QuizStepTwo from '@/pages/find-your-coffee/quiz-two';
-import QuizStepOne from '@/pages/find-your-coffee/quiz-one';
 import QuizStepZero from '@/pages/find-your-coffee/quiz-zero.tsx';
 import SetUserPreferences from '@/services/quiz/set-user-preferences';
 import { AnimatePresence } from 'framer-motion';
@@ -82,17 +81,13 @@ export default function QuizStepper(): JSX.Element {
       key={'quiz-three'}
       handleNextStep={handleNextStepWithAnswer}
     />,
-    <QuizStepFour
-      key={'quiz-four'}
-      handleNextStep={handleNextStepWithAnswer}
-    />,
-    <QuizStepFive key={'quiz-five'} handleNextStep={handleNextStepWithAnswer} />
+    <QuizStepFour key={'quiz-four'} handleNextStep={handleNextStepWithAnswer} />
   ];
 
   if (isLoading || isNavigating) {
     return (
       <div>
-        <Spinner className='border-black border-b-transparent' />
+        <Spinner />
       </div>
     );
   }

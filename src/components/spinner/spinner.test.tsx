@@ -3,10 +3,10 @@ import { expect, test } from 'vitest';
 import Spinner from './spinner';
 
 test('Spinner renders with correct class', async () => {
-  const { container } = render(<Spinner className='test-class' />);
+  const { container } = render(<Spinner />);
 
-  const spinner = container.firstChild;
+  const spinner = container.firstChild?.firstChild as HTMLElement;
   expect(spinner).toHaveClass(
-    'h-16 w-16 animate-spin rounded-full border-4 border-solid border-white border-b-transparent test-class'
+    'm-auto h-8 w-8 animate-spin fill-black text-gray-200 dark:text-gray-600'
   );
 });

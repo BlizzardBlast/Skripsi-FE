@@ -24,7 +24,7 @@ export default function ProfileForm(): JSX.Element {
   if (isPending) {
     return (
       <div className='flex flex-col items-center justify-center space-y-2'>
-        <Spinner className='m-auto border-black border-b-transparent' />
+        <Spinner />
       </div>
     );
   }

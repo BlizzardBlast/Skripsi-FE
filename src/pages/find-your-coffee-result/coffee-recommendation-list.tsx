@@ -16,7 +16,7 @@ export default function CoffeeRecommendationList(): JSX.Element {
     });
 
   if (isLoading) {
-    return <Spinner className='m-auto border-black border-b-transparent' />;
+    return <Spinner />;
   }
 
   if (products?.length === 0) {

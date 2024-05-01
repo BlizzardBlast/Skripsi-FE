@@ -22,7 +22,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
         disabled={isLoading === true ? true : props.disabled}
       >
-        {isLoading === true ? <Spinner className='h-7 w-7' /> : props.children}
+        {isLoading === true ? <Spinner /> : props.children}
       </Comp>
     );
   }
