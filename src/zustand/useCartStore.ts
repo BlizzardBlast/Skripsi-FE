@@ -13,6 +13,7 @@ interface CartState {
   addToCart: (product: Product, quantity: number) => void;
   changeProductQuantity: (index: number, quantity: number) => void;
   removeProduct: (index: number) => void;
+  resetCart: () => void;
 }
 
 const useCartStore = create<CartState>()(
@@ -48,6 +49,9 @@ const useCartStore = create<CartState>()(
             updatedCart.splice(index, 1);
             return { cart: updatedCart };
           });
+        },
+        resetCart: () => {
+          set({ cart: [] });
         }
       }),
       {
