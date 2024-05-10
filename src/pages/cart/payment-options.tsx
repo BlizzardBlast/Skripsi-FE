@@ -1,7 +1,9 @@
 import Mastercard from '@/assets/mastercard.svg';
 import Paypal from '@/assets/paypal.webp';
 import LoadImage from '@/components/load-image/load-image.tsx';
+import Spinner from '@/components/spinner/spinner';
 import { useToast } from '@/components/ui/use-toast.ts';
+import { useCartContext } from '@/context/cart-context/useCartContext';
 import { CompletePayment, CreatePayment } from '@/services/payment/payment.ts';
 import CreateTransaction from '@/services/transaction/create-transaction';
 import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
@@ -22,8 +24,10 @@ export default function PaymentOptions({
 }: Readonly<PaymentOptionsProps>): JSX.Element | null {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { refetchCart } = useCartContext();
   const [paymentSuccess, setPaymentSuccess] = useState<boolean>(false);
   const [paymentOption] = useState<'' | 'paypal' | 'mastercard'>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -35,6 +39,7 @@ export default function PaymentOptions({
       });
       timeoutId = setTimeout(() => {
         navigate('/');
+        refetchCart();
       }, 3000);
     }
     return () => {
@@ -48,6 +53,10 @@ export default function PaymentOptions({
   async function onApprove(): Promise<void> {
     await CompletePayment();
     setPaymentSuccess(true);
+  }
+
+  if (isLoading) {
+    return <Spinner />;
   }
 
   if (paymentSuccess) {
@@ -66,8 +75,16 @@ export default function PaymentOptions({
             classes='w-[5rem] h-[1.396875rem] cursor-pointer'
             divClasses='w-auto'
             onClick={wrapAsyncFunction(async () => {
-              // setPaymentOption('paypal');
-              await CreateTransaction({ totalPrice, cart });
+              setIsLoading(true);
+              try {
+                // setPaymentOption('paypal');
+                await CreateTransaction({ totalPrice, cart });
+                setIsLoading(false);
+                setPaymentSuccess(true);
+              } catch (error) {
+                setIsLoading(false);
+                console.error(error);
+              }
             })}
           />
           <LoadImage
