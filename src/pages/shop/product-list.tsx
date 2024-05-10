@@ -18,8 +18,8 @@ export default function ProductList({
 
   return (
     <div className='flex flex-row flex-wrap justify-center gap-5 sm:justify-normal'>
-      {products.map((product, index) => (
-        <IndividualProduct key={product.id} product={product} index={index} />
+      {products.map((product) => (
+        <IndividualProduct key={product.id} product={product} />
       ))}
     </div>
   );

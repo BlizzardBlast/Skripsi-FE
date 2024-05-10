@@ -13,7 +13,7 @@ type UseHandleProductProps = {
 type UseHandleProductReturnType = {
   quantity: string;
   handleQuantityChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleAddToCart: (index: number) => Promise<void>;
+  handleAddToCart: () => Promise<void>;
 };
 
 export default function useHandleProduct({
@@ -32,7 +32,7 @@ export default function useHandleProduct({
     setQuantity(onlyNumbersQuantity);
   };
 
-  const handleAddToCart = async (index: number): Promise<void> => {
+  const handleAddToCart = async (): Promise<void> => {
     if (!isSignedIn) {
       setQuantity('');
       toast({
