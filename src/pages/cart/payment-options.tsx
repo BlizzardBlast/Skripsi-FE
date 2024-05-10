@@ -3,24 +3,27 @@ import Paypal from '@/assets/paypal.webp';
 import LoadImage from '@/components/load-image/load-image.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
 import { CompletePayment, CreatePayment } from '@/services/payment/payment.ts';
+import CreateTransaction from '@/services/transaction/create-transaction';
+import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
 import ConvertRupiahToGbp from '@/utils/convert-rupiah-to-gbp.ts';
+import wrapAsyncFunction from '@/utils/wrap-async-function';
 import { PayPalButtons } from '@paypal/react-paypal-js';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 type PaymentOptionsProps = {
   totalPrice: number;
+  cart: GetAllCartReturn[];
 };
 
 export default function PaymentOptions({
-  totalPrice
+  totalPrice,
+  cart
 }: Readonly<PaymentOptionsProps>): JSX.Element | null {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [paymentSuccess, setPaymentSuccess] = useState<boolean>(false);
-  const [paymentOption, setPaymentOption] = useState<
-    '' | 'paypal' | 'mastercard'
-  >('');
+  const [paymentOption] = useState<'' | 'paypal' | 'mastercard'>('');
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -62,9 +65,10 @@ export default function PaymentOptions({
             lazy
             classes='w-[5rem] h-[1.396875rem] cursor-pointer'
             divClasses='w-auto'
-            onClick={() => {
-              setPaymentOption('paypal');
-            }}
+            onClick={wrapAsyncFunction(async () => {
+              // setPaymentOption('paypal');
+              await CreateTransaction({ totalPrice, cart });
+            })}
           />
           <LoadImage
             source={Mastercard}

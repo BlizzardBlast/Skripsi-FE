@@ -108,6 +108,15 @@ const router = createBrowserRouter([
           );
           return { Component: TransactionHistoryPage };
         }
+      },
+      {
+        path: '/transaction/:id',
+        lazy: async () => {
+          const { default: TransactionDetailPage } = await import(
+            '@/pages/transaction/transaction-detail/transaction-detail'
+          );
+          return { Component: TransactionDetailPage };
+        }
       }
     ],
     errorElement: <RootErrorElement />

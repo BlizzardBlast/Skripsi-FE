@@ -19,7 +19,6 @@ export default function useFetchCart(): {
         setIsLoading(true);
         try {
           const result = await GetAllCart();
-          console.log(result);
           setCart(result);
           setIsLoading(false);
         } catch (error) {

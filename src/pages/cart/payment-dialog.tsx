@@ -57,7 +57,7 @@ export default function PaymentDialog({
                     {ConvertToRupiah(totalPrice)}
                   </span>
                 </div>
-                <PaymentOptions totalPrice={totalPrice} />
+                <PaymentOptions totalPrice={totalPrice} cart={cart} />
               </div>
             </DialogFooter>
           </DialogContent>

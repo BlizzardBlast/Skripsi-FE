@@ -11,9 +11,13 @@ export default function useSignedInRoute(): void {
       '/profile',
       '/cart',
       '/find-your-coffee',
-      '/find-your-coffee/result'
+      '/find-your-coffee/result',
+      '/transaction-history'
     ];
-    if (!isSignedIn && privateRoutes.includes(location.pathname)) {
+    const isPrivateRoute =
+      privateRoutes.includes(location.pathname) ||
+      location.pathname.startsWith('/transaction/');
+    if (!isSignedIn && isPrivateRoute) {
       navigate('/');
     }
 
