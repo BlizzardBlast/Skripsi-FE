@@ -15,7 +15,7 @@ export default function CartProducts({
     <>
       {cart.map((product) => (
         <div
-          className='mb-5 flex w-full flex-wrap justify-between rounded-xl bg-white p-5 drop-shadow-[3px_3px_3px_#E48F45]'
+          className='mb-5 flex w-full flex-wrap items-center justify-center gap-5 rounded-xl bg-white p-5 drop-shadow-[3px_3px_3px_#E48F45] sm:justify-between'
           key={product.product.id}
         >
           <div className='flex'>
@@ -24,6 +24,7 @@ export default function CartProducts({
               alternative='Image'
               lazy
               classes='w-20 h-20 rounded-lg'
+              divClasses='max-w-20 max-h-20'
             />
             <div className='ms-3 flex flex-col justify-center'>
               <Paragraph className='font-semibold'>

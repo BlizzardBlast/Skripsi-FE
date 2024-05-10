@@ -54,9 +54,9 @@ export default function CartProductsHandler({
   }
 
   return (
-    <div className='flex items-center justify-center'>
+    <div className='flex flex-col flex-nowrap items-center justify-center gap-5 sm:flex-row sm:flex-wrap sm:gap-0'>
       <Button
-        className='me-5 h-8 w-8 rounded-full p-5 text-2xl'
+        className='me-0 h-8 w-8 rounded-full p-5 text-2xl sm:me-5'
         onClick={wrapAsyncFunction(async () => {
           await handleDecrementQuantity(product.product.id);
         })}
@@ -71,7 +71,7 @@ export default function CartProductsHandler({
         disabled
       />
       <Button
-        className='ms-5 h-8 w-8 rounded-full p-5 text-2xl'
+        className='ms-0 h-8 w-8 rounded-full p-5 text-2xl sm:ms-5'
         onClick={wrapAsyncFunction(async () => {
           await handleIncrementQuantity(product.product.id);
         })}
@@ -82,7 +82,8 @@ export default function CartProductsHandler({
         source={TrashIcon}
         alternative='Delete Product'
         lazy
-        classes='w-10 h-10 rounded-lg ms-10 cursor-pointer'
+        classes='w-10 h-10 rounded-lg cursor-pointer'
+        divClasses='max-w-10 max-h-10 ms-0 sm:ms-10'
         onClick={wrapAsyncFunction(async () => {
           setIsLoading(true);
           try {
