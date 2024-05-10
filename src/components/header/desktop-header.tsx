@@ -28,6 +28,7 @@ import { FaRegUser } from '@react-icons/all-files/fa/FaRegUser';
 import { FaShoppingCart } from '@react-icons/all-files/fa/FaShoppingCart';
 import { FaUserCircle } from '@react-icons/all-files/fa/FaUserCircle';
 import { IoLogOutOutline } from '@react-icons/all-files/io5/IoLogOutOutline';
+import { MdHistory } from '@react-icons/all-files/md/MdHistory';
 import { Link, useNavigate } from 'react-router-dom';
 
 type DesktopHeaderProps = {
@@ -142,6 +143,15 @@ export default function DesktopHeader({
                     >
                       <FaRegUser className='mr-2 h-4 w-4' />
                       <span>Profile</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        navigate('/transaction-history');
+                      }}
+                      className='cursor-pointer'
+                    >
+                      <MdHistory className='mr-2 h-4 w-4' />
+                      <span>Transaction History</span>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DialogTrigger asChild>

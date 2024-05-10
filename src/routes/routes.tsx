@@ -99,6 +99,15 @@ const router = createBrowserRouter([
             }
           }
         ]
+      },
+      {
+        path: '/transaction-history',
+        lazy: async () => {
+          const { default: TransactionHistoryPage } = await import(
+            '@/pages/transaction/transaction-history'
+          );
+          return { Component: TransactionHistoryPage };
+        }
       }
     ],
     errorElement: <RootErrorElement />

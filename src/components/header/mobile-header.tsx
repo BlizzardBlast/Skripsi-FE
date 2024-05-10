@@ -110,6 +110,13 @@ export default function MobileHeader({
                 >
                   Profile
                 </Link>
+                <Link
+                  to={'/transaction-history'}
+                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                  aria-label={'/transaction-history'}
+                >
+                  Transaction History
+                </Link>
                 <DialogShadcn>
                   <DialogTrigger asChild>
                     <button
