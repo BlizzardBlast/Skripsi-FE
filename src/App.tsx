@@ -1,6 +1,5 @@
 import { CartProvider } from '@/context/cart-context/cart-provider';
 import Routes from '@/routes/routes.tsx';
-import { SpeedInsights } from '@vercel/speed-insights/react';
 import { useEffect, type ReactElement } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -17,7 +16,6 @@ function App(): ReactElement {
     <HelmetProvider context={helmetContext}>
       <CartProvider>
         <Routes />
-        <SpeedInsights />
       </CartProvider>
     </HelmetProvider>
   );
