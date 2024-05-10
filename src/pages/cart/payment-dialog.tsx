@@ -10,13 +10,13 @@ import {
 } from '@/components/ui/dialog.tsx';
 import PaymentOptions from '@/pages/cart/payment-options.tsx';
 import useDialogBody from '@/pages/cart/useDialogBody.tsx';
+import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
 import ConvertToRupiah from '@/utils/convert-to-rupiah.ts';
 import { env } from '@/utils/env.ts';
-import { type CartItem } from '@/zustand/useCartStore.ts';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 type PaymentDialogProps = {
-  cart: CartItem[];
+  cart: GetAllCartReturn[];
 };
 
 export default function PaymentDialog({

@@ -1,10 +1,10 @@
 import { Separator } from '@/components/ui/separator.tsx';
+import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
 import ConvertToRupiah from '@/utils/convert-to-rupiah.ts';
-import { type CartItem } from '@/zustand/useCartStore.ts';
 import { Fragment } from 'react';
 
 type UseDialogBodyProps = {
-  cart: CartItem[];
+  cart: GetAllCartReturn[];
 };
 
 type UseDialogBodyReturnType = {

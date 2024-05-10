@@ -1,4 +1,3 @@
-/* eslint-disable security/detect-object-injection */
 import MetaTag from '@/components/meta-tag/meta-tag';
 import Spinner from '@/components/spinner/spinner.tsx';
 import ProductList from '@/pages/shop/product-list.tsx';

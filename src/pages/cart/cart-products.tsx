@@ -1,11 +1,11 @@
 import LoadImage from '@/components/load-image/load-image.tsx';
 import Paragraph from '@/components/typography/paragraph.tsx';
 import CartProductsHandler from '@/pages/cart/cart-products-handler.tsx';
+import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
 import ConvertToRupiah from '@/utils/convert-to-rupiah.ts';
-import { type CartItem } from '@/zustand/useCartStore.ts';
 
 type CartProductProps = {
-  cart: CartItem[];
+  cart: GetAllCartReturn[];
 };
 
 export default function CartProducts({
@@ -13,7 +13,7 @@ export default function CartProducts({
 }: Readonly<CartProductProps>): JSX.Element {
   return (
     <>
-      {cart.map((product, index) => (
+      {cart.map((product) => (
         <div
           className='mb-5 flex w-full flex-wrap justify-between rounded-xl bg-white p-5 drop-shadow-[3px_3px_3px_#E48F45]'
           key={product.product.id}
@@ -34,7 +34,7 @@ export default function CartProducts({
               </Paragraph>
             </div>
           </div>
-          <CartProductsHandler cart={cart} product={product} index={index} />
+          <CartProductsHandler product={product} />
         </div>
       ))}
     </>

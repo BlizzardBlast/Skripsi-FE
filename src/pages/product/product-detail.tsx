@@ -3,9 +3,10 @@ import MetaTag from '@/components/meta-tag/meta-tag';
 import { Button } from '@/components/ui/button.tsx';
 import { useToast } from '@/components/ui/use-toast.ts';
 import CharacteristicsTag from '@/pages/product/characteristics-tag.tsx';
+import AddToCart from '@/services/cart/add-to-cart';
 import GetProductImage from '@/services/get-product-image/get-product-image.ts';
 import { type Product } from '@/types/services/shop/shop.ts';
-import useCartStore from '@/zustand/useCartStore.ts';
+import wrapAsyncFunction from '@/utils/wrap-async-function';
 import useSignedIn from '@/zustand/useSignedIn.ts';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -29,7 +30,6 @@ export default function ProductDetail(): JSX.Element {
   const abortControllerRef = useRef<AbortController | null>(null);
 
   const { id } = useParams();
-  const addToCart = useCartStore((state) => state.addToCart);
   const isSignedIn = useSignedIn((state) => state.isSignedIn);
   const { toast } = useToast();
 
@@ -79,7 +79,7 @@ export default function ProductDetail(): JSX.Element {
     setQuantity(onlyNumbersQuantity);
   };
 
-  const handleAddToCart = (): void => {
+  const handleAddToCart = async (): Promise<void> => {
     if (!isSignedIn) {
       setQuantity('');
       toast({
@@ -91,7 +91,11 @@ export default function ProductDetail(): JSX.Element {
     }
     const qty = parseInt(quantity);
     if (!isNaN(qty) && qty > 0) {
-      addToCart(product, qty);
+      try {
+        await AddToCart({ productId: product.id, quantity: qty });
+      } catch (error) {
+        console.error(error);
+      }
       setQuantity('');
     } else {
       toast({
@@ -152,7 +156,9 @@ export default function ProductDetail(): JSX.Element {
                 </div>
                 <Button
                   className='mt-3 w-full justify-self-center rounded-lg bg-quaternary-color text-center text-black hover:bg-tertiary-color'
-                  onClick={handleAddToCart}
+                  onClick={wrapAsyncFunction(async () => {
+                    await handleAddToCart();
+                  })}
                 >
                   Add to Cart
                 </Button>

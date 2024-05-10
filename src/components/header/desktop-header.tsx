@@ -20,8 +20,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
+import { useCartContext } from '@/context/cart-context/useCartContext';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
-import useCartStore from '@/zustand/useCartStore';
 import useSignedIn from '@/zustand/useSignedIn.ts';
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
 import { FaRegUser } from '@react-icons/all-files/fa/FaRegUser';
@@ -39,11 +39,11 @@ export default function DesktopHeader({
 }: Readonly<DesktopHeaderProps>): JSX.Element {
   const navigate = useNavigate();
   const { user, isPending } = useUserData();
-  const cart = useCartStore((state) => state.cart);
-  const productNumber = cart.length;
   const isSignedIn = useSignedIn((state) => state.isSignedIn);
   const isSignInPage = location.pathname === '/sign-in';
   const { isLoading, handleSignOut } = useHandleSignOut();
+  const { cart } = useCartContext();
+  const productNumber = cart.length;
 
   return (
     <nav

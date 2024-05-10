@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button.tsx';
 import useFetchCoffeePreference from '@/pages/find-your-coffee-result/useFetchCoffeePreference.ts';
 import useHandleProduct from '@/pages/shop/useHandleProduct.ts';
 import ConvertToRupiah from '@/utils/convert-to-rupiah.ts';
+import wrapAsyncFunction from '@/utils/wrap-async-function';
 import { useNavigate } from 'react-router-dom';
 
 export default function CoffeeRecommendationList(): JSX.Element {
@@ -58,9 +59,9 @@ export default function CoffeeRecommendationList(): JSX.Element {
           </div>
           <Button
             className='mt-3 justify-self-center rounded-full bg-primary-color text-center hover:bg-secondary-color'
-            onClick={() => {
-              handleAddToCart(index);
-            }}
+            onClick={wrapAsyncFunction(async () => {
+              await handleAddToCart(index);
+            })}
           >
             Add to Cart
           </Button>

@@ -1,13 +1,13 @@
-/* eslint-disable security/detect-object-injection */
 import MetaTag from '@/components/meta-tag/meta-tag';
+import Spinner from '@/components/spinner/spinner';
 import HeadingOne from '@/components/typography/headingOne.tsx';
 import Paragraph from '@/components/typography/paragraph.tsx';
+import { useCartContext } from '@/context/cart-context/useCartContext';
 import CartProducts from '@/pages/cart/cart-products.tsx';
 import PaymentDialog from '@/pages/cart/payment-dialog.tsx';
-import useCartStore from '@/zustand/useCartStore.ts';
 
 export default function CartPage(): JSX.Element {
-  const cart = useCartStore((state) => state.cart);
+  const { cart, isLoading } = useCartContext();
 
   return (
     <div className='flex min-h-[80vh] items-center justify-center'>
@@ -15,7 +15,11 @@ export default function CartPage(): JSX.Element {
         title='Kofebin | Cart'
         description='Check what you have ordered here in your cart!'
       />
-      {cart.length === 0 ? (
+      {isLoading ? (
+        <div className='min-h-[80vh] w-full items-center justify-center px-20 py-10'>
+          <Spinner />
+        </div>
+      ) : cart.length === 0 ? (
         <div className='min-h-[80vh] w-full items-center justify-center px-20 py-10'>
           <HeadingOne>There is no product in cart yet.</HeadingOne>
           <Paragraph>Please buy a product first.</Paragraph>
