@@ -12,7 +12,7 @@ import { type ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export default function TransactionDetailContent(): ReactNode {
-  const { data, isLoading } = useFetchTransactionDetail();
+  const { isLoading, newData } = useFetchTransactionDetail();
   const location: LocationProps & {
     state: {
       transaction: Transaction;
@@ -28,7 +28,9 @@ export default function TransactionDetailContent(): ReactNode {
       <div className='flex w-full items-center justify-between'>
         <div>
           <strong>Date</strong>
-          <Paragraph>{formatDate(data?.created_at ?? '')}</Paragraph>
+          <Paragraph>
+            {formatDate(location.state?.transaction?.created_at)}
+          </Paragraph>
         </div>
         <div>
           <strong>Status</strong>
@@ -44,10 +46,7 @@ export default function TransactionDetailContent(): ReactNode {
         </div>
       </div>
       <div>
-        <DataTable
-          columns={transactionDetailColumns}
-          data={data?.product ?? []}
-        />
+        <DataTable columns={transactionDetailColumns} data={newData} />
       </div>
     </div>
   );

@@ -8,16 +8,18 @@ type GetTransactionDetailProps = {
   id: number;
 };
 
-export type GetTransactionDetailResponse = {
+export type GetTransactionDetailSingleResponse = {
   id: number;
   quantity: number;
   product_id: number;
   order_id: number;
   user_id: number;
-  created_at: string;
-  updated_at: string;
-  product: Product[];
+  created_at: string | null;
+  updated_at: string | null;
+  product: Product;
 };
+
+export type GetTransactionDetailResponse = GetTransactionDetailSingleResponse[];
 
 const GetTransactionDetail = async ({
   id

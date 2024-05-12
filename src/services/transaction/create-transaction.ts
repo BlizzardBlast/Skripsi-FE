@@ -22,15 +22,13 @@ const CreateTransaction = async ({
       product_id: item.product.id,
       quantity: item.quantity
     }));
-    await AxiosInstance.postForm(`api/postOrder`, {
-      confirmation: 'paid',
-      total_price: totalPrice
-    });
-    const responseTwo: AxiosResponse<CreateTransactionReturn> =
-      await AxiosInstance.postForm(`api/postOrderDetail`, {
-        order_details: orderDetails
+    const response: AxiosResponse<CreateTransactionReturn> =
+      await AxiosInstance.postForm(`api/postOrder`, {
+        confirmation: 'paid',
+        total_price: totalPrice,
+        details: orderDetails
       });
-    return responseTwo.data;
+    return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
       if (error.name === 'CanceledError') throw error;

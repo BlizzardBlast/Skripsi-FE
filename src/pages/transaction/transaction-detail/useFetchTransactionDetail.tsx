@@ -1,19 +1,49 @@
 import { useToast } from '@/components/ui/use-toast';
 import GetTransactionDetail, {
+  type GetTransactionDetailSingleResponse,
   type GetTransactionDetailResponse
 } from '@/services/transaction/get-transaction-detail';
+import { type Product } from '@/types/services/shop/shop';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 type UseFetchTransactionDetailReturnType = {
-  data: GetTransactionDetailResponse | undefined;
+  data: GetTransactionDetailResponse;
   isLoading: boolean;
+  newData: Array<Omit<GetTransactionDetailSingleResponse, 'product'> & Product>;
 };
 
 export default function useFetchTransactionDetail(): UseFetchTransactionDetailReturnType {
-  const [data, setData] = useState<GetTransactionDetailResponse | undefined>(
-    undefined
-  );
+  const [data, setData] = useState<GetTransactionDetailResponse>([
+    {
+      id: 0,
+      quantity: 0,
+      product_id: 0,
+      order_id: 0,
+      user_id: 0,
+      created_at: '',
+      updated_at: '',
+      product: {
+        id: 0,
+        name: '',
+        type: '',
+        price: 0,
+        subname: '',
+        origin: '',
+        description: '',
+        acidity: '',
+        flavor: '',
+        aftertaste: '',
+        sweetness: '',
+        created_at: null,
+        updated_at: null
+      }
+    }
+  ]);
+  const newData = data.map(({ product, ...rest }) => {
+    const { id, ...productRest } = product;
+    return { ...rest, ...productRest };
+  });
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const params = useParams<{ id: string }>();
@@ -42,5 +72,5 @@ export default function useFetchTransactionDetail(): UseFetchTransactionDetailRe
     fetchTransaction().catch(() => {});
   }, [toast, id]);
 
-  return { data, isLoading } as const;
+  return { data, isLoading, newData } as const;
 }

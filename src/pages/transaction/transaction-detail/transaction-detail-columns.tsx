@@ -1,11 +1,14 @@
 import { Button } from '@/components/ui/button';
+import { type GetTransactionDetailSingleResponse } from '@/services/transaction/get-transaction-detail';
 import { type Product } from '@/types/services/shop/shop';
 import capitalizeFirstLetter from '@/utils/capitalize-first-letter';
 import ConvertToRupiah from '@/utils/convert-to-rupiah';
 import { FaSort } from '@react-icons/all-files/fa/FaSort';
 import { type ColumnDef } from '@tanstack/react-table';
 
-export const transactionDetailColumns: Array<ColumnDef<Product>> = [
+export const transactionDetailColumns: Array<
+  ColumnDef<Omit<GetTransactionDetailSingleResponse, 'product'> & Product>
+> = [
   {
     accessorKey: 'name',
     header: ({ column }) => {
@@ -42,7 +45,7 @@ export const transactionDetailColumns: Array<ColumnDef<Product>> = [
     }
   },
   {
-    id: 'quantity',
+    accessorKey: 'quantity',
     header: 'Quantity'
   }
 ];
