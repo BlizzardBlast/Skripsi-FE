@@ -13,7 +13,7 @@ type IndividualProductProps = {
 
 export default function IndividualProduct({
   product
-}: IndividualProductProps): JSX.Element {
+}: Readonly<IndividualProductProps>): JSX.Element {
   const navigate = useNavigate();
   const [isAdding, setIsAdding] = useState(false);
   const { quantity, handleQuantityChange, handleAddToCart } = useHandleProduct({
@@ -23,16 +23,13 @@ export default function IndividualProduct({
   return (
     <div
       key={product.id}
-      className='flex h-[26rem] w-[14rem] flex-col justify-between rounded-2xl bg-white px-3 py-3 font-normal drop-shadow-[3px_3px_3px_#E48F45]'
+      className='flex min-h-[26rem] w-[14rem] flex-col justify-between rounded-2xl bg-white px-3 py-3 font-normal drop-shadow-[3px_3px_3px_#E48F45]'
     >
       <div>
         <LoadImage
-          classes='w-52 h-52 mb-2 rounded-xl cursor-pointer'
+          classes='w-52 h-52 mb-2 rounded-xl'
           source='errorImage'
           alternative={product.name}
-          onClick={() => {
-            navigate(`/product/${product.id}`, { state: { product } });
-          }}
         />
         <p className='text-lg'>{product.name}</p>
         <p>Characteristic: {product.type}</p>
@@ -50,15 +47,25 @@ export default function IndividualProduct({
           />
         </div>
       </div>
-      <Button
-        className='mt-3 justify-self-center rounded-full bg-primary-color text-center hover:bg-secondary-color'
-        onClick={wrapAsyncFunction(async () => {
-          await handleAddToCart();
-        })}
-        isLoading={isAdding}
-      >
-        Add to Cart
-      </Button>
+      <div className='mt-3 flex w-full flex-col items-center justify-center gap-3'>
+        <Button
+          className='w-full rounded-full bg-primary-color text-center hover:bg-secondary-color'
+          onClick={wrapAsyncFunction(async () => {
+            await handleAddToCart();
+          })}
+          isLoading={isAdding}
+        >
+          Add to Cart
+        </Button>
+        <Button
+          className='w-full rounded-full border border-primary-color bg-white text-center text-primary-color hover:bg-secondary-color hover:text-white'
+          onClick={() => {
+            navigate(`/product/${product.id}`, { state: { product } });
+          }}
+        >
+          Detail
+        </Button>
+      </div>
     </div>
   );
 }
