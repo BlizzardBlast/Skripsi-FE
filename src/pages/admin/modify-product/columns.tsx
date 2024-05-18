@@ -1,19 +1,10 @@
 import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from '@/components/ui/dialog';
+import ProductAction from '@/pages/admin/modify-product/product-action.component';
 import { type Product } from '@/types/services/shop/shop';
 import capitalizeFirstLetter from '@/utils/capitalize-first-letter';
 import ConvertToRupiah from '@/utils/convert-to-rupiah';
 import { FaSort } from '@react-icons/all-files/fa/FaSort';
 import { type ColumnDef } from '@tanstack/react-table';
-import { Link } from 'react-router-dom';
 
 export const modifyProductColumns: Array<ColumnDef<Product>> = [
   {
@@ -62,38 +53,7 @@ export const modifyProductColumns: Array<ColumnDef<Product>> = [
     cell: ({ row }) => {
       const product = row.original;
 
-      return (
-        <div className='flex gap-3'>
-          <Button asChild variant={'secondary'}>
-            <Link to={`/edit-product/${product.id}`} state={{ product }}>
-              Edit
-            </Link>
-          </Button>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant={'destructive'}>Remove</Button>
-            </DialogTrigger>
-            <DialogContent className='sm:max-w-[425px]'>
-              <DialogHeader>
-                <DialogTitle>Remove product</DialogTitle>
-              </DialogHeader>
-              <p>
-                Are you sure you want to remove <strong>{product.name}</strong>?
-              </p>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button type='button'>Remove</Button>
-                </DialogClose>
-                <DialogClose asChild>
-                  <Button type='button' variant='secondary'>
-                    Close
-                  </Button>
-                </DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        </div>
-      );
+      return <ProductAction product={product} />;
     }
   }
 ];
