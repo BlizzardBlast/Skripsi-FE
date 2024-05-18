@@ -8,6 +8,15 @@ import { Link } from 'react-router-dom';
 
 export default function ModifyProductContent(): JSX.Element {
   const { isLoading, products } = useFetchProduct({ selectedTag: '' });
+
+  if (isLoading) {
+    return (
+      <div className='ms-0 mt-3 flex h-[24.4rem] justify-center sm:justify-normal md:ms-8'>
+        <Spinner />
+      </div>
+    );
+  }
+
   if (products.length === 0) {
     return (
       <div className='min-h-[80vh] w-full items-center justify-center px-9 py-10'>
@@ -15,14 +24,6 @@ export default function ModifyProductContent(): JSX.Element {
         <Button asChild>
           <Link to={'/add-product'}>Add Product</Link>
         </Button>
-      </div>
-    );
-  }
-
-  if (isLoading) {
-    return (
-      <div className='ms-0 mt-3 flex h-[24.4rem] justify-center sm:justify-normal md:ms-8'>
-        <Spinner />
       </div>
     );
   }

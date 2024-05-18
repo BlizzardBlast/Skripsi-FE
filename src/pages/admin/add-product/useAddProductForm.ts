@@ -1,5 +1,6 @@
 import { useToast } from '@/components/ui/use-toast.ts';
 import AddProductValidationSchema from '@/pages/admin/add-product/add-product-validation-schema';
+import AddProduct from '@/services/add-product/add-product';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -26,12 +27,13 @@ export default function useAddProductForm(): UseAddProductFormReturnType {
       subname: '',
       origin: '',
       type: '',
+      description: '',
       price: '',
       acidity: 'low',
       flavor: 'earthy',
       aftertaste: 'complex',
       sweetness: 'faint',
-      image: ''
+      image: undefined
     }
   });
 
@@ -53,23 +55,10 @@ export default function useAddProductForm(): UseAddProductFormReturnType {
 
     abortControllerRef.current = new AbortController();
     try {
-      const productData = {
-        name: values.name,
-        subname: values.subname,
-        origin: values.origin,
-        type: values.type,
-        price: values.price,
-        acidity: values.acidity,
-        flavor: values.flavor,
-        aftertaste: values.aftertaste,
-        sweetness: values.sweetness,
-        image: values.image
-      };
-      // await Login({
-      //   values: loginData,
-      //   signIn,
-      //   signal: abortControllerRef.current.signal
-      // });
+      await AddProduct({
+        values,
+        signal: abortControllerRef.current.signal
+      });
       toast({
         title: 'Product added successfully!',
         description: 'The product has been added to the database.'

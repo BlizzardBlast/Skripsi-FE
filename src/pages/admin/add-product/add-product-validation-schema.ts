@@ -16,6 +16,9 @@ const AddProductValidationSchema = z.object({
     .refine((value) => ['Robusta', 'Arabica', 'Bourbon'].includes(value), {
       message: 'Type can only be Robusta, Arabica, or Bourbon.'
     }),
+  description: z
+    .string({ required_error: 'Description is required.' })
+    .min(1, { message: 'Description is required.' }),
   price: z
     .string({ required_error: 'Price is required.' })
     .min(1, { message: 'Price is required.' })
@@ -47,9 +50,9 @@ const AddProductValidationSchema = z.object({
     .refine((value) => ['faint', 'noticeable', 'rich'].includes(value), {
       message: 'Acidity can only be Faint, Noticeable, or Rich.'
     }),
-  image: z
-    .string({ required_error: 'Image is required.' })
-    .min(1, { message: 'Image is required.' })
+  image: z.instanceof(File).refine((file) => file.size < 3000000, {
+    message: 'Your image must be less than 3MB.'
+  })
 });
 
 export default AddProductValidationSchema;

@@ -146,20 +146,37 @@ export default function EditProductForm(): ReactNode {
             />
             <FormField
               control={form.control}
-              name='image'
+              name='description'
               render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Input
+                      className={FORM_INPUT_CLASSNAME}
+                      placeholder='Enter product description'
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='image'
+              render={({ field: { value, onChange, ...fieldProps } }) => (
                 <FormItem>
                   <FormLabel>Image</FormLabel>
                   <FormControl>
                     <Input
+                      {...fieldProps}
                       className={clsx(FORM_INPUT_CLASSNAME, 'cursor-pointer')}
                       placeholder='Enter product subname'
                       type='file'
-                      {...field}
                       accept='image/*'
                       multiple={false}
                       onChange={wrapAsyncFunction(async (event) => {
-                        field.onChange(event);
+                        onChange(event?.target?.files?.[0]);
                         await handleChange(event);
                       })}
                       capture={undefined}

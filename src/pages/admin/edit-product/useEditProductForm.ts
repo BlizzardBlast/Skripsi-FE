@@ -1,11 +1,12 @@
 import { useToast } from '@/components/ui/use-toast.ts';
 import AddProductValidationSchema from '@/pages/admin/add-product/add-product-validation-schema';
+import EditProduct from '@/services/edit-product/edit-product';
 import { type LocationProps } from '@/types/location';
 import { type Product } from '@/types/services/shop/shop';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { type z } from 'zod';
 
 type UseEditProductFormReturnType = {
@@ -27,13 +28,14 @@ export default function useEditProductForm(): UseEditProductFormReturnType {
   const [isLoading, setIsLoading] = useState(false);
   const abortControllerRef = useRef<AbortController | null>(null);
   const { toast } = useToast();
+  const { id } = useParams();
 
   const form = useForm<z.infer<typeof AddProductValidationSchema>>({
     resolver: zodResolver(AddProductValidationSchema),
     defaultValues: {
       ...location.state.product,
       price: String(location.state.product.price),
-      image: ''
+      image: undefined
     }
   });
 
@@ -55,23 +57,11 @@ export default function useEditProductForm(): UseEditProductFormReturnType {
 
     abortControllerRef.current = new AbortController();
     try {
-      const productData = {
-        name: values.name,
-        subname: values.subname,
-        origin: values.origin,
-        type: values.type,
-        price: values.price,
-        acidity: values.acidity,
-        flavor: values.flavor,
-        aftertaste: values.aftertaste,
-        sweetness: values.sweetness,
-        image: values.image
-      };
-      // await Login({
-      //   values: loginData,
-      //   signIn,
-      //   signal: abortControllerRef.current.signal
-      // });
+      await EditProduct({
+        values,
+        id: id ?? '',
+        signal: abortControllerRef.current.signal
+      });
       toast({
         title: 'Product updated!',
         description: 'Product has been updated successfully.'

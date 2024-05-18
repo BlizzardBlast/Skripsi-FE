@@ -48,20 +48,12 @@ export default function useFileHandler(): UseFileHandlerReturn {
 
     const file = files[0];
 
-    const allowedExtensions = [
-      '.jpg',
-      '.jpeg',
-      '.png',
-      '.gif',
-      '.bmp',
-      '.tiff',
-      '.svg'
-    ];
+    const allowedExtensions = ['.jpg', '.jpeg', '.png'];
 
-    if (file.size / 1024 / 1024 > 15) {
+    if (file.size / 1024 / 1024 > 3) {
       setLoading(false);
       throw Error(
-        'Ada kesalahan dalam mengunggah file, ukuran file lebih dari 15MB'
+        'Ada kesalahan dalam mengunggah file, ukuran file lebih dari 3MB'
       );
     }
 
@@ -71,13 +63,6 @@ export default function useFileHandler(): UseFileHandlerReturn {
       setLoading(false);
       throw Error(
         'Error: Invalid file format. Please upload JPG, JPEG, or PNG files.'
-      );
-    }
-
-    if (!allowedExtensions.includes(fileExtension.toLowerCase())) {
-      setLoading(false);
-      throw Error(
-        'Error: Invalid file format. Please upload JPG, JPEG, PNG, DOC, DOCX, XLSX, XLS, or PDF files.'
       );
     }
 
