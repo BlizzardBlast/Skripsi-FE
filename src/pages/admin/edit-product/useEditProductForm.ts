@@ -33,8 +33,8 @@ export default function useEditProductForm(): UseEditProductFormReturnType {
   const form = useForm<z.infer<typeof AddProductValidationSchema>>({
     resolver: zodResolver(AddProductValidationSchema),
     defaultValues: {
-      ...location.state.product,
-      price: String(location.state.product.price),
+      ...(location.state?.product ?? {}),
+      price: String(location.state?.product?.price ?? 0),
       image: undefined
     }
   });

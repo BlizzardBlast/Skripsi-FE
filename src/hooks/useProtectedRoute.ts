@@ -1,5 +1,4 @@
-import useUserData from '@/hooks/useUserData';
-import useSignedIn from '@/zustand/useSignedIn';
+import useUserContext from '@/context/user-context/useUserContext';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -12,11 +11,14 @@ const memberOnlyRoutes = [
   '/transaction'
 ];
 
-export default function useProtectedRoute(): boolean {
+export default function useProtectedRoute({
+  isSignedIn
+}: {
+  isSignedIn: boolean;
+}): boolean {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isPending } = useUserData();
-  const isSignedIn = useSignedIn((state) => state.isSignedIn);
+  const { user, isPending } = useUserContext();
   const [isProtectedRouteValidated, setIsProtectedRouteValidated] =
     useState(false);
 

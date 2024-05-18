@@ -9,7 +9,7 @@ import capitalizeFirstLetter from '@/utils/capitalize-first-letter';
 import ConvertToRupiah from '@/utils/convert-to-rupiah';
 import formatDate from '@/utils/format-date';
 import { type ReactNode } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function TransactionDetailContent(): ReactNode {
   const { isLoading, newData } = useFetchTransactionDetail();
@@ -21,6 +21,20 @@ export default function TransactionDetailContent(): ReactNode {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (newData.length === 0) {
+    return (
+      <Paragraph>
+        There is no such transaction! Please return to{' '}
+        <Link
+          to={'/transaction-history'}
+          className='text-primary-color underline'
+        >
+          transaction history page.
+        </Link>
+      </Paragraph>
+    );
   }
 
   return (

@@ -1,11 +1,13 @@
-import useSignedIn from '@/zustand/useSignedIn';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export default function useSignedInRoute(): boolean {
+export default function useSignedInRoute({
+  isSignedIn
+}: {
+  isSignedIn: boolean;
+}): boolean {
   const navigate = useNavigate();
   const location = useLocation();
-  const isSignedIn = useSignedIn((state) => state.isSignedIn);
   const [isSignedInRouteValidated, setIsSignedInRouteValidated] =
     useState(false);
 

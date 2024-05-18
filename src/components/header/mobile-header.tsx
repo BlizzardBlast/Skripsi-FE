@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog.tsx';
+import useUserContext from '@/context/user-context/useUserContext';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
 import useSignedIn from '@/zustand/useSignedIn';
 import { Dialog } from '@headlessui/react';
@@ -27,6 +28,7 @@ export default function MobileHeader({
 }: Readonly<MobileHeaderProps>): JSX.Element {
   const isSignedIn = useSignedIn((state) => state.isSignedIn);
   const isSignInPage = location.pathname === '/sign-in';
+  const { user } = useUserContext();
   const { isLoading, handleSignOut } = useHandleSignOut();
   return (
     <Dialog
@@ -76,20 +78,24 @@ export default function MobileHeader({
                   Find Your Coffee
                 </Link>
               )}
-              <Link
-                to='/shop'
-                className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
-                aria-label='Shop'
-              >
-                Shop
-              </Link>
-              <Link
-                to='/modify-product'
-                className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
-                aria-label='Modify Product'
-              >
-                Modify Product
-              </Link>
+              {(!isSignedIn || user?.role === 'member') && (
+                <Link
+                  to='/shop'
+                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                  aria-label='Shop'
+                >
+                  Shop
+                </Link>
+              )}
+              {user?.role === 'admin' && (
+                <Link
+                  to='/modify-product'
+                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                  aria-label='Modify Product'
+                >
+                  Modify Product
+                </Link>
+              )}
             </div>
             {!isSignedIn ? (
               <div className='py-6'>
@@ -103,13 +109,15 @@ export default function MobileHeader({
               </div>
             ) : (
               <div className='space-y-2 py-6'>
-                <Link
-                  to={'/cart'}
-                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
-                  aria-label={'/cart'}
-                >
-                  Cart
-                </Link>
+                {user?.role === 'member' && (
+                  <Link
+                    to={'/cart'}
+                    className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                    aria-label={'/cart'}
+                  >
+                    Cart
+                  </Link>
+                )}
                 <Link
                   to={'/profile'}
                   className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
@@ -117,13 +125,15 @@ export default function MobileHeader({
                 >
                   Profile
                 </Link>
-                <Link
-                  to={'/transaction-history'}
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
-                  aria-label={'/transaction-history'}
-                >
-                  Transaction History
-                </Link>
+                {user?.role === 'member' && (
+                  <Link
+                    to={'/transaction-history'}
+                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                    aria-label={'/transaction-history'}
+                  >
+                    Transaction History
+                  </Link>
+                )}
                 <DialogShadcn>
                   <DialogTrigger asChild>
                     <button

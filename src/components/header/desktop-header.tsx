@@ -1,6 +1,5 @@
 import Logo from '@/assets/kofebin_logo.svg';
 import useHandleSignOut from '@/components/header/useHandleSignOut';
-import useUserData from '@/hooks/useUserData';
 import LoadImage from '@/components/load-image/load-image';
 import { Button } from '@/components/ui/button.tsx';
 import {
@@ -21,6 +20,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { useCartContext } from '@/context/cart-context/useCartContext';
+import useUserContext from '@/context/user-context/useUserContext';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
 import useSignedIn from '@/zustand/useSignedIn.ts';
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
@@ -39,7 +39,7 @@ export default function DesktopHeader({
   setMobileMenuOpen
 }: Readonly<DesktopHeaderProps>): JSX.Element {
   const navigate = useNavigate();
-  const { user, isPending } = useUserData();
+  const { user, isPending } = useUserContext();
   const isSignedIn = useSignedIn((state) => state.isSignedIn);
   const isSignInPage = location.pathname === '/sign-in';
   const { isLoading, handleSignOut } = useHandleSignOut();
@@ -90,20 +90,24 @@ export default function DesktopHeader({
             Find Your Coffee
           </Link>
         )}
-        <Link
-          to='/shop'
-          className='px-2 text-lg leading-6 text-white hover:text-primary-text-color'
-          aria-label='Shop'
-        >
-          Shop
-        </Link>
-        <Link
-          to='/modify-product'
-          className='px-2 text-lg leading-6 text-white hover:text-primary-text-color'
-          aria-label='Modify Product'
-        >
-          Modify Product
-        </Link>
+        {(!isSignedIn || user?.role === 'member') && (
+          <Link
+            to='/shop'
+            className='px-2 text-lg leading-6 text-white hover:text-primary-text-color'
+            aria-label='Shop'
+          >
+            Shop
+          </Link>
+        )}
+        {user?.role === 'admin' && (
+          <Link
+            to='/modify-product'
+            className='px-2 text-lg leading-6 text-white hover:text-primary-text-color'
+            aria-label='Modify Product'
+          >
+            Modify Product
+          </Link>
+        )}
       </div>
       <div className='hidden gap-10 lg:flex lg:flex-1 lg:justify-end'>
         {!isSignedIn ? (
@@ -121,14 +125,16 @@ export default function DesktopHeader({
           </Button>
         ) : (
           <div className='mt-1 flex flex-row gap-5'>
-            <Link to={'/cart'} aria-label='Cart' className='relative'>
-              {productNumber === 0 ? null : (
-                <span className='absolute right-[-1rem] top-[-1rem] flex h-5 w-5 items-center justify-center rounded-full bg-red-400'>
-                  {productNumber}
-                </span>
-              )}
-              <FaShoppingCart className='cursor-pointer text-2xl text-white' />
-            </Link>
+            {user?.role === 'member' && (
+              <Link to={'/cart'} aria-label='Cart' className='relative'>
+                {productNumber === 0 ? null : (
+                  <span className='absolute right-[-1rem] top-[-1rem] flex h-5 w-5 items-center justify-center rounded-full bg-red-400'>
+                    {productNumber}
+                  </span>
+                )}
+                <FaShoppingCart className='cursor-pointer text-2xl text-white' />
+              </Link>
+            )}
             <DialogShadcn>
               <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
@@ -151,15 +157,17 @@ export default function DesktopHeader({
                       <FaRegUser className='mr-2 h-4 w-4' />
                       <span>Profile</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onClick={() => {
-                        navigate('/transaction-history');
-                      }}
-                      className='cursor-pointer'
-                    >
-                      <MdHistory className='mr-2 h-4 w-4' />
-                      <span>Transaction History</span>
-                    </DropdownMenuItem>
+                    {user?.role === 'member' && (
+                      <DropdownMenuItem
+                        onClick={() => {
+                          navigate('/transaction-history');
+                        }}
+                        className='cursor-pointer'
+                      >
+                        <MdHistory className='mr-2 h-4 w-4' />
+                        <span>Transaction History</span>
+                      </DropdownMenuItem>
+                    )}
                     <DropdownMenuSeparator />
                     <DialogTrigger asChild>
                       <DropdownMenuItem className='cursor-pointer'>

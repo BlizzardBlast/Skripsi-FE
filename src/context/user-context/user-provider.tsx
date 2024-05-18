@@ -1,14 +1,28 @@
 import GetUserData from '@/services/home/get-user-data.ts';
 import { type GetUserDataResponse } from '@/types/services/home/get-user-data.ts';
 import useSignedIn from '@/zustand/useSignedIn.ts';
-import { useEffect, useState } from 'react';
+import React, {
+  createContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode
+} from 'react';
 
-type UseUserDataReturnType = {
+export type UserContextType = {
   user: GetUserDataResponse | undefined;
   isPending: boolean;
 };
 
-export default function useUserData(): UseUserDataReturnType {
+export const UserContext = createContext<UserContextType | undefined>(
+  undefined
+);
+
+type UserProviderProps = {
+  children: ReactNode;
+};
+
+export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<GetUserDataResponse>();
   const isSignedIn = useSignedIn((state) => state.isSignedIn);
   const signIn = useSignedIn((state) => state.signIn);
@@ -37,5 +51,7 @@ export default function useUserData(): UseUserDataReturnType {
     fetchUserData().catch(() => {});
   }, [isSignedIn, signIn, signOut]);
 
-  return { user, isPending } as const;
-}
+  const value = useMemo(() => ({ user, isPending }), [user, isPending]);
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+};

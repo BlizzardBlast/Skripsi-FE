@@ -1,5 +1,5 @@
-import useUserData from '@/hooks/useUserData';
 import { useToast } from '@/components/ui/use-toast.ts';
+import useUserContext from '@/context/user-context/useUserContext';
 import profileValidationSchema from '@/pages/profile/profile-validation-schema';
 import UpdateProfile from '@/services/profile/update-profile.ts';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -19,7 +19,7 @@ export default function useProfileFormUtils(): UseProfileFormUtilsReturnType {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const { user, isPending } = useUserData();
+  const { user, isPending } = useUserContext();
   const form = useForm<z.infer<typeof profileValidationSchema>>({
     resolver: zodResolver(profileValidationSchema),
     values: {

@@ -1,4 +1,5 @@
 import { CartProvider } from '@/context/cart-context/cart-provider';
+import { UserProvider } from '@/context/user-context/user-provider';
 import Routes from '@/routes/routes.tsx';
 import { useEffect, type ReactElement } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
@@ -15,7 +16,9 @@ function App(): ReactElement {
   return (
     <HelmetProvider context={helmetContext}>
       <CartProvider>
-        <Routes />
+        <UserProvider>
+          <Routes />
+        </UserProvider>
       </CartProvider>
     </HelmetProvider>
   );

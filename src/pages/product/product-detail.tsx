@@ -21,7 +21,7 @@ type LocationState = {
 
 export default function ProductDetail(): JSX.Element {
   const location: LocationState = useLocation();
-  const product = location.state.product;
+  const product = location.state?.product ?? {};
 
   const [isAdding, setIsAdding] = useState(false);
 

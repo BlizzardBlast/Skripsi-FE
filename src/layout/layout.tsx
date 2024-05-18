@@ -4,13 +4,13 @@ import Spinner from '@/components/spinner/spinner';
 import { Toaster } from '@/components/ui/toaster.tsx';
 import useProtectedRoute from '@/hooks/useProtectedRoute';
 import useSignedInRoute from '@/hooks/useSignedInRoute';
+import useSignedIn from '@/zustand/useSignedIn';
 import { Outlet } from 'react-router-dom';
 
 export default function Layout(): JSX.Element {
-  const isSignedInRouteValidated = useSignedInRoute();
-  const isProtectedRouteValidated = useProtectedRoute();
-
-  console.log(!isSignedInRouteValidated || !isProtectedRouteValidated);
+  const isSignedIn = useSignedIn((state) => state.isSignedIn);
+  const isSignedInRouteValidated = useSignedInRoute({ isSignedIn });
+  const isProtectedRouteValidated = useProtectedRoute({ isSignedIn });
 
   if (!isSignedInRouteValidated || !isProtectedRouteValidated) {
     return (
