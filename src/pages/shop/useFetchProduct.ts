@@ -15,23 +15,7 @@ export default function useFetchProduct({
 }): Readonly<UseFetchProductReturnType> {
   const abortControllerRef = useRef<AbortController | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState<GetProductResponse>([
-    {
-      id: 0,
-      name: '',
-      subname: '',
-      origin: '',
-      type: '',
-      price: 0,
-      description: '',
-      acidity: '',
-      flavor: '',
-      aftertaste: '',
-      sweetness: '',
-      created_at: '',
-      updated_at: ''
-    }
-  ]);
+  const [products, setProducts] = useState<GetProductResponse>([]);
   const { toast } = useToast();
 
   useEffect(() => {
