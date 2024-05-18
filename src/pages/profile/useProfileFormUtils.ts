@@ -1,4 +1,4 @@
-import useUserData from '@/components/header/useUserData.ts';
+import useUserData from '@/hooks/useUserData';
 import { useToast } from '@/components/ui/use-toast.ts';
 import profileValidationSchema from '@/pages/profile/profile-validation-schema';
 import UpdateProfile from '@/services/profile/update-profile.ts';

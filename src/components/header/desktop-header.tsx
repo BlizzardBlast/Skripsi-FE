@@ -1,6 +1,6 @@
 import Logo from '@/assets/kofebin_logo.svg';
 import useHandleSignOut from '@/components/header/useHandleSignOut';
-import useUserData from '@/components/header/useUserData.ts';
+import useUserData from '@/hooks/useUserData';
 import LoadImage from '@/components/load-image/load-image';
 import { Button } from '@/components/ui/button.tsx';
 import {
