@@ -1,5 +1,6 @@
 import LoadImage from '@/components/load-image/load-image.tsx';
 import { Button } from '@/components/ui/button.tsx';
+import { useFetchProductImage } from '@/pages/product/useFetchProductImage';
 import useHandleProduct from '@/pages/shop/useHandleProduct.ts';
 import { type Product } from '@/types/services/shop/shop';
 import ConvertToRupiah from '@/utils/convert-to-rupiah.ts';
@@ -20,6 +21,7 @@ export default function IndividualProduct({
     product,
     setIsAdding
   });
+  const productImage = useFetchProductImage({ id: String(product.id) });
   return (
     <div
       key={product.id}
@@ -28,7 +30,7 @@ export default function IndividualProduct({
       <div>
         <LoadImage
           classes='w-52 h-52 mb-2 rounded-xl'
-          source='errorImage'
+          source={productImage}
           alternative={product.name}
         />
         <p className='text-lg'>{product.name}</p>

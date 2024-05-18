@@ -83,6 +83,13 @@ export default function MobileHeader({
               >
                 Shop
               </Link>
+              <Link
+                to='/modify-product'
+                className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                aria-label='Modify Product'
+              >
+                Modify Product
+              </Link>
             </div>
             {!isSignedIn ? (
               <div className='py-6'>

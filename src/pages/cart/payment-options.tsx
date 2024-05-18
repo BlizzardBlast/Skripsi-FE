@@ -30,22 +30,15 @@ export default function PaymentOptions({
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
     if (paymentSuccess) {
       toast({
         title: 'Payment Success',
-        description:
-          'Your payment has been successfully processed. Redirecting you to the homepage in three seconds.'
+        description: 'Your payment has been successfully processed.'
       });
-      timeoutId = setTimeout(() => {
-        navigate('/');
-        refetchCart();
-      }, 3000);
+      navigate('/');
+      refetchCart();
     }
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [paymentSuccess, navigate, toast]);
+  }, [paymentSuccess, navigate, toast, refetchCart]);
 
   async function createOrder(): Promise<string> {
     return await CreatePayment(ConvertRupiahToGbp(totalPrice));

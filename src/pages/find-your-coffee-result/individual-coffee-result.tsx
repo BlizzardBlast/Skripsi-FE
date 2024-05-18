@@ -1,5 +1,6 @@
 import LoadImage from '@/components/load-image/load-image.tsx';
 import { Button } from '@/components/ui/button.tsx';
+import { useFetchProductImage } from '@/pages/product/useFetchProductImage';
 import useHandleProduct from '@/pages/shop/useHandleProduct.ts';
 import { type Product } from '@/types/services/shop/shop';
 import ConvertToRupiah from '@/utils/convert-to-rupiah.ts';
@@ -13,25 +14,23 @@ type IndividualCoffeeResultProps = {
 
 export default function IndividualCoffeeResult({
   product
-}: IndividualCoffeeResultProps): JSX.Element {
+}: Readonly<IndividualCoffeeResultProps>): JSX.Element {
   const navigate = useNavigate();
   const [isAdding, setIsAdding] = useState(false);
   const { quantity, handleQuantityChange, handleAddToCart } = useHandleProduct({
     product,
     setIsAdding
   });
+  const productImage = useFetchProductImage({ id: String(product.id) });
   return (
     <div
       key={product.id}
-      className='flex flex-col rounded-2xl bg-white px-3 py-3 font-normal drop-shadow-[3px_3px_3px_#E48F45]'
+      className='flex min-h-[26rem] w-[14rem] flex-col justify-between rounded-2xl bg-white px-3 py-3 font-normal drop-shadow-[3px_3px_3px_#E48F45]'
     >
       <LoadImage
-        classes='w-52 h-52 mb-2 rounded-xl cursor-pointer'
-        source='errorImage'
+        classes='w-52 h-52 mb-2 rounded-xl'
+        source={productImage}
         alternative={product.name}
-        onClick={() => {
-          navigate(`/product/${product.id}`, { state: { product } });
-        }}
       />
       <p>{product.name}</p>
       <p>Characteristic: {product.type}</p>
@@ -48,15 +47,25 @@ export default function IndividualCoffeeResult({
           className='w-14 rounded-full border border-black px-3'
         />
       </div>
-      <Button
-        className='mt-3 justify-self-center rounded-full bg-primary-color text-center hover:bg-secondary-color'
-        onClick={wrapAsyncFunction(async () => {
-          await handleAddToCart();
-        })}
-        isLoading={isAdding}
-      >
-        Add to Cart
-      </Button>
+      <div className='mt-3 flex w-full flex-col items-center justify-center gap-3'>
+        <Button
+          className='w-full rounded-full bg-primary-color text-center hover:bg-secondary-color'
+          onClick={wrapAsyncFunction(async () => {
+            await handleAddToCart();
+          })}
+          isLoading={isAdding}
+        >
+          Add to Cart
+        </Button>
+        <Button
+          className='w-full rounded-full border border-primary-color bg-white text-center text-primary-color hover:bg-secondary-color hover:text-white'
+          onClick={() => {
+            navigate(`/product/${product.id}`, { state: { product } });
+          }}
+        >
+          Detail
+        </Button>
+      </div>
     </div>
   );
 }

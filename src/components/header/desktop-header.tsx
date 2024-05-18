@@ -97,6 +97,13 @@ export default function DesktopHeader({
         >
           Shop
         </Link>
+        <Link
+          to='/modify-product'
+          className='px-2 text-lg leading-6 text-white hover:text-primary-text-color'
+          aria-label='Modify Product'
+        >
+          Modify Product
+        </Link>
       </div>
       <div className='hidden gap-10 lg:flex lg:flex-1 lg:justify-end'>
         {!isSignedIn ? (

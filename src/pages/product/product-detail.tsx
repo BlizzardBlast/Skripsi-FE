@@ -1,14 +1,12 @@
 import LoadImage from '@/components/load-image/load-image';
 import MetaTag from '@/components/meta-tag/meta-tag';
 import { Button } from '@/components/ui/button.tsx';
-import { useToast } from '@/components/ui/use-toast.ts';
 import CharacteristicsTag from '@/pages/product/characteristics-tag.tsx';
-import AddToCart from '@/services/cart/add-to-cart';
-import GetProductImage from '@/services/get-product-image/get-product-image.ts';
+import { useFetchProductImage } from '@/pages/product/useFetchProductImage';
+import useHandleProduct from '@/pages/shop/useHandleProduct';
 import { type Product } from '@/types/services/shop/shop.ts';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
-import useSignedIn from '@/zustand/useSignedIn.ts';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 type LocationState = {
@@ -25,87 +23,14 @@ export default function ProductDetail(): JSX.Element {
   const location: LocationState = useLocation();
   const product = location.state.product;
 
-  const [quantity, setQuantity] = useState<string>('');
-  const [productImage, setProductImage] = useState<string | undefined>('');
-  const abortControllerRef = useRef<AbortController | null>(null);
+  const [isAdding, setIsAdding] = useState(false);
 
   const { id } = useParams();
-  const isSignedIn = useSignedIn((state) => state.isSignedIn);
-  const { toast } = useToast();
-
-  useEffect(() => {
-    const fetchProductImage = async (): Promise<void> => {
-      if (abortControllerRef.current != null) {
-        abortControllerRef.current.abort();
-      }
-
-      abortControllerRef.current = new AbortController();
-      try {
-        const result = await GetProductImage({
-          id: id as string,
-          signal: abortControllerRef.current.signal
-        });
-        setProductImage(result);
-      } catch (error) {
-        const err = error as Error;
-        if (err.name === 'CanceledError') {
-          return;
-        }
-        console.error(err);
-        toast({
-          variant: 'destructive',
-          title: 'Uh oh! Something went wrong.',
-          description: 'There was a problem with fetching the product image.'
-        });
-      }
-    };
-
-    fetchProductImage().catch(() => {});
-  }, [id, toast]);
-
-  useEffect(() => {
-    return () => {
-      if (abortControllerRef.current != null) {
-        abortControllerRef.current.abort();
-      }
-    };
-  }, []);
-
-  const handleQuantityChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    const { value } = event.target;
-    const onlyNumbersQuantity = value.replace(/\D/g, '');
-    setQuantity(onlyNumbersQuantity);
-  };
-
-  const handleAddToCart = async (): Promise<void> => {
-    if (!isSignedIn) {
-      setQuantity('');
-      toast({
-        variant: 'destructive',
-        title: 'You must be signed in.',
-        description: 'Please sign in to add products to cart.'
-      });
-      return;
-    }
-    const qty = parseInt(quantity);
-    if (!isNaN(qty) && qty > 0) {
-      try {
-        await AddToCart({ productId: product.id, quantity: qty });
-      } catch (error) {
-        console.error(error);
-      }
-      setQuantity('');
-    } else {
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'Please input a correct number.'
-      });
-      setQuantity('');
-    }
-  };
+  const { quantity, handleQuantityChange, handleAddToCart } = useHandleProduct({
+    product,
+    setIsAdding
+  });
+  const productImage = useFetchProductImage({ id: id ?? '' });
 
   return (
     <div className='flex min-h-[80vh] items-center justify-center py-5'>
@@ -117,7 +42,7 @@ export default function ProductDetail(): JSX.Element {
         <div className='flex flex-[4] flex-col'>
           <LoadImage
             classes='w-96 h-96 mb-2 rounded-xl'
-            source={productImage as string}
+            source={productImage}
             alternative={product.name}
             divClasses='flex justify-center items-center'
           />
@@ -159,6 +84,7 @@ export default function ProductDetail(): JSX.Element {
                   onClick={wrapAsyncFunction(async () => {
                     await handleAddToCart();
                   })}
+                  isLoading={isAdding}
                 >
                   Add to Cart
                 </Button>

@@ -1,4 +1,5 @@
 import FallbackImage from '@/assets/fallback-image.png';
+import Spinner from '@/components/spinner/spinner';
 import { cn } from '@/lib/utils.ts';
 import { useEffect, useRef, useState } from 'react';
 
@@ -9,6 +10,7 @@ type LoadImageProps = {
   classes: string;
   lazy?: boolean;
   divClasses?: string;
+  isLoading?: boolean;
   onClick?: () => void;
 };
 
@@ -19,29 +21,14 @@ const LoadImage = ({
   classes,
   lazy = false,
   divClasses = '',
+  isLoading = false,
   onClick
 }: LoadImageProps): JSX.Element => {
-  const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const handleError = (): void => {
     setHasError(true);
   };
   const imageElement = useRef<HTMLImageElement>(null);
-
-  const handleImageLoad = (): void => {
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    const imageElementCurrent = imageElement.current;
-
-    if (imageElementCurrent !== null && imageElementCurrent !== undefined) {
-      imageElementCurrent.addEventListener('load', handleImageLoad);
-      return () => {
-        imageElementCurrent.removeEventListener('load', handleImageLoad);
-      };
-    }
-  }, [imageElement]);
 
   useEffect(() => {
     setHasError(false);
@@ -53,16 +40,22 @@ const LoadImage = ({
 
   return (
     <div className={divClass} onClick={onClick} data-testid='img_div'>
-      <div className={loading ? loadingClass : ''}>
-        <img
-          ref={imageElement}
-          src={hasError ? FallbackImage : source}
-          alt={alternative}
-          className={imageClass}
-          loading={lazy ? 'lazy' : 'eager'}
-          onError={handleError}
-          data-testid={testId}
-        />
+      <div className={isLoading ? loadingClass : ''}>
+        {isLoading ? (
+          <div className='flex h-full w-full items-center justify-center border'>
+            <Spinner />
+          </div>
+        ) : (
+          <img
+            ref={imageElement}
+            src={hasError ? FallbackImage : source}
+            alt={alternative}
+            className={imageClass}
+            loading={lazy ? 'lazy' : 'eager'}
+            onError={handleError}
+            data-testid={testId}
+          />
+        )}
       </div>
     </div>
   );

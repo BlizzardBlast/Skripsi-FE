@@ -117,6 +117,33 @@ const router = createBrowserRouter([
           );
           return { Component: TransactionDetailPage };
         }
+      },
+      {
+        path: '/modify-product',
+        lazy: async () => {
+          const { default: ModifyProductPage } = await import(
+            '@/pages/admin/modify-product/modify-product'
+          );
+          return { Component: ModifyProductPage };
+        }
+      },
+      {
+        path: '/add-product',
+        lazy: async () => {
+          const { default: AddProductPage } = await import(
+            '@/pages/admin/add-product/add-product'
+          );
+          return { Component: AddProductPage };
+        }
+      },
+      {
+        path: '/edit-product/:id',
+        lazy: async () => {
+          const { default: EditProductPage } = await import(
+            '@/pages/admin/edit-product/edit-product'
+          );
+          return { Component: EditProductPage };
+        }
       }
     ],
     errorElement: <RootErrorElement />
