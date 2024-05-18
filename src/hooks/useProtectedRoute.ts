@@ -23,7 +23,7 @@ export default function useProtectedRoute({
     useState(false);
 
   useEffect(() => {
-    if (!isPending && isSignedIn) {
+    if (!isPending) {
       const isMemberRoute = memberOnlyRoutes.some((route) =>
         location.pathname.startsWith(route)
       );
