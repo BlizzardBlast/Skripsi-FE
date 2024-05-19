@@ -3,10 +3,13 @@ import HeadingOne from '@/components/typography/headingOne.tsx';
 import Paragraph from '@/components/typography/paragraph.tsx';
 import { useCartContext } from '@/context/cart-context/useCartContext';
 import CartProducts from '@/pages/cart/cart-products.tsx';
+import DiscountInput from '@/pages/cart/discount-input';
 import PaymentDialog from '@/pages/cart/payment-dialog.tsx';
+import { useState } from 'react';
 
 export default function CartContainer(): JSX.Element {
   const { cart, isLoading } = useCartContext();
+  const [discount, setDiscount] = useState<number>(0);
   if (isLoading) {
     return (
       <div className='min-h-[80vh] w-full items-center justify-center px-20 py-10'>
@@ -30,7 +33,8 @@ export default function CartContainer(): JSX.Element {
         Cart
       </h1>
       <CartProducts cart={cart} />
-      <PaymentDialog cart={cart} />
+      <DiscountInput cart={cart} setDiscount={setDiscount} />
+      <PaymentDialog cart={cart} discount={discount} />
     </div>
   );
 }

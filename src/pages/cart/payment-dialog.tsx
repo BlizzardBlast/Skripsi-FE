@@ -17,10 +17,12 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 type PaymentDialogProps = {
   cart: GetAllCartReturn[];
+  discount: number;
 };
 
 export default function PaymentDialog({
-  cart
+  cart,
+  discount
 }: Readonly<PaymentDialogProps>): JSX.Element {
   const { totalPrice, dialogBody } = useDialogBody({ cart });
   const initialPaypalOptions = {
@@ -32,7 +34,13 @@ export default function PaymentDialog({
   return (
     <PayPalScriptProvider options={initialPaypalOptions}>
       <div className='text-right'>
-        <HeadingFour>Total: {ConvertToRupiah(totalPrice)}</HeadingFour>
+        <HeadingFour>Total Price: {ConvertToRupiah(totalPrice)}</HeadingFour>
+        {discount > 0 && (
+          <HeadingFour>Discount: {ConvertToRupiah(discount)}</HeadingFour>
+        )}
+        <HeadingFour>
+          <strong>Final Price: {ConvertToRupiah(totalPrice - discount)}</strong>
+        </HeadingFour>
         <Dialog>
           <DialogTrigger asChild>
             <Button className='bg-tertiary-color text-primary-text-color hover:bg-secondary-color hover:text-white'>
@@ -52,12 +60,29 @@ export default function PaymentDialog({
             <DialogFooter>
               <div className='flex w-full flex-col'>
                 <div className='grid grid-cols-12'>
-                  <span className='col-span-5'>Total</span>
-                  <span className='col-span-7'>
+                  <span className='col-span-6'>Total Price</span>
+                  <span className='col-span-6 ms-auto'>
                     {ConvertToRupiah(totalPrice)}
                   </span>
                 </div>
-                <PaymentOptions totalPrice={totalPrice} cart={cart} />
+                {discount > 0 && (
+                  <div className='grid grid-cols-12'>
+                    <span className='col-span-6'>Discount</span>
+                    <span className='col-span-6 ms-auto'>
+                      - {ConvertToRupiah(discount)}
+                    </span>
+                  </div>
+                )}
+                <div className='grid grid-cols-12'>
+                  <span className='col-span-6'>Final Price</span>
+                  <span className='col-span-6 ms-auto'>
+                    <strong>{ConvertToRupiah(totalPrice - discount)}</strong>
+                  </span>
+                </div>
+                <PaymentOptions
+                  totalPrice={totalPrice - discount}
+                  cart={cart}
+                />
               </div>
             </DialogFooter>
           </DialogContent>
