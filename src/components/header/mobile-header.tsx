@@ -96,6 +96,15 @@ export default function MobileHeader({
                   Modify Product
                 </Link>
               )}
+              {user?.role === 'admin' && (
+                <Link
+                  to='/promo'
+                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                  aria-label='Promo'
+                >
+                  Promo
+                </Link>
+              )}
             </div>
             {!isSignedIn ? (
               <div className='py-6'>

@@ -144,6 +144,24 @@ const router = createBrowserRouter([
           );
           return { Component: EditProductPage };
         }
+      },
+      {
+        path: '/promo',
+        lazy: async () => {
+          const { default: PromoPage } = await import(
+            '@/pages/admin/promo/promo-page'
+          );
+          return { Component: PromoPage };
+        }
+      },
+      {
+        path: '/add-promo',
+        lazy: async () => {
+          const { default: AddPromoPage } = await import(
+            '@/pages/admin/promo/add-promo/add-promo'
+          );
+          return { Component: AddPromoPage };
+        }
       }
     ],
     errorElement: <RootErrorElement />

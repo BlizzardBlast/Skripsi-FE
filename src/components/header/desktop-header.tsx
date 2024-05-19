@@ -108,6 +108,15 @@ export default function DesktopHeader({
             Modify Product
           </Link>
         )}
+        {user?.role === 'admin' && (
+          <Link
+            to='/promo'
+            className='px-2 text-lg leading-6 text-white hover:text-primary-text-color'
+            aria-label='Promo'
+          >
+            Promo
+          </Link>
+        )}
       </div>
       <div className='hidden gap-10 lg:flex lg:flex-1 lg:justify-end'>
         {!isSignedIn ? (
