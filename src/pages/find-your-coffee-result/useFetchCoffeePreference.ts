@@ -1,5 +1,5 @@
 import { useToast } from '@/components/ui/use-toast.ts';
-import GetUserPreferences from '@/services/quiz/get-user-preferences.ts';
+import { GetRefreshedUserPreferences } from '@/services/quiz/get-user-preferences';
 import { type GetUserPreferencesResponse } from '@/types/services/quiz/get-user-preferences.ts';
 import { useEffect, useState } from 'react';
 
@@ -16,7 +16,7 @@ export default function useFetchCoffeePreference(): UseFetchCoffeePreferenceRetu
   useEffect(() => {
     async function fetchCoffeePreference(): Promise<void> {
       setIsLoading(true);
-      const result = await GetUserPreferences();
+      const result = await GetRefreshedUserPreferences();
       if (Object.keys(result).length <= 0) {
         setProducts([]);
       } else setProducts(result);

@@ -4,18 +4,32 @@ import { type GetUserPreferencesResponse } from '@/types/services/quiz/get-user-
 import handleApiError from '@/utils/handle-api-error.ts';
 import { AxiosError, type AxiosResponse } from 'axios';
 
-const GetUserPreferences = async (): Promise<GetUserPreferencesResponse> => {
-  try {
-    const response: AxiosResponse<GetUserPreferencesResponse> =
-      await AxiosInstance.get('api/getUserPref');
-    return response.data;
-  } catch (error: unknown) {
-    if (error instanceof AxiosError) {
-      throw new Error(handleApiError(error as AxiosError<ErrorResponses>));
-    } else {
-      throw new Error('Error tidak terduga terjadi');
+export const GetRefreshedUserPreferences =
+  async (): Promise<GetUserPreferencesResponse> => {
+    try {
+      const response: AxiosResponse<GetUserPreferencesResponse> =
+        await AxiosInstance.get('api/getUserPref/true');
+      return response.data;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        throw new Error(handleApiError(error as AxiosError<ErrorResponses>));
+      } else {
+        throw new Error('Error tidak terduga terjadi');
+      }
     }
-  }
-};
+  };
 
-export default GetUserPreferences;
+export const GetNotRefreshedUserPreferences =
+  async (): Promise<GetUserPreferencesResponse> => {
+    try {
+      const response: AxiosResponse<GetUserPreferencesResponse> =
+        await AxiosInstance.get('api/getUserPref/false');
+      return response.data;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        throw new Error(handleApiError(error as AxiosError<ErrorResponses>));
+      } else {
+        throw new Error('Error tidak terduga terjadi');
+      }
+    }
+  };
