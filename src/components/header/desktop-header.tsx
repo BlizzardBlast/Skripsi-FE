@@ -22,7 +22,6 @@ import {
 import { useCartContext } from '@/context/cart-context/useCartContext';
 import useUserContext from '@/context/user-context/useUserContext';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
-import useSignedIn from '@/zustand/useSignedIn.ts';
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
 import { FaRegUser } from '@react-icons/all-files/fa/FaRegUser';
 import { FaShoppingCart } from '@react-icons/all-files/fa/FaShoppingCart';
@@ -39,8 +38,7 @@ export default function DesktopHeader({
   setMobileMenuOpen
 }: Readonly<DesktopHeaderProps>): JSX.Element {
   const navigate = useNavigate();
-  const { user, isPending } = useUserContext();
-  const isSignedIn = useSignedIn((state) => state.isSignedIn);
+  const { user, isPending, isSignedIn } = useUserContext();
   const isSignInPage = location.pathname === '/sign-in';
   const { isLoading, handleSignOut } = useHandleSignOut();
   const { cart } = useCartContext();

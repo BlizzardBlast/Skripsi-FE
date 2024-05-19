@@ -15,11 +15,11 @@ function App(): ReactElement {
 
   return (
     <HelmetProvider context={helmetContext}>
-      <CartProvider>
-        <UserProvider>
+      <UserProvider>
+        <CartProvider>
           <Routes />
-        </UserProvider>
-      </CartProvider>
+        </CartProvider>
+      </UserProvider>
     </HelmetProvider>
   );
 }

@@ -1,9 +1,9 @@
 /* eslint-disable security/detect-object-injection */
 import { useToast } from '@/components/ui/use-toast.ts';
 import { useCartContext } from '@/context/cart-context/useCartContext';
+import useUserContext from '@/context/user-context/useUserContext';
 import AddToCart from '@/services/cart/add-to-cart';
 import { type Product } from '@/types/services/shop/shop.ts';
-import useSignedIn from '@/zustand/useSignedIn.ts';
 import { useState } from 'react';
 type UseHandleProductProps = {
   product: Product;
@@ -21,7 +21,7 @@ export default function useHandleProduct({
   setIsAdding
 }: Readonly<UseHandleProductProps>): Readonly<UseHandleProductReturnType> {
   const [quantity, setQuantity] = useState<string>('');
-  const isSignedIn = useSignedIn((state) => state.isSignedIn);
+  const { isSignedIn } = useUserContext();
   const { refetchCart } = useCartContext();
   const { toast } = useToast();
   const handleQuantityChange = (

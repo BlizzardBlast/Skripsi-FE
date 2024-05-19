@@ -1,7 +1,7 @@
 import { useToast } from '@/components/ui/use-toast.ts';
+import useUserContext from '@/context/user-context/useUserContext';
 import SignInValidationSchema from '@/pages/sign-in/sign-in-validation-schema';
 import Login from '@/services/login/login-service.ts';
-import useSignedIn from '@/zustand/useSignedIn.ts';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -19,7 +19,7 @@ export default function useSignInForm(): UseSignInFormReturnType {
   const [isLoading, setIsLoading] = useState(false);
   const abortControllerRef = useRef<AbortController | null>(null);
   const { toast } = useToast();
-  const signIn = useSignedIn((state) => state.signIn);
+  const { signIn } = useUserContext();
   const form = useForm<z.infer<typeof SignInValidationSchema>>({
     resolver: zodResolver(SignInValidationSchema),
     defaultValues: {

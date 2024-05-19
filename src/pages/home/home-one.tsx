@@ -1,13 +1,13 @@
 import Paragraph from '@/components/typography/paragraph.tsx';
 import { Button } from '@/components/ui/button.tsx';
+import useUserContext from '@/context/user-context/useUserContext';
 import LeafImage from '@/pages/home/leaf-image.tsx';
 import { homeOneComponentVariants } from '@/pages/home/variants.ts';
-import useSignedIn from '@/zustand/useSignedIn';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 export default function HomeOne(): JSX.Element {
-  const isSignedIn = useSignedIn((state) => state.isSignedIn);
+  const { isSignedIn } = useUserContext();
   return (
     <motion.div
       className='flex min-h-[70vh] flex-col items-center justify-center py-5'

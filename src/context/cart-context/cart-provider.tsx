@@ -1,10 +1,12 @@
 import { useToast } from '@/components/ui/use-toast';
+import useUserContext from '@/context/user-context/useUserContext';
 import GetAllCart from '@/services/cart/get-all-cart';
 import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
-import useSignedIn from '@/zustand/useSignedIn';
 import React, {
   createContext,
+  useCallback,
   useEffect,
+  useMemo,
   useState,
   type ReactNode
 } from 'react';
@@ -27,15 +29,15 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [cart, setCart] = useState<GetAllCartReturn[] | []>([]);
   const [isRefetching, setIsRefetching] = useState(false);
-  const isSignedIn = useSignedIn((state) => state.isSignedIn);
+  const { user, isSignedIn } = useUserContext();
   const { toast } = useToast();
 
-  const refetchCart = (): void => {
+  const refetchCart = useCallback((): void => {
     setIsRefetching(true);
-  };
+  }, []);
 
   useEffect(() => {
-    if (isSignedIn || isRefetching) {
+    if ((isSignedIn && user?.role === 'member') || isRefetching) {
       const fetchProductImage = async (): Promise<void> => {
         setIsLoading(true);
         try {
@@ -61,11 +63,12 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
       fetchProductImage().catch(() => {});
     }
-  }, [toast, isSignedIn, isRefetching]);
+  }, [toast, isSignedIn, isRefetching, user?.role]);
 
-  return (
-    <CartContext.Provider value={{ cart, isLoading, refetchCart }}>
-      {children}
-    </CartContext.Provider>
+  const value = useMemo(
+    () => ({ cart, isLoading, refetchCart }),
+    [cart, isLoading, refetchCart]
   );
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

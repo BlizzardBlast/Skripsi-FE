@@ -1,17 +1,21 @@
 import GetUserData from '@/services/home/get-user-data.ts';
 import { type GetUserDataResponse } from '@/types/services/home/get-user-data.ts';
-import useSignedIn from '@/zustand/useSignedIn.ts';
-import React, {
+import {
   createContext,
+  type FC,
+  type ReactNode,
+  useCallback,
   useEffect,
   useMemo,
-  useState,
-  type ReactNode
+  useState
 } from 'react';
 
 export type UserContextType = {
   user: GetUserDataResponse | undefined;
   isPending: boolean;
+  isSignedIn: boolean;
+  signIn: () => void;
+  signOut: () => void;
 };
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -22,12 +26,19 @@ type UserProviderProps = {
   children: ReactNode;
 };
 
-export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
+export const UserProvider: FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<GetUserDataResponse>();
-  const isSignedIn = useSignedIn((state) => state.isSignedIn);
-  const signIn = useSignedIn((state) => state.signIn);
-  const signOut = useSignedIn((state) => state.signOut);
   const [isPending, setIsPending] = useState(true);
+
+  const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
+
+  const signIn = useCallback((): void => {
+    setIsSignedIn(true);
+  }, []);
+
+  const signOut = useCallback((): void => {
+    setIsSignedIn(false);
+  }, []);
 
   useEffect(() => {
     const fetchUserData = async (): Promise<void> => {
@@ -51,7 +62,10 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     fetchUserData().catch(() => {});
   }, [isSignedIn, signIn, signOut]);
 
-  const value = useMemo(() => ({ user, isPending }), [user, isPending]);
+  const value = useMemo(
+    () => ({ user, isPending, isSignedIn, signIn, signOut }),
+    [user, isPending, isSignedIn, signIn, signOut]
+  );
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

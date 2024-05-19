@@ -1,7 +1,7 @@
 import { useToast } from '@/components/ui/use-toast';
+import useUserContext from '@/context/user-context/useUserContext';
 import GetAllCart from '@/services/cart/get-all-cart';
 import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
-import useSignedIn from '@/zustand/useSignedIn';
 import { useEffect, useState } from 'react';
 
 export default function useFetchCart(): {
@@ -10,7 +10,7 @@ export default function useFetchCart(): {
 } {
   const [isLoading, setIsLoading] = useState(true);
   const [cart, setCart] = useState<GetAllCartReturn[] | []>([]);
-  const isSignedIn = useSignedIn((state) => state.isSignedIn);
+  const { isSignedIn } = useUserContext();
   const { toast } = useToast();
 
   useEffect(() => {

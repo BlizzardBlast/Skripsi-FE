@@ -12,7 +12,6 @@ import {
 } from '@/components/ui/dialog.tsx';
 import useUserContext from '@/context/user-context/useUserContext';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
-import useSignedIn from '@/zustand/useSignedIn';
 import { Dialog } from '@headlessui/react';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import { Link } from 'react-router-dom';
@@ -26,7 +25,7 @@ export default function MobileHeader({
   mobileMenuOpen,
   setMobileMenuOpen
 }: Readonly<MobileHeaderProps>): JSX.Element {
-  const isSignedIn = useSignedIn((state) => state.isSignedIn);
+  const { isSignedIn } = useUserContext();
   const isSignInPage = location.pathname === '/sign-in';
   const { user } = useUserContext();
   const { isLoading, handleSignOut } = useHandleSignOut();

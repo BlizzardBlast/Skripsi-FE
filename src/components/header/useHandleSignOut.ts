@@ -1,7 +1,8 @@
 import { useToast } from '@/components/ui/use-toast';
+import useUserContext from '@/context/user-context/useUserContext';
 import SignOut from '@/services/sign-out/sign-out';
-import useSignedIn from '@/zustand/useSignedIn';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type UseHandleSignOutReturnType = {
   isLoading: boolean;
@@ -11,7 +12,8 @@ type UseHandleSignOutReturnType = {
 export default function useHandleSignOut(): UseHandleSignOutReturnType {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const signOut = useSignedIn((state) => state.signOut);
+  const { signOut } = useUserContext();
+  const navigate = useNavigate();
   const handleSignOut = async (): Promise<void> => {
     setIsLoading(true);
     try {
@@ -21,6 +23,7 @@ export default function useHandleSignOut(): UseHandleSignOutReturnType {
         description: 'Sign out is successful!'
       });
       setIsLoading(false);
+      navigate('/');
     } catch (error) {
       setIsLoading(false);
       const err = error as Error;
