@@ -11,14 +11,10 @@ const memberOnlyRoutes = [
   '/transaction'
 ];
 
-export default function useProtectedRoute({
-  isSignedIn
-}: {
-  isSignedIn: boolean;
-}): boolean {
+export default function useProtectedRoute(): boolean {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isPending } = useUserContext();
+  const { user, isPending, isSignedIn } = useUserContext();
   const [isProtectedRouteValidated, setIsProtectedRouteValidated] =
     useState(false);
 

@@ -1,13 +1,11 @@
+import useUserContext from '@/context/user-context/useUserContext';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export default function useSignedInRoute({
-  isSignedIn
-}: {
-  isSignedIn: boolean;
-}): boolean {
+export default function useSignedInRoute(): boolean {
   const navigate = useNavigate();
   const location = useLocation();
+  const { isSignedIn } = useUserContext();
   const [isSignedInRouteValidated, setIsSignedInRouteValidated] =
     useState(false);
 
@@ -17,11 +15,16 @@ export default function useSignedInRoute({
       '/cart',
       '/find-your-coffee',
       '/find-your-coffee/result',
-      '/transaction-history'
+      '/transaction-history',
+      '/modify-product',
+      '/add-product',
+      '/promo',
+      '/add-promo'
     ];
     const isPrivateRoute =
       privateRoutes.includes(location.pathname) ||
-      location.pathname.startsWith('/transaction/');
+      location.pathname.startsWith('/transaction/') ||
+      location.pathname.startsWith('/edit-product/');
     if (!isSignedIn && isPrivateRoute) {
       navigate('/');
     }
