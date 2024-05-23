@@ -19,7 +19,7 @@ export default function Layout(): JSX.Element {
   }
 
   return (
-    <div className='w-full'>
+    <div className='w-full lining-nums tabular-nums'>
       <Header />
       <Toaster />
       <main>
