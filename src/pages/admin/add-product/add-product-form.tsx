@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import useAddProductForm from '@/pages/admin/add-product/useAddProductForm';
 import useFileHandler from '@/pages/admin/add-product/useFileHandler';
@@ -145,9 +146,9 @@ export default function AddProductForm(): ReactNode {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Input
-                      className={FORM_INPUT_CLASSNAME}
+                    <Textarea
                       placeholder='Enter product description'
+                      className={cn(FORM_INPUT_CLASSNAME, 'resize-none')}
                       {...field}
                     />
                   </FormControl>
