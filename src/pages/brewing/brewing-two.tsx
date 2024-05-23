@@ -23,7 +23,7 @@ export default function BrewingSectionTwo(): JSX.Element {
                     source={brewingTechnique.image}
                     alternative={brewingTechnique.heading}
                     lazy
-                    classes='w-[30rem] h-[15.8406785299rem]'
+                    classes='w-[30rem] h-[15.8406785299rem] rounded-3xl'
                     divClasses='flex justify-center items-center'
                   />
                 </div>
