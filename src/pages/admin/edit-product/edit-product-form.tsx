@@ -17,11 +17,11 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
+import { cn } from '@/lib/utils';
 import useFileHandler from '@/pages/admin/add-product/useFileHandler';
 import useEditProductForm from '@/pages/admin/edit-product/useEditProductForm';
 import { useFetchProductImage } from '@/pages/product/useFetchProductImage';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
-import clsx from 'clsx';
 import { type ReactNode } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -170,7 +170,7 @@ export default function EditProductForm(): ReactNode {
                   <FormControl>
                     <Input
                       {...fieldProps}
-                      className={clsx(FORM_INPUT_CLASSNAME, 'cursor-pointer')}
+                      className={cn(FORM_INPUT_CLASSNAME, 'cursor-pointer')}
                       placeholder='Enter product subname'
                       type='file'
                       accept='image/*'

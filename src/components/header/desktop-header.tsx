@@ -39,15 +39,14 @@ export default function DesktopHeader({
 }: Readonly<DesktopHeaderProps>): JSX.Element {
   const navigate = useNavigate();
   const { user, isPending, isSignedIn } = useUserContext();
-  const isSignInPage = location.pathname === '/sign-in';
   const { isLoading, handleSignOut } = useHandleSignOut();
   const { cart } = useCartContext();
   const productNumber = cart.length;
 
   return (
     <nav
-      className='mx-auto flex items-center justify-between p-2 lg:px-8'
-      aria-label='Global'
+      className='mx-auto flex items-center justify-between p-2 lg:px-5'
+      aria-label='Navigation Bar'
     >
       <div className='flex lg:flex-1'>
         <Link to='/' className='-m-1.5 p-1.5' aria-label='Kofebin'>
@@ -116,20 +115,28 @@ export default function DesktopHeader({
           </Link>
         )}
       </div>
-      <div className='hidden gap-10 lg:flex lg:flex-1 lg:justify-end'>
+      <div className='hidden gap-5 lg:flex lg:flex-1 lg:justify-end'>
         {!isSignedIn ? (
-          <Button
-            asChild
-            size={'sm'}
-            className='my-0 rounded-full bg-white px-5 py-0 text-lg leading-6 text-primary-text-color hover:bg-primary-text-color hover:text-white'
-          >
-            <Link
-              to={isSignInPage ? '/sign-up' : '/sign-in'}
-              aria-label={isSignInPage ? 'Sign Up' : 'Sign In'}
+          <>
+            <Button
+              asChild
+              size={'sm'}
+              className='my-0 rounded-full bg-white px-5 py-0 text-lg leading-6 text-primary-text-color hover:bg-primary-text-color hover:text-white'
             >
-              {isSignInPage ? 'Sign Up' : 'Sign In'}
-            </Link>
-          </Button>
+              <Link to={'/sign-in'} aria-label={'Sign In'}>
+                Sign In
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size={'sm'}
+              className='my-0 rounded-full bg-white px-5 py-0 text-lg leading-6 text-primary-text-color hover:bg-primary-text-color hover:text-white'
+            >
+              <Link to={'/sign-up'} aria-label={'Sign Up'}>
+                Sign Up
+              </Link>
+            </Button>
+          </>
         ) : (
           <div className='mt-1 flex flex-row gap-5'>
             {user?.role === 'member' && (

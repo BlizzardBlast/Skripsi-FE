@@ -11,6 +11,7 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog.tsx';
 import useUserContext from '@/context/user-context/useUserContext';
+import { cn } from '@/lib/utils';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
 import { Dialog } from '@headlessui/react';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
@@ -21,12 +22,14 @@ type MobileHeaderProps = {
   setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+const individualMenuClassname =
+  '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color';
+
 export default function MobileHeader({
   mobileMenuOpen,
   setMobileMenuOpen
 }: Readonly<MobileHeaderProps>): JSX.Element {
   const { isSignedIn } = useUserContext();
-  const isSignInPage = location.pathname === '/sign-in';
   const { user } = useUserContext();
   const { isLoading, handleSignOut } = useHandleSignOut();
   return (
@@ -63,7 +66,7 @@ export default function MobileHeader({
             <div className='space-y-2 py-6'>
               <Link
                 to='/brewing'
-                className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                className={individualMenuClassname}
                 aria-label='Brewing'
               >
                 Brewing
@@ -71,7 +74,7 @@ export default function MobileHeader({
               {isSignedIn && (
                 <Link
                   to='/find-your-coffee'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                  className={individualMenuClassname}
                   aria-label='Find Your Coffee'
                 >
                   Find Your Coffee
@@ -80,7 +83,7 @@ export default function MobileHeader({
               {(!isSignedIn || user?.role === 'member') && (
                 <Link
                   to='/shop'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                  className={individualMenuClassname}
                   aria-label='Shop'
                 >
                   Shop
@@ -89,7 +92,7 @@ export default function MobileHeader({
               {user?.role === 'admin' && (
                 <Link
                   to='/modify-product'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                  className={individualMenuClassname}
                   aria-label='Modify Product'
                 >
                   Modify Product
@@ -98,7 +101,7 @@ export default function MobileHeader({
               {user?.role === 'admin' && (
                 <Link
                   to='/promo'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                  className={individualMenuClassname}
                   aria-label='Promo'
                 >
                   Promo
@@ -107,20 +110,31 @@ export default function MobileHeader({
             </div>
             {!isSignedIn ? (
               <div className='py-6'>
-                <Link
-                  to={isSignInPage ? '/sign-up' : '/sign-in'}
-                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
-                  aria-label={isSignInPage ? 'Sign Up' : 'Sign In'}
-                >
-                  {isSignInPage ? 'Sign Up' : 'Sign In'}
-                </Link>
+                <div>
+                  <Link
+                    to={'/sign-in'}
+                    className={individualMenuClassname}
+                    aria-label='Sign In'
+                  >
+                    Sign In
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    to={'/sign-up'}
+                    className={individualMenuClassname}
+                    aria-label='Sign Up'
+                  >
+                    Sign Up
+                  </Link>
+                </div>
               </div>
             ) : (
               <div className='space-y-2 py-6'>
                 {user?.role === 'member' && (
                   <Link
                     to={'/cart'}
-                    className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                    className={individualMenuClassname}
                     aria-label={'/cart'}
                   >
                     Cart
@@ -128,7 +142,7 @@ export default function MobileHeader({
                 )}
                 <Link
                   to={'/profile'}
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                  className={individualMenuClassname}
                   aria-label={'/profile'}
                 >
                   Profile
@@ -136,7 +150,7 @@ export default function MobileHeader({
                 {user?.role === 'member' && (
                   <Link
                     to={'/transaction-history'}
-                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                    className={individualMenuClassname}
                     aria-label={'/transaction-history'}
                   >
                     Transaction History
@@ -145,7 +159,10 @@ export default function MobileHeader({
                 <DialogShadcn>
                   <DialogTrigger asChild>
                     <button
-                      className='-mx-3 block w-full rounded-lg px-3 py-2 text-left text-base font-semibold leading-7 text-white hover:bg-tertiary-color'
+                      className={cn(
+                        individualMenuClassname,
+                        'w-full text-left'
+                      )}
                       aria-label={'Sign Out'}
                       type='button'
                     >

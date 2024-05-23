@@ -18,7 +18,6 @@ import {
 import { cn } from '@/lib/utils';
 import useAddPromoForm from '@/pages/admin/promo/add-promo/useAddPromoForm';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
-import clsx from 'clsx';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { type ReactNode } from 'react';
@@ -60,7 +59,7 @@ export default function AddPromoForm(): ReactNode {
               <FormLabel>Promo Expiry Date</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
-                  <FormControl className={clsx(FORM_INPUT_CLASSNAME)}>
+                  <FormControl className={cn(FORM_INPUT_CLASSNAME)}>
                     <Button
                       variant={'outline'}
                       className={cn(
