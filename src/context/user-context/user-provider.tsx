@@ -38,6 +38,7 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 
   const signOut = useCallback((): void => {
     setIsSignedIn(false);
+    setUser(undefined);
   }, []);
 
   useEffect(() => {
@@ -46,16 +47,15 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
       try {
         const result = await GetUserData();
         if (Object.keys(result).length <= 0) {
-          setUser(undefined);
           signOut();
         } else {
           setUser(result);
           signIn();
         }
-        setIsPending(false);
       } catch (error) {
-        setIsPending(false);
         console.error(error);
+      } finally {
+        setIsPending(false);
       }
     };
 
