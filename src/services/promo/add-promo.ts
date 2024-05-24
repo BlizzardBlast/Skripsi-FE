@@ -23,9 +23,11 @@ const AddPromo = async ({
         {
           promo_code: values.promo_code,
           promo_expiry_date: values.promo_expiry_date,
-          discount: values.discount,
-          minimum: values.minimum,
-          maximum: values.maximum
+          discount: Number(values.discount),
+          minimum: Number(values.minimum),
+          maximum: Number(values.maximum),
+          max_use: Number(values.max_use),
+          max_use_per_user: Number(values.max_use_per_user)
         },
         {
           signal: signal as AbortSignal

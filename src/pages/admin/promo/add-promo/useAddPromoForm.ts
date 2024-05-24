@@ -25,7 +25,9 @@ export default function useAddPromoForm(): UseAddPromoFormReturnType {
       promo_expiry_date: '' as unknown as Date,
       discount: '',
       minimum: '',
-      maximum: ''
+      maximum: '',
+      max_use: '',
+      max_use_per_user: ''
     }
   });
 

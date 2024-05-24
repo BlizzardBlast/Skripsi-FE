@@ -165,6 +165,40 @@ export default function AddPromoForm(): ReactNode {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name='max_use'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Maximum Usage</FormLabel>
+              <FormControl>
+                <Input
+                  className={FORM_INPUT_CLASSNAME}
+                  placeholder='Enter maximum usage for this promo'
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='max_use_per_user'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Maximum Usage Per User</FormLabel>
+              <FormControl>
+                <Input
+                  className={FORM_INPUT_CLASSNAME}
+                  placeholder='Enter maximum usage of this promo for each user'
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <div className='flex justify-end'>
           <Button
             type='submit'

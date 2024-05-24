@@ -27,7 +27,15 @@ const AddPromoValidationSchema = z.object({
   maximum: z
     .string({ required_error: 'Maximum discount is required.' })
     .min(1, { message: 'Maximum discount is required.' })
-    .regex(/^\d+$/, { message: 'Maximum discount must be a number.' })
+    .regex(/^\d+$/, { message: 'Maximum discount must be a number.' }),
+  max_use: z
+    .string({ required_error: 'Maximum Usage is required.' })
+    .min(1, { message: 'Maximum Usage is required.' })
+    .regex(/^\d+$/, { message: 'Maximum Usage must be a number.' }),
+  max_use_per_user: z
+    .string({ required_error: 'Maximum Usage Per User is required.' })
+    .min(1, { message: 'Maximum Usage Per User is required.' })
+    .regex(/^\d+$/, { message: 'Maximum Usage Per User must be a number.' })
 });
 
 export default AddPromoValidationSchema;
