@@ -1,7 +1,7 @@
 import BaristaGirlMakingCoffee from '@/assets/baristagirlmakingcoffee.svg';
 import LoadImage from '@/components/load-image/load-image';
 import MetaTag from '@/components/meta-tag/meta-tag';
-import SignUpForm from '@/pages/sign-up/sing-up-form.tsx';
+import SignUpForm from '@/pages/sign-up/sign-up-form';
 
 export default function SignUpPage(): JSX.Element {
   return (

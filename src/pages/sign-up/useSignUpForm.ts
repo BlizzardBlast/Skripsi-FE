@@ -61,7 +61,7 @@ export default function useSignUpForm(): UseSignUpFormReturnType {
       toast({
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
+        description: err.message ?? 'There was a problem with your request.'
       });
       console.error(err);
     } finally {
