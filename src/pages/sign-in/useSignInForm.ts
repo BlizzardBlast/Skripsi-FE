@@ -68,7 +68,7 @@ export default function useSignInForm(): UseSignInFormReturnType {
       toast({
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
+        description: err.message ?? 'Error occurred while signing in.'
       });
       console.error(err);
     } finally {
