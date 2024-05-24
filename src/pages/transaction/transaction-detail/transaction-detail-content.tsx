@@ -58,6 +58,14 @@ export default function TransactionDetailContent(): ReactNode {
             {ConvertToRupiah(location.state?.transaction?.total_price)}
           </Paragraph>
         </div>
+        {location.state?.transaction?.discount_amount > 0 && (
+          <div>
+            <strong>Discount</strong>
+            <Paragraph>
+              {ConvertToRupiah(location.state?.transaction?.discount_amount)}
+            </Paragraph>
+          </div>
+        )}
       </div>
       <div>
         <DataTable columns={transactionDetailColumns} data={newData} />

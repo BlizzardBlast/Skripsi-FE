@@ -11,6 +11,7 @@ export type Transaction = {
   created_at: string;
   confirmation: 'paid' | 'cancelled' | 'on delivery' | 'arrived';
   total_price: number;
+  discount_amount: number;
   user_id: number;
   updated_at: string;
 };

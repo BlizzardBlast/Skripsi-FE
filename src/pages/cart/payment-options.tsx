@@ -15,11 +15,13 @@ import { useNavigate } from 'react-router-dom';
 
 type PaymentOptionsProps = {
   totalPrice: number;
+  discount: number;
   cart: GetAllCartReturn[];
 };
 
 export default function PaymentOptions({
   totalPrice,
+  discount,
   cart
 }: Readonly<PaymentOptionsProps>): JSX.Element | null {
   const navigate = useNavigate();
@@ -71,7 +73,7 @@ export default function PaymentOptions({
               setIsLoading(true);
               try {
                 // setPaymentOption('paypal');
-                await CreateTransaction({ totalPrice, cart });
+                await CreateTransaction({ totalPrice, discount, cart });
                 setIsLoading(false);
                 setPaymentSuccess(true);
               } catch (error) {
