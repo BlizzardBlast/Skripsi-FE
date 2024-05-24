@@ -28,7 +28,7 @@ export default function CartContainer(): JSX.Element {
   }
 
   return (
-    <div className='min-h-[80vh] w-full px-20 py-10'>
+    <div className='min-h-[80vh] w-full px-10 py-10 sm:px-20'>
       <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>
         Cart
       </h1>

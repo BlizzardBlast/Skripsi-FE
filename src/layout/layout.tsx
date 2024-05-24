@@ -21,7 +21,7 @@ export default function Layout(): JSX.Element {
   }
 
   return (
-    <div className='w-full scroll-smooth lining-nums tabular-nums'>
+    <div className='w-full scroll-smooth text-pretty lining-nums tabular-nums'>
       <Header />
       <Toaster />
       <main>

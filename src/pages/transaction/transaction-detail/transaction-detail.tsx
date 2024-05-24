@@ -8,7 +8,7 @@ export default function TransactionDetailPage(): JSX.Element {
         title='Kofebin | Transaction Detail'
         description='View your transaction detail at Kofebin'
       />
-      <div className='min-h-[80vh] w-full px-20'>
+      <div className='min-h-[80vh] w-full px-10 sm:px-20'>
         <h1 className='mb-4 scroll-m-20 text-center text-5xl font-bold tracking-tight sm:text-left'>
           Transaction Detail
         </h1>

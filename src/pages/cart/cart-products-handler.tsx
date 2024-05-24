@@ -54,30 +54,32 @@ export default function CartProductsHandler({
   }
 
   return (
-    <div className='flex flex-col flex-nowrap items-center justify-center gap-5 sm:flex-row sm:flex-wrap sm:gap-0'>
-      <Button
-        className='me-0 h-8 w-8 rounded-full p-5 text-2xl sm:me-5'
-        onClick={wrapAsyncFunction(async () => {
-          await handleDecrementQuantity(product.product.id);
-        })}
-      >
-        -
-      </Button>
-      <input
-        id={`product-${product.product.id}`}
-        type='text'
-        value={quantities ?? ''}
-        className='w-14 rounded-md border border-black px-3 text-black disabled:border-slate-200 disabled:bg-slate-50 disabled:text-slate-500 disabled:shadow-none'
-        disabled
-      />
-      <Button
-        className='ms-0 h-8 w-8 rounded-full p-5 text-2xl sm:ms-5'
-        onClick={wrapAsyncFunction(async () => {
-          await handleIncrementQuantity(product.product.id);
-        })}
-      >
-        +
-      </Button>
+    <div className='flex flex-row flex-wrap items-center justify-center gap-5 sm:gap-0'>
+      <div className='flex flex-wrap items-center justify-center gap-5 sm:gap-0'>
+        <Button
+          className='me-0 h-8 w-8 rounded-full p-5 text-2xl sm:me-5'
+          onClick={wrapAsyncFunction(async () => {
+            await handleDecrementQuantity(product.product.id);
+          })}
+        >
+          -
+        </Button>
+        <input
+          id={`product-${product.product.id}`}
+          type='text'
+          value={quantities ?? ''}
+          className='w-14 rounded-md border border-black px-3 text-black disabled:border-slate-200 disabled:bg-slate-50 disabled:text-slate-500 disabled:shadow-none'
+          disabled
+        />
+        <Button
+          className='ms-0 h-8 w-8 rounded-full p-5 text-2xl sm:ms-5'
+          onClick={wrapAsyncFunction(async () => {
+            await handleIncrementQuantity(product.product.id);
+          })}
+        >
+          +
+        </Button>
+      </div>
       <LoadImage
         source={TrashIcon}
         alternative='Delete Product'

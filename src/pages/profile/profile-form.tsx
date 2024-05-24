@@ -32,7 +32,7 @@ export default function ProfileForm(): JSX.Element {
   return (
     <>
       <div className='mx-20 my-10 flex-[0.75]'>
-        <h1 className='mb-4 scroll-m-20 text-5xl font-bold tracking-tight'>
+        <h1 className='mb-4 scroll-m-20 text-center text-5xl font-bold tracking-tight md:text-left'>
           Profile
         </h1>
         <div className='flex flex-col-reverse items-center space-y-4 rounded-[3rem] bg-white p-5 drop-shadow-[3px_3px_3px_#E48F45] sm:flex-row md:p-10'>
