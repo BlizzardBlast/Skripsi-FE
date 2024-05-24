@@ -6,7 +6,6 @@ import { useToast } from '@/components/ui/use-toast.ts';
 import { useCartContext } from '@/context/cart-context/useCartContext';
 import { CompletePayment, CreatePayment } from '@/services/payment/payment.ts';
 import CreateTransaction from '@/services/transaction/create-transaction';
-import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
 import ConvertRupiahToGbp from '@/utils/convert-rupiah-to-gbp.ts';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
 import { PayPalButtons } from '@paypal/react-paypal-js';
@@ -16,13 +15,11 @@ import { useNavigate } from 'react-router-dom';
 type PaymentOptionsProps = {
   totalPrice: number;
   promoCode: string;
-  cart: GetAllCartReturn[];
 };
 
 export default function PaymentOptions({
   totalPrice,
-  promoCode,
-  cart
+  promoCode
 }: Readonly<PaymentOptionsProps>): JSX.Element | null {
   const navigate = useNavigate();
   const { toast } = useToast();

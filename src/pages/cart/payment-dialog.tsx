@@ -84,7 +84,6 @@ export default function PaymentDialog({
                 <PaymentOptions
                   totalPrice={totalPrice - discount}
                   promoCode={promoCode}
-                  cart={cart}
                 />
               </div>
             </DialogFooter>
