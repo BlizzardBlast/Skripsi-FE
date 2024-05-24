@@ -11,13 +11,15 @@ type DiscountInputProps = {
   setDiscount: React.Dispatch<React.SetStateAction<number>>;
   promoCode: string;
   setPromoCode: React.Dispatch<React.SetStateAction<string>>;
+  setKodePromo: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function DiscountInput({
   cart,
   setDiscount,
   promoCode,
-  setPromoCode
+  setPromoCode,
+  setKodePromo
 }: Readonly<DiscountInputProps>): ReactNode {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
@@ -30,6 +32,7 @@ export default function DiscountInput({
         .reduce((acc, curr) => acc + curr, 0);
       const result = await CheckPromo({ promoCode, totalPrice });
       setDiscount(result.discount);
+      setKodePromo(promoCode);
       setPromoCode('');
       setIsLoading(false);
       toast({

@@ -1,13 +1,10 @@
 import { AxiosInstance } from '@/helper/instance/axios-instance.ts';
-import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
 import { type ErrorResponses } from '@/types/services/error';
 import handleApiError from '@/utils/handle-api-error.ts';
 import { AxiosError, type AxiosResponse } from 'axios';
 
 type CreateTransactionProps = {
-  totalPrice: number;
   promoCode: string;
-  cart: GetAllCartReturn[];
 };
 
 type CreateTransactionReturn = {
@@ -15,20 +12,11 @@ type CreateTransactionReturn = {
 };
 
 const CreateTransaction = async ({
-  totalPrice,
-  promoCode,
-  cart
+  promoCode
 }: CreateTransactionProps): Promise<CreateTransactionReturn> => {
   try {
-    const orderDetails = cart.map((item) => ({
-      product_id: item.product.id,
-      quantity: item.quantity
-    }));
     const response: AxiosResponse<CreateTransactionReturn> =
       await AxiosInstance.postForm(`api/postOrder`, {
-        confirmation: 'paid',
-        total_price: totalPrice,
-        details: orderDetails,
         promo_code: promoCode
       });
     return response.data;

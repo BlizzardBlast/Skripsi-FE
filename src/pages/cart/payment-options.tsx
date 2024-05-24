@@ -59,7 +59,7 @@ export default function PaymentOptions({
     setIsLoading(true);
     try {
       // setPaymentOption('paypal');
-      await CreateTransaction({ totalPrice, promoCode, cart });
+      await CreateTransaction({ promoCode });
       setIsLoading(false);
       setPaymentSuccess(true);
     } catch (error) {

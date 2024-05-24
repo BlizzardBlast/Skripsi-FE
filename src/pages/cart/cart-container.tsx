@@ -11,6 +11,7 @@ export default function CartContainer(): JSX.Element {
   const { cart, isLoading } = useCartContext();
   const [discount, setDiscount] = useState<number>(0);
   const [promoCode, setPromoCode] = useState<string>('');
+  const [kodePromo, setKodePromo] = useState<string>('');
   if (isLoading) {
     return (
       <div className='min-h-[80vh] w-full items-center justify-center px-20 py-10'>
@@ -39,8 +40,9 @@ export default function CartContainer(): JSX.Element {
         setDiscount={setDiscount}
         promoCode={promoCode}
         setPromoCode={setPromoCode}
+        setKodePromo={setKodePromo}
       />
-      <PaymentDialog cart={cart} discount={discount} promoCode={promoCode} />
+      <PaymentDialog cart={cart} discount={discount} promoCode={kodePromo} />
     </div>
   );
 }
