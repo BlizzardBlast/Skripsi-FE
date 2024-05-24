@@ -53,6 +53,7 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
           signIn();
         }
       } catch (error) {
+        signOut();
         console.error(error);
       } finally {
         setIsPending(false);
