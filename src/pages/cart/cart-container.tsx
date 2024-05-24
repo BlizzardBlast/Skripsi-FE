@@ -10,6 +10,7 @@ import { useState } from 'react';
 export default function CartContainer(): JSX.Element {
   const { cart, isLoading } = useCartContext();
   const [discount, setDiscount] = useState<number>(0);
+  const [promoCode, setPromoCode] = useState<string>('');
   if (isLoading) {
     return (
       <div className='min-h-[80vh] w-full items-center justify-center px-20 py-10'>
@@ -33,8 +34,13 @@ export default function CartContainer(): JSX.Element {
         Cart
       </h1>
       <CartProducts cart={cart} />
-      <DiscountInput cart={cart} setDiscount={setDiscount} />
-      <PaymentDialog cart={cart} discount={discount} />
+      <DiscountInput
+        cart={cart}
+        setDiscount={setDiscount}
+        promoCode={promoCode}
+        setPromoCode={setPromoCode}
+      />
+      <PaymentDialog cart={cart} discount={discount} promoCode={promoCode} />
     </div>
   );
 }

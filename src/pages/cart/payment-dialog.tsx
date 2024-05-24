@@ -18,11 +18,13 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 type PaymentDialogProps = {
   cart: GetAllCartReturn[];
   discount: number;
+  promoCode: string;
 };
 
 export default function PaymentDialog({
   cart,
-  discount
+  discount,
+  promoCode
 }: Readonly<PaymentDialogProps>): JSX.Element {
   const { totalPrice, dialogBody } = useDialogBody({ cart });
   const initialPaypalOptions = {
@@ -81,7 +83,7 @@ export default function PaymentDialog({
                 </div>
                 <PaymentOptions
                   totalPrice={totalPrice - discount}
-                  discount={discount}
+                  promoCode={promoCode}
                   cart={cart}
                 />
               </div>

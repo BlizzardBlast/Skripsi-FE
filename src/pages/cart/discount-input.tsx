@@ -9,13 +9,16 @@ import { useState, type ReactNode } from 'react';
 type DiscountInputProps = {
   cart: GetAllCartReturn[];
   setDiscount: React.Dispatch<React.SetStateAction<number>>;
+  promoCode: string;
+  setPromoCode: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function DiscountInput({
   cart,
-  setDiscount
+  setDiscount,
+  promoCode,
+  setPromoCode
 }: Readonly<DiscountInputProps>): ReactNode {
-  const [promoCode, setPromoCode] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
 

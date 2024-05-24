@@ -15,13 +15,13 @@ import { useNavigate } from 'react-router-dom';
 
 type PaymentOptionsProps = {
   totalPrice: number;
-  discount: number;
+  promoCode: string;
   cart: GetAllCartReturn[];
 };
 
 export default function PaymentOptions({
   totalPrice,
-  discount,
+  promoCode,
   cart
 }: Readonly<PaymentOptionsProps>): JSX.Element | null {
   const navigate = useNavigate();
@@ -45,9 +45,27 @@ export default function PaymentOptions({
   async function createOrder(): Promise<string> {
     return await CreatePayment(ConvertRupiahToGbp(totalPrice));
   }
+
   async function onApprove(): Promise<void> {
-    await CompletePayment();
-    setPaymentSuccess(true);
+    try {
+      await CompletePayment();
+      await handleSuccess();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleSuccess(): Promise<void> {
+    setIsLoading(true);
+    try {
+      // setPaymentOption('paypal');
+      await CreateTransaction({ totalPrice, promoCode, cart });
+      setIsLoading(false);
+      setPaymentSuccess(true);
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error);
+    }
   }
 
   if (isLoading) {
@@ -69,18 +87,7 @@ export default function PaymentOptions({
             lazy
             classes='w-[5rem] h-[1.396875rem] cursor-pointer'
             divClasses='w-auto'
-            onClick={wrapAsyncFunction(async () => {
-              setIsLoading(true);
-              try {
-                // setPaymentOption('paypal');
-                await CreateTransaction({ totalPrice, discount, cart });
-                setIsLoading(false);
-                setPaymentSuccess(true);
-              } catch (error) {
-                setIsLoading(false);
-                console.error(error);
-              }
-            })}
+            onClick={wrapAsyncFunction(handleSuccess)}
           />
           <LoadImage
             source={Mastercard}

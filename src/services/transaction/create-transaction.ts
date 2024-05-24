@@ -6,7 +6,7 @@ import { AxiosError, type AxiosResponse } from 'axios';
 
 type CreateTransactionProps = {
   totalPrice: number;
-  discount: number;
+  promoCode: string;
   cart: GetAllCartReturn[];
 };
 
@@ -16,7 +16,7 @@ type CreateTransactionReturn = {
 
 const CreateTransaction = async ({
   totalPrice,
-  discount,
+  promoCode,
   cart
 }: CreateTransactionProps): Promise<CreateTransactionReturn> => {
   try {
@@ -29,7 +29,7 @@ const CreateTransaction = async ({
         confirmation: 'paid',
         total_price: totalPrice,
         details: orderDetails,
-        discount_amount: discount
+        promo_code: promoCode
       });
     return response.data;
   } catch (error: unknown) {
