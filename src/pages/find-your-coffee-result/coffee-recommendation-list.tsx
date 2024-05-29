@@ -1,7 +1,7 @@
 import Spinner from '@/components/spinner/spinner.tsx';
 import Paragraph from '@/components/typography/paragraph.tsx';
-import IndividualCoffeeResult from '@/pages/find-your-coffee-result/individual-coffee-result';
 import useFetchCoffeePreference from '@/pages/find-your-coffee-result/useFetchCoffeePreference.ts';
+import IndividualProduct from '@/pages/shop/individual-product';
 
 export default function CoffeeRecommendationList(): JSX.Element {
   const { isLoading, products } = useFetchCoffeePreference();
@@ -19,7 +19,7 @@ export default function CoffeeRecommendationList(): JSX.Element {
   return (
     <div className='flex flex-row flex-wrap justify-center gap-5'>
       {products.map((product) => (
-        <IndividualCoffeeResult key={product.id} product={product} />
+        <IndividualProduct key={product.id} product={product} />
       ))}
     </div>
   );
