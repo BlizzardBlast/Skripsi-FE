@@ -4,6 +4,18 @@ const AddPromoValidationSchema = z.object({
   promo_code: z
     .string({ required_error: 'Promo Code is required.' })
     .min(1, { message: 'Promo Code is required.' }),
+  promo_start_date: z.coerce
+    .date({
+      errorMap: (issue, { defaultError }) => ({
+        message:
+          issue.code === 'invalid_date'
+            ? 'Promo Start Date is required.'
+            : defaultError
+      })
+    })
+    .refine((date) => date >= new Date(), {
+      message: 'Start Date must be in the future.'
+    }),
   promo_expiry_date: z.coerce
     .date({
       errorMap: (issue, { defaultError }) => ({
@@ -13,6 +25,9 @@ const AddPromoValidationSchema = z.object({
             : defaultError
       })
     })
+    // .refine((date, { original }) => date >= original.promo_start_date, {
+    //   message: 'Expiry Date must be after the Start Date.'
+    // })
     .refine((date) => date >= new Date(), {
       message: 'Expiry Date must be in the future.'
     }),

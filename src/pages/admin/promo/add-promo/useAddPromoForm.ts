@@ -22,6 +22,7 @@ export default function useAddPromoForm(): UseAddPromoFormReturnType {
     resolver: zodResolver(AddPromoValidationSchema),
     defaultValues: {
       promo_code: '',
+      promo_start_date: '' as unknown as Date,
       promo_expiry_date: '' as unknown as Date,
       discount: '',
       minimum: '',

@@ -28,6 +28,13 @@ export const promoPageColumns: Array<ColumnDef<Promo>> = [
     }
   },
   {
+    accessorKey: 'promo_start_date',
+    header: 'Start Date',
+    cell: ({ row }) => {
+      return formatDate(row.getValue('promo_start_date'));
+    }
+  },
+  {
     accessorKey: 'promo_expiry_date',
     header: 'Expiry Date',
     cell: ({ row }) => {

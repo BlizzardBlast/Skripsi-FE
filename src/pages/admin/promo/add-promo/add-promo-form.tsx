@@ -53,6 +53,46 @@ export default function AddPromoForm(): ReactNode {
         />
         <FormField
           control={form.control}
+          name='promo_start_date'
+          render={({ field }) => (
+            <FormItem className='flex flex-col'>
+              <FormLabel>Promo Start Date</FormLabel>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <FormControl className={cn(FORM_INPUT_CLASSNAME)}>
+                    <Button
+                      variant={'outline'}
+                      className={cn(
+                        'w-full pl-3 text-left font-normal',
+                        !field.value && 'text-muted-foreground'
+                      )}
+                    >
+                      {field.value ? (
+                        format(field.value, 'PPP')
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
+                      <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
+                    </Button>
+                  </FormControl>
+                </PopoverTrigger>
+                <PopoverContent className='w-auto p-0' align='start'>
+                  <Calendar
+                    mode='single'
+                    selected={new Date(field.value)}
+                    onSelect={field.onChange}
+                    disabled={(date) => date < new Date()}
+                    initialFocus
+                    showOutsideDays
+                  />
+                </PopoverContent>
+              </Popover>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
           name='promo_expiry_date'
           render={({ field }) => (
             <FormItem className='flex flex-col'>
@@ -81,9 +121,7 @@ export default function AddPromoForm(): ReactNode {
                     mode='single'
                     selected={new Date(field.value)}
                     onSelect={field.onChange}
-                    disabled={(date) =>
-                      date < new Date() || date > new Date('3000-01-01')
-                    }
+                    disabled={(date) => date < new Date()}
                     initialFocus
                     showOutsideDays
                   />
@@ -98,7 +136,7 @@ export default function AddPromoForm(): ReactNode {
           name='discount'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Discount</FormLabel>
+              <FormLabel>Discount (%)</FormLabel>
               <FormControl>
                 <Input
                   className={FORM_INPUT_CLASSNAME}
@@ -122,7 +160,7 @@ export default function AddPromoForm(): ReactNode {
           name='minimum'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Minimum bought</FormLabel>
+              <FormLabel>Minimum bought (Rp)</FormLabel>
               <FormControl>
                 <Input
                   className={FORM_INPUT_CLASSNAME}
@@ -146,7 +184,7 @@ export default function AddPromoForm(): ReactNode {
           name='maximum'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Maximum discount in Rupiah</FormLabel>
+              <FormLabel>Maximum discount (Rp)</FormLabel>
               <FormControl>
                 <Input
                   className={FORM_INPUT_CLASSNAME}

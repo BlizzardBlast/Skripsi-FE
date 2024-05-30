@@ -22,6 +22,7 @@ const AddPromo = async ({
         'api/postPromo',
         {
           promo_code: values.promo_code,
+          promo_start_date: values.promo_start_date,
           promo_expiry_date: values.promo_expiry_date,
           discount: Number(values.discount),
           minimum: Number(values.minimum),
