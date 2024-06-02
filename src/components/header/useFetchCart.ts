@@ -31,7 +31,7 @@ export default function useFetchCart(): {
           toast({
             variant: 'destructive',
             title: 'Uh oh! Something went wrong.',
-            description: 'There was a problem with fetching the product image.'
+            description: 'There was a problem with fetching cart.'
           });
         }
       };

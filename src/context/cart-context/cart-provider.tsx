@@ -28,7 +28,7 @@ type CartProviderProps = {
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [cart, setCart] = useState<GetAllCartReturn[] | []>([]);
-  const [isRefetching, setIsRefetching] = useState(true);
+  const [isRefetching, setIsRefetching] = useState(false);
   const { user, isSignedIn } = useUserContext();
   const { toast } = useToast();
 
@@ -37,10 +37,6 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (!isRefetching) {
-      return;
-    }
-
     if ((isSignedIn && user?.role === 'member') || isRefetching) {
       const fetchProductImage = async (): Promise<void> => {
         setIsLoading(true);
@@ -60,7 +56,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
           toast({
             variant: 'destructive',
             title: 'Uh oh! Something went wrong.',
-            description: 'There was a problem with fetching the product image.'
+            description: 'There was a problem with fetching the cart.'
           });
         }
       };
