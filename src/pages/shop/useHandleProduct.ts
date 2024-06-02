@@ -101,7 +101,11 @@ export default function useHandleProduct({
 
     setIsAdding(true);
     try {
-      await AddToCart({ productId: product.id, quantity: parseInt(quantity) });
+      await AddToCart({
+        productId: product.id,
+        quantity: parseInt(quantity),
+        roastingType: roastingType as 'low' | 'medium' | 'high'
+      });
       refetchCart();
       showToast(
         'default',

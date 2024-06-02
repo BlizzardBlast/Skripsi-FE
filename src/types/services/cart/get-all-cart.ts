@@ -4,4 +4,5 @@ export type GetAllCartReturn = {
   user_id: number;
   product: Product;
   quantity: number;
+  roasting_type: 'low' | 'medium' | 'high';
 };

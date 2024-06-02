@@ -1,21 +1,24 @@
 import { AxiosInstance } from '@/helper/instance/axios-instance.ts';
-import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
 import { type ErrorResponses } from '@/types/services/error';
 import handleApiError from '@/utils/handle-api-error.ts';
 import { AxiosError, type AxiosResponse } from 'axios';
 
-const EditCart = async ({
+type EditRoastingTypeReturn = {
+  message: string;
+};
+
+const EditRoastingType = async ({
   productId,
-  quantity
+  roastingType
 }: {
   productId: number;
-  quantity: number;
-}): Promise<GetAllCartReturn[]> => {
+  roastingType: 'low' | 'medium' | 'high';
+}): Promise<EditRoastingTypeReturn> => {
   try {
-    const response: AxiosResponse<GetAllCartReturn[]> =
-      await AxiosInstance.postForm(`api/editQty`, {
+    const response: AxiosResponse<EditRoastingTypeReturn> =
+      await AxiosInstance.postForm(`api/changeRoastingType`, {
         productId,
-        quantity
+        roasting_type: roastingType
       });
     return response.data;
   } catch (error: unknown) {
@@ -28,4 +31,4 @@ const EditCart = async ({
   }
 };
 
-export default EditCart;
+export default EditRoastingType;

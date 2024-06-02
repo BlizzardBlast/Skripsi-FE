@@ -45,6 +45,13 @@ export const transactionDetailColumns: Array<
     }
   },
   {
+    accessorKey: 'roasting_type',
+    header: 'Roasting Type',
+    cell: ({ row }) => {
+      return capitalizeFirstLetter(row.getValue('roasting_type'));
+    }
+  },
+  {
     accessorKey: 'quantity',
     header: 'Quantity'
   }

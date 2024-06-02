@@ -2,9 +2,19 @@ import TrashIcon from '@/assets/trash_icon.svg';
 import LoadImage from '@/components/load-image/load-image.tsx';
 import Spinner from '@/components/spinner/spinner';
 import { Button } from '@/components/ui/button.tsx';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select';
 import { useCartContext } from '@/context/cart-context/useCartContext';
 import DecrementQuantity from '@/services/cart/decrement-cart';
 import DeleteFromCart from '@/services/cart/delete-from-cart';
+import EditRoastingType from '@/services/cart/edit-roasting-type';
 import IncrementQuantity from '@/services/cart/increment-cart';
 import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
@@ -18,8 +28,29 @@ export default function CartProductsHandler({
   product
 }: Readonly<CartProductsHandlerProps>): JSX.Element {
   const quantities = String(product.quantity);
+  const [roastingType, setRoastingType] = useState<'low' | 'medium' | 'high'>(
+    product.roasting_type ?? ''
+  );
   const [isLoading, setIsLoading] = useState(false);
   const { refetchCart } = useCartContext();
+
+  const handleRoastingTypeChange = async (
+    newValue: 'low' | 'medium' | 'high'
+  ): Promise<void> => {
+    try {
+      setIsLoading(true);
+      await EditRoastingType({
+        productId: product.product.id,
+        roastingType: newValue
+      });
+      setRoastingType(newValue);
+      refetchCart();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleIncrementQuantity = async (productId: number): Promise<void> => {
     try {
@@ -54,7 +85,23 @@ export default function CartProductsHandler({
   }
 
   return (
-    <div className='flex flex-row flex-wrap items-center justify-center gap-5 sm:gap-0'>
+    <div className='flex flex-row items-center justify-center gap-5'>
+      <Select
+        value={roastingType}
+        onValueChange={wrapAsyncFunction(handleRoastingTypeChange)}
+      >
+        <SelectTrigger className='w-44 rounded-full border border-black px-3'>
+          <SelectValue placeholder='Select roasting type' />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Roasting Type</SelectLabel>
+            <SelectItem value='low'>Low</SelectItem>
+            <SelectItem value='medium'>Medium</SelectItem>
+            <SelectItem value='high'>High</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
       <div className='flex flex-wrap items-center justify-center gap-5 sm:gap-0'>
         <Button
           className='me-0 h-8 w-8 rounded-full p-5 text-2xl sm:me-5'
@@ -85,7 +132,7 @@ export default function CartProductsHandler({
         alternative='Delete Product'
         lazy
         classes='w-10 h-10 rounded-lg cursor-pointer'
-        divClasses='max-w-10 max-h-10 ms-0 sm:ms-10'
+        divClasses='max-w-10 max-h-10 ms-0'
         onClick={wrapAsyncFunction(async () => {
           setIsLoading(true);
           try {

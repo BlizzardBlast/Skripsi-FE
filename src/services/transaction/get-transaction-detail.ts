@@ -17,6 +17,7 @@ export type GetTransactionDetailSingleResponse = {
   created_at: string | null;
   updated_at: string | null;
   product: Product;
+  roasting_type: 'low' | 'medium' | 'high';
 };
 
 export type GetTransactionDetailResponse = GetTransactionDetailSingleResponse[];

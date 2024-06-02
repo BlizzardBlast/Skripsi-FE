@@ -6,16 +6,19 @@ import { AxiosError, type AxiosResponse } from 'axios';
 
 const AddToCart = async ({
   productId,
-  quantity
+  quantity,
+  roastingType
 }: {
   productId: number;
   quantity: number;
+  roastingType: 'low' | 'medium' | 'high';
 }): Promise<GetAllCartReturn[]> => {
   try {
     const response: AxiosResponse<GetAllCartReturn[]> =
       await AxiosInstance.postForm(`api/addToCart`, {
         productId,
-        quantity
+        quantity,
+        roasting_type: roastingType
       });
     return response.data;
   } catch (error: unknown) {
