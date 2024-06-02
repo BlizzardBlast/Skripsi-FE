@@ -5,7 +5,6 @@ export type Product = {
   origin: string;
   type: string;
   price: number;
-  roasting_type: 'low' | 'medium' | 'high';
   description: string;
   acidity: string;
   flavor: string;

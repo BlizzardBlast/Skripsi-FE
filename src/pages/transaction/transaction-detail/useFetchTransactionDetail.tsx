@@ -30,7 +30,6 @@ export default function useFetchTransactionDetail(): UseFetchTransactionDetailRe
         price: 0,
         subname: '',
         origin: '',
-        roasting_type: 'low',
         description: '',
         acidity: '',
         flavor: '',
