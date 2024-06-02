@@ -59,6 +59,7 @@ export default function DiscountInput({
   useEffect(() => {
     if (kodePromo !== '' && !cartLoading) {
       const checkAppliedPromoCode = async (): Promise<void> => {
+        setIsLoading(true);
         try {
           const totalPrice = cart
             .map((product) => product.product.price * product.quantity)
