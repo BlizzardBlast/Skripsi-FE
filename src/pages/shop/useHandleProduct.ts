@@ -12,7 +12,9 @@ type UseHandleProductProps = {
 
 type UseHandleProductReturnType = {
   quantity: string;
+  roastingType: '' | 'low' | 'medium' | 'high';
   handleQuantityChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleRoastingTypeChange: (newValue: 'low' | 'medium' | 'high') => void;
   handleAddToCart: () => Promise<void>;
 };
 
@@ -21,6 +23,9 @@ export default function useHandleProduct({
   setIsAdding
 }: Readonly<UseHandleProductProps>): Readonly<UseHandleProductReturnType> {
   const [quantity, setQuantity] = useState<string>('');
+  const [roastingType, setRoastingType] = useState<
+    'low' | 'medium' | 'high' | ''
+  >('');
   const { isSignedIn } = useUserContext();
   const { refetchCart } = useCartContext();
   const { toast } = useToast();
@@ -32,40 +37,95 @@ export default function useHandleProduct({
     setQuantity(onlyNumbersQuantity);
   };
 
-  const handleAddToCart = async (): Promise<void> => {
+  const handleRoastingTypeChange = (
+    newValue: 'low' | 'medium' | 'high'
+  ): void => {
+    setRoastingType(newValue);
+  };
+
+  const showToast = (
+    variant: 'destructive' | 'default' | null | undefined,
+    title: string,
+    description: string
+  ): void => {
+    toast({
+      variant,
+      title,
+      description
+    });
+  };
+
+  const validateSignedIn = (): boolean => {
     if (!isSignedIn) {
+      showToast(
+        'destructive',
+        'You must be signed in.',
+        'Please sign in to add products to cart.'
+      );
+      setRoastingType('');
       setQuantity('');
-      toast({
-        variant: 'destructive',
-        title: 'You must be signed in.',
-        description: 'Please sign in to add products to cart.'
-      });
+      return false;
+    }
+    return true;
+  };
+
+  const validateQuantity = (): boolean => {
+    const qty = parseInt(quantity);
+    if (isNaN(qty) || qty <= 0) {
+      showToast(
+        'destructive',
+        'Uh oh! Something went wrong.',
+        'Please input a correct number.'
+      );
+      return false;
+    }
+    return true;
+  };
+
+  const validateRoastingType = (): boolean => {
+    if (roastingType === '') {
+      showToast(
+        'destructive',
+        'Please select roasting type.',
+        'Please select the roasting type of the product.'
+      );
+      return false;
+    }
+    return true;
+  };
+
+  const handleAddToCart = async (): Promise<void> => {
+    if (!validateSignedIn() || !validateQuantity() || !validateRoastingType()) {
       return;
     }
-    const qty = parseInt(quantity);
-    if (!isNaN(qty) && qty > 0) {
-      setIsAdding(true);
-      try {
-        await AddToCart({ productId: product.id, quantity: qty });
-        refetchCart();
-        setIsAdding(false);
-      } catch (error) {
-        setIsAdding(false);
-        console.error(error);
-      }
+
+    setIsAdding(true);
+    try {
+      await AddToCart({ productId: product.id, quantity: parseInt(quantity) });
+      refetchCart();
+      showToast(
+        'default',
+        'Product added!',
+        'Product has been added to cart successfully.'
+      );
+    } catch (error) {
+      showToast(
+        'destructive',
+        'Uh oh! Something went wrong.',
+        'Failed to add product to cart.'
+      );
+    } finally {
+      setIsAdding(false);
+      setRoastingType('');
       setQuantity('');
-      toast({
-        title: 'Product added!',
-        description: 'Product has been added to cart successfully.'
-      });
-    } else {
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'Please input a correct number.'
-      });
     }
   };
 
-  return { quantity, handleQuantityChange, handleAddToCart } as const;
+  return {
+    quantity,
+    roastingType,
+    handleQuantityChange,
+    handleRoastingTypeChange,
+    handleAddToCart
+  } as const;
 }

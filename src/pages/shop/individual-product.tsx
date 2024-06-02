@@ -1,5 +1,14 @@
 import LoadImage from '@/components/load-image/load-image.tsx';
 import { Button } from '@/components/ui/button.tsx';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select';
 import useUserContext from '@/context/user-context/useUserContext';
 import { cn } from '@/lib/utils';
 import { useFetchProductImage } from '@/pages/product/useFetchProductImage';
@@ -19,7 +28,13 @@ export default function IndividualProduct({
 }: Readonly<IndividualProductProps>): JSX.Element {
   const navigate = useNavigate();
   const [isAdding, setIsAdding] = useState(false);
-  const { quantity, handleQuantityChange, handleAddToCart } = useHandleProduct({
+  const {
+    quantity,
+    roastingType,
+    handleQuantityChange,
+    handleRoastingTypeChange,
+    handleAddToCart
+  } = useHandleProduct({
     product,
     setIsAdding
   });
@@ -56,6 +71,22 @@ export default function IndividualProduct({
               }}
               className='w-14 rounded-full border border-black px-3'
             />
+            <Select
+              value={roastingType}
+              onValueChange={handleRoastingTypeChange}
+            >
+              <SelectTrigger className='mt-2 w-full rounded-full border border-black px-3'>
+                <SelectValue placeholder='Select roasting type' />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Roasting Type</SelectLabel>
+                  <SelectItem value='low'>Low</SelectItem>
+                  <SelectItem value='medium'>Medium</SelectItem>
+                  <SelectItem value='high'>High</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
           <div className='mt-3 flex w-full flex-col items-center justify-center gap-3'>
             <Button

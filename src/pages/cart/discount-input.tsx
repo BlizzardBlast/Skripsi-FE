@@ -4,20 +4,24 @@ import { useToast } from '@/components/ui/use-toast';
 import CheckPromo from '@/services/promo/check-promo';
 import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 
 type DiscountInputProps = {
   cart: GetAllCartReturn[];
+  cartLoading: boolean;
   setDiscount: React.Dispatch<React.SetStateAction<number>>;
   promoCode: string;
+  kodePromo: string;
   setPromoCode: React.Dispatch<React.SetStateAction<string>>;
   setKodePromo: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function DiscountInput({
   cart,
+  cartLoading,
   setDiscount,
   promoCode,
+  kodePromo,
   setPromoCode,
   setKodePromo
 }: Readonly<DiscountInputProps>): ReactNode {
@@ -51,6 +55,37 @@ export default function DiscountInput({
       });
     }
   };
+
+  useEffect(() => {
+    if (kodePromo !== '' && !cartLoading) {
+      const checkAppliedPromoCode = async (): Promise<void> => {
+        try {
+          const totalPrice = cart
+            .map((product) => product.product.price * product.quantity)
+            .reduce((acc, curr) => acc + curr, 0);
+          const result = await CheckPromo({ promoCode: kodePromo, totalPrice });
+          setDiscount(result.discount);
+          setIsLoading(false);
+          toast({
+            title: 'Promo applied!',
+            description: 'Promo code has been applied to your cart.'
+          });
+        } catch (error) {
+          const err = error as Error;
+          setDiscount(0);
+          console.error(err);
+          setIsLoading(false);
+          toast({
+            variant: 'destructive',
+            title: 'Uh oh! Something went wrong.',
+            description: err.message
+          });
+        }
+      };
+
+      void checkAppliedPromoCode();
+    }
+  }, []);
 
   return (
     <div className='mb-2 flex w-full flex-wrap items-center justify-center gap-2 sm:flex-nowrap sm:justify-end'>

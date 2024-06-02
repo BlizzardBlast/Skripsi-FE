@@ -39,8 +39,10 @@ export default function CartContainer(): JSX.Element {
         cart={cart}
         setDiscount={setDiscount}
         promoCode={promoCode}
+        kodePromo={kodePromo}
         setPromoCode={setPromoCode}
         setKodePromo={setKodePromo}
+        cartLoading={isLoading}
       />
       <PaymentDialog cart={cart} discount={discount} promoCode={kodePromo} />
     </div>
