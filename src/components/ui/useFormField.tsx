@@ -1,12 +1,18 @@
 import * as React from 'react';
-import { useFormContext, type FieldError } from 'react-hook-form';
+import {
+  type FieldErrorsImpl,
+  type Merge,
+  useFormContext,
+  type FieldError
+} from 'react-hook-form';
 import { FormFieldContext, FormItemContext } from './form.tsx';
 
 const useFormField = (): {
   invalid: boolean;
   isDirty: boolean;
   isTouched: boolean;
-  error?: FieldError;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   id: string;
   name: string;
   formItemId: string;
