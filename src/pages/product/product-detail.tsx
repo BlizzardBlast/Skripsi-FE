@@ -1,6 +1,15 @@
 import LoadImage from '@/components/load-image/load-image';
 import MetaTag from '@/components/meta-tag/meta-tag';
 import { Button } from '@/components/ui/button.tsx';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select';
 import CharacteristicsTag from '@/pages/product/characteristics-tag.tsx';
 import { useFetchProductImage } from '@/pages/product/useFetchProductImage';
 import useHandleProduct from '@/pages/shop/useHandleProduct';
@@ -26,7 +35,13 @@ export default function ProductDetail(): JSX.Element {
   const [isAdding, setIsAdding] = useState(false);
 
   const { id } = useParams();
-  const { quantity, handleQuantityChange, handleAddToCart } = useHandleProduct({
+  const {
+    quantity,
+    roastingType,
+    handleQuantityChange,
+    handleRoastingTypeChange,
+    handleAddToCart
+  } = useHandleProduct({
     product,
     setIsAdding
   });
@@ -62,7 +77,7 @@ export default function ProductDetail(): JSX.Element {
               <span>Taste Characteristic:</span>
               <CharacteristicsTag product={product} />
             </div>
-            <div className='flex h-44 min-w-60 flex-col justify-between rounded-2xl bg-secondary-color p-3 text-white'>
+            <div className='flex min-h-56 min-w-60 flex-col justify-between rounded-2xl bg-secondary-color p-3 text-white'>
               <span>Item Control</span>
               <div className='w-full'>
                 <div>
@@ -78,6 +93,25 @@ export default function ProductDetail(): JSX.Element {
                     className='w-40 rounded-full border border-black px-3 text-black'
                   />
                   <span className='ms-1'>Gram</span>
+                </div>
+                <div>
+                  <span className='mt-1'>Roasting Type</span>
+                  <Select
+                    value={roastingType}
+                    onValueChange={handleRoastingTypeChange}
+                  >
+                    <SelectTrigger className='mt-1 w-full rounded-full border border-black px-3 text-black'>
+                      <SelectValue placeholder='Select roasting type' />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Roasting Type</SelectLabel>
+                        <SelectItem value='low'>Low</SelectItem>
+                        <SelectItem value='medium'>Medium</SelectItem>
+                        <SelectItem value='high'>High</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <Button
                   className='mt-3 w-full justify-self-center rounded-lg bg-quaternary-color text-center text-black hover:bg-tertiary-color'
