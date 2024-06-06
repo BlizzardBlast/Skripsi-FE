@@ -119,3 +119,14 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Works on Chrome, Edge, and Safari */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Works on Firefox */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

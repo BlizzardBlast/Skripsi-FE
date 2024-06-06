@@ -148,7 +148,10 @@ export default function AddProductForm(): ReactNode {
                   <FormControl>
                     <Textarea
                       placeholder='Enter product description'
-                      className={cn(FORM_INPUT_CLASSNAME, 'resize-none')}
+                      className={cn(
+                        FORM_INPUT_CLASSNAME,
+                        'no-scrollbar resize-none'
+                      )}
                       {...field}
                     />
                   </FormControl>
