@@ -33,7 +33,8 @@ const EditProduct = async ({
           new_flavor: values.flavor,
           new_aftertaste: values.aftertaste,
           new_sweetness: values.sweetness,
-          new_image: values.image
+          new_image:
+            values.image.name === 'placeholder.png' ? undefined : values.image
         },
         {
           signal: signal as AbortSignal
