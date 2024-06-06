@@ -1,5 +1,5 @@
 import { AxiosInstance } from '@/helper/instance/axios-instance.ts';
-import type AddProductValidationSchema from '@/pages/admin/add-product/add-product-validation-schema';
+import type EditProductValidationSchema from '@/pages/admin/edit-product/edit-product-validation-schema';
 import { type ErrorResponses } from '@/types/services/error';
 import handleApiError from '@/utils/handle-api-error.ts';
 import { AxiosError, type AxiosResponse } from 'axios';
@@ -14,7 +14,7 @@ const EditProduct = async ({
   id,
   signal
 }: {
-  values: z.infer<typeof AddProductValidationSchema>;
+  values: z.infer<typeof EditProductValidationSchema>;
   id: string;
   signal: AbortSignal | null;
 }): Promise<EditProductReturnType> => {
@@ -33,8 +33,7 @@ const EditProduct = async ({
           new_flavor: values.flavor,
           new_aftertaste: values.aftertaste,
           new_sweetness: values.sweetness,
-          new_image:
-            values.image.name === 'placeholder.png' ? undefined : values.image
+          new_image: values.image
         },
         {
           signal: signal as AbortSignal

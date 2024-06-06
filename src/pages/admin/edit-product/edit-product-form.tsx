@@ -23,7 +23,7 @@ import useFileHandler from '@/pages/admin/add-product/useFileHandler';
 import useEditProductForm from '@/pages/admin/edit-product/useEditProductForm';
 import { useFetchProductImage } from '@/pages/product/useFetchProductImage';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
-import { useEffect, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { useParams } from 'react-router-dom';
 
 const FORM_INPUT_CLASSNAME =
@@ -36,17 +36,6 @@ export default function EditProductForm(): ReactNode {
   const { handleChange, loading, image } = useFileHandler();
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   const finalImage = image || productImage;
-
-  useEffect(() => {
-    if (finalImage === '' || finalImage === 'errorImage') {
-      const placeholderFile = new File(['content'], 'placeholder.png', {
-        type: 'image/png'
-      });
-      form.setValue('image', placeholderFile, {
-        shouldValidate: true
-      });
-    }
-  }, [finalImage, form]);
 
   return (
     <Form {...form}>

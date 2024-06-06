@@ -1,5 +1,5 @@
 import { useToast } from '@/components/ui/use-toast.ts';
-import AddProductValidationSchema from '@/pages/admin/add-product/add-product-validation-schema';
+import EditProductValidationSchema from '@/pages/admin/edit-product/edit-product-validation-schema';
 import EditProduct from '@/services/edit-product/edit-product';
 import { type LocationProps } from '@/types/location';
 import { type Product } from '@/types/services/shop/shop';
@@ -12,9 +12,9 @@ import { type z } from 'zod';
 type UseEditProductFormReturnType = {
   isLoading: boolean;
   onSubmit: (
-    values: z.infer<typeof AddProductValidationSchema>
+    values: z.infer<typeof EditProductValidationSchema>
   ) => Promise<void>;
-  form: ReturnType<typeof useForm<z.infer<typeof AddProductValidationSchema>>>;
+  form: ReturnType<typeof useForm<z.infer<typeof EditProductValidationSchema>>>;
 };
 
 export default function useEditProductForm(): UseEditProductFormReturnType {
@@ -30,8 +30,8 @@ export default function useEditProductForm(): UseEditProductFormReturnType {
   const { toast } = useToast();
   const { id } = useParams();
 
-  const form = useForm<z.infer<typeof AddProductValidationSchema>>({
-    resolver: zodResolver(AddProductValidationSchema),
+  const form = useForm<z.infer<typeof EditProductValidationSchema>>({
+    resolver: zodResolver(EditProductValidationSchema),
     defaultValues: {
       ...(location.state?.product ?? {}),
       price: String(location.state?.product?.price ?? 0),
@@ -48,7 +48,7 @@ export default function useEditProductForm(): UseEditProductFormReturnType {
   }, []);
 
   async function onSubmit(
-    values: z.infer<typeof AddProductValidationSchema>
+    values: z.infer<typeof EditProductValidationSchema>
   ): Promise<void> {
     setIsLoading(true);
     if (abortControllerRef.current != null) {
