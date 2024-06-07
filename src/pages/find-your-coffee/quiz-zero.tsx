@@ -30,9 +30,11 @@ export default function QuizStepZero({
           Coffee
         </h1>
         <Paragraph className='text-xl'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation
+          Discover the perfect coffee beans tailored to your taste. Answer a few
+          simple questions, and we&apos;ll recommend the best coffee to match
+          your preferences. Whether you prefer bold and robust or smooth and
+          mellow, we&apos;ll find the ideal beans for you. Click
+          &quot;Next&quot; to begin your personalized coffee journey.
         </Paragraph>
         <Button
           className='h-auto w-[5rem] rounded-full bg-white text-primary-text-color drop-shadow-lg hover:bg-quaternary-color hover:text-[#6B240C]'
