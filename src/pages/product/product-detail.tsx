@@ -54,7 +54,7 @@ export default function ProductDetail(): JSX.Element {
         title={`Kofebin | ${product.name}`}
         description='Purchase your preferred coffee beans now!'
       />
-      <div className='flex h-[80vh] w-5/6 flex-col flex-wrap items-center justify-center gap-5 rounded-2xl bg-white px-10 py-10 text-center drop-shadow-[3px_3px_3px_#E48F45] sm:text-left lg:flex-row'>
+      <div className='flex min-h-[80vh] w-5/6 flex-col flex-wrap items-center justify-center gap-5 rounded-2xl bg-white px-10 py-10 text-center drop-shadow-[3px_3px_3px_#E48F45] sm:text-left lg:flex-row'>
         <div className='flex h-full w-full flex-[4] flex-col'>
           <LoadImage
             classes='w-60 h-60 rounded-xl'
