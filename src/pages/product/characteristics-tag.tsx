@@ -5,7 +5,7 @@ export default function CharacteristicsTag({
   product
 }: Readonly<{ product: Product }>): JSX.Element {
   return (
-    <div className='flex max-w-60 flex-wrap justify-center gap-5 sm:justify-normal'>
+    <div className='mt-2 flex w-full flex-wrap items-center justify-center gap-5'>
       <div
         key={product.acidity}
         className={'w-auto rounded-full bg-black px-3 py-1 text-white'}
