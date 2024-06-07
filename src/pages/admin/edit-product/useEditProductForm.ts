@@ -66,7 +66,7 @@ export default function useEditProductForm(): UseEditProductFormReturnType {
         title: 'Product updated!',
         description: 'Product has been updated successfully.'
       });
-      navigate('/');
+      navigate('/modify-product');
     } catch (error) {
       const err = error as Error;
       if (err.name === 'CanceledError') {

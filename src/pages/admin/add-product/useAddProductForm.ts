@@ -63,7 +63,7 @@ export default function useAddProductForm(): UseAddProductFormReturnType {
         title: 'Product added successfully!',
         description: 'The product has been added to the database.'
       });
-      navigate('/');
+      navigate('/modify-product');
     } catch (error) {
       const err = error as Error;
       if (err.name === 'CanceledError') {
