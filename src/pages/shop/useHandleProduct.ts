@@ -71,11 +71,19 @@ export default function useHandleProduct({
 
   const validateQuantity = (): boolean => {
     const qty = parseInt(quantity);
-    if (isNaN(qty) || qty <= 0) {
+    if (isNaN(qty)) {
       showToast(
         'destructive',
         'Uh oh! Something went wrong.',
-        'Please input a correct number.'
+        'Please input a number.'
+      );
+      return false;
+    }
+    if (qty <= 0) {
+      showToast(
+        'destructive',
+        'Uh oh! Something went wrong.',
+        'Quantity should be greater than 0.'
       );
       return false;
     }
