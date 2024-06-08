@@ -97,9 +97,9 @@ export default function CartProductsHandler({
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Roasting Type</SelectLabel>
-            <SelectItem value='low'>Low</SelectItem>
+            <SelectItem value='light'>Light</SelectItem>
             <SelectItem value='medium'>Medium</SelectItem>
-            <SelectItem value='high'>High</SelectItem>
+            <SelectItem value='dark'>Dark</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
