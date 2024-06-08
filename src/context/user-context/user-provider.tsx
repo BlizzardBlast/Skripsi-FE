@@ -30,39 +30,42 @@ type UserProviderProps = {
 export const UserProvider: FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<GetUserDataResponse>();
   const [isPending, setIsPending] = useState(true);
-
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
-
-  const signIn = useCallback((): void => {
-    setIsSignedIn(true);
-  }, []);
-
-  const signOut = useCallback((): void => {
-    setIsSignedIn(false);
-    setUser(undefined);
-  }, []);
 
   const fetchUserData = useCallback(async (): Promise<void> => {
     setIsPending(true);
     try {
       const result = await GetUserData();
       if (Object.keys(result).length <= 0) {
-        signOut();
+        setIsSignedIn(false);
+        setUser(undefined);
       } else {
         setUser(result);
-        signIn();
+        setIsSignedIn(true);
       }
     } catch (error) {
-      signOut();
+      setIsSignedIn(false);
+      setUser(undefined);
       console.error(error);
     } finally {
       setIsPending(false);
     }
-  }, [signIn, signOut]);
+  }, []);
+
+  const signIn = useCallback(async (): Promise<void> => {
+    setIsSignedIn(true);
+    await fetchUserData();
+  }, [fetchUserData]);
+
+  const signOut = useCallback(async (): Promise<void> => {
+    setIsSignedIn(false);
+    setUser(undefined);
+    await fetchUserData();
+  }, [fetchUserData]);
 
   useEffect(() => {
     fetchUserData().catch(() => {});
-  }, [isSignedIn, fetchUserData]);
+  }, [fetchUserData]);
 
   const value = useMemo(
     () => ({ user, isPending, isSignedIn, signIn, signOut, fetchUserData }),

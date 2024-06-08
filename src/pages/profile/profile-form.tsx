@@ -100,7 +100,7 @@ export default function ProfileForm(): JSX.Element {
                 className='float-right mt-3 rounded-full bg-primary-color'
                 isLoading={isLoading}
               >
-                Change Account
+                Update Account
               </Button>
             </form>
           </Form>
