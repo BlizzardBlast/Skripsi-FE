@@ -11,6 +11,7 @@ type LoadImageProps = {
   lazy?: boolean;
   divClasses?: string;
   isLoading?: boolean;
+  itemProp?: string;
   onClick?: () => void;
 };
 
@@ -22,6 +23,7 @@ const LoadImage = ({
   lazy = false,
   divClasses = '',
   isLoading = false,
+  itemProp,
   onClick
 }: LoadImageProps): JSX.Element => {
   const [hasError, setHasError] = useState(false);
@@ -54,6 +56,7 @@ const LoadImage = ({
             loading={lazy ? 'lazy' : 'eager'}
             onError={handleError}
             data-testid={testId}
+            itemProp={itemProp}
           />
         )}
       </div>

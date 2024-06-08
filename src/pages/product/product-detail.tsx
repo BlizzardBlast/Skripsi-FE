@@ -55,17 +55,22 @@ export default function ProductDetail(): JSX.Element {
         title={`Kofebin | ${product.name}`}
         description='Purchase your preferred coffee beans now!'
       />
-      <div className='flex min-h-[80vh] w-5/6 flex-col flex-wrap items-center justify-center gap-5 rounded-2xl bg-white px-10 py-10 text-center drop-shadow-[3px_3px_3px_#E48F45] sm:text-left lg:flex-row'>
+      <div
+        className='flex min-h-[80vh] w-5/6 flex-col flex-wrap items-center justify-center gap-5 rounded-2xl bg-white px-10 py-10 text-center drop-shadow-[3px_3px_3px_#E48F45] sm:text-left lg:flex-row'
+        itemScope
+        itemType='https://schema.org/Product'
+      >
         <div className='flex h-[60vh] w-full flex-[4] grow flex-col justify-between'>
           <LoadImage
             classes='w-60 h-60 rounded-xl'
             source={productImage}
             alternative={product.name}
             divClasses='flex justify-center items-center'
+            itemProp='image'
           />
           <br />
           <div className='flex flex-col text-center'>
-            <span>
+            <span itemProp='category'>
               <strong>Type</strong>: {product.type}
             </span>
             <span>
@@ -76,15 +81,17 @@ export default function ProductDetail(): JSX.Element {
         </div>
         <div className='flex h-[60vh] w-full flex-[6] grow flex-col flex-wrap justify-between gap-5'>
           <div className='flex flex-col'>
-            <span className='text-2xl font-bold'>{product.name}</span>
+            <span className='text-2xl font-bold' itemProp='name'>
+              {product.name}
+            </span>
             <span className='font-bold'>{product.subname}</span>
-            <span>
+            <span itemProp='countryOfOrigin'>
               <strong>Origin</strong>: {product.origin}
             </span>
             <span>
               <strong>Price</strong>: {ConvertToRupiah(product.price)}
             </span>
-            <span>{product.description}</span>
+            <span itemProp='description'>{product.description}</span>
           </div>
           <div className='flex w-full flex-col flex-wrap items-center justify-center gap-5 sm:justify-between'>
             <div className='w-full'>
