@@ -15,6 +15,7 @@ import CharacteristicsTag from '@/pages/product/characteristics-tag.tsx';
 import { useFetchProductImage } from '@/pages/product/useFetchProductImage';
 import useHandleProduct from '@/pages/shop/useHandleProduct';
 import { type Product } from '@/types/services/shop/shop.ts';
+import ConvertToRupiah from '@/utils/convert-to-rupiah';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
 import { useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -77,8 +78,13 @@ export default function ProductDetail(): JSX.Element {
           <div className='flex flex-col'>
             <span className='text-2xl font-bold'>{product.name}</span>
             <span className='font-bold'>{product.subname}</span>
-            <span>Origin: {product.origin}</span>
-            <span className='font-bold'>{product.description}</span>
+            <span>
+              <strong>Origin</strong>: {product.origin}
+            </span>
+            <span>
+              <strong>Price</strong>: {ConvertToRupiah(product.price)}
+            </span>
+            <span>{product.description}</span>
           </div>
           <div className='flex w-full flex-col flex-wrap items-center justify-center gap-5 sm:justify-between'>
             <div className='w-full'>

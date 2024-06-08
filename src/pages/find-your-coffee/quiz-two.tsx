@@ -27,9 +27,25 @@ export default function QuizStepTwo({
             delay: 0.1
           }}
         >
-          Does the coffee have a light, delicate, tea-like mouthfeel or is it
-          more of a rich, creamy, heavy cup? Again, more is not necessarily
-          better.
+          The flavor of coffee is intricately tied to where it is grown. For
+          example, Sumatran coffee often has earthy, tobacco-like notes due to
+          the region’s rich soil and nearby tobacco fields. Each region imparts
+          its unique character to the beans, from the fruity notes of Ethiopian
+          coffee to the chocolatey tones of Brazilian beans.
+        </motion.p>
+        <motion.p
+          className='text-xl'
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            ease: 'easeInOut',
+            type: 'spring',
+            bounce: 0.5,
+            delay: 0.2
+          }}
+        >
+          What kind of coffee flavor are you looking for?
         </motion.p>
         <motion.div
           className='flex flex-wrap gap-5'
@@ -38,7 +54,7 @@ export default function QuizStepTwo({
           transition={{
             duration: 0.5,
             ease: 'easeInOut',
-            delay: 0.2
+            delay: 0.3
           }}
         >
           <ChoiceButton
