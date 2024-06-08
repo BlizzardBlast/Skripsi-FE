@@ -60,7 +60,7 @@ export default function ProductDetail(): JSX.Element {
         itemScope
         itemType='https://schema.org/Product'
       >
-        <div className='flex h-[60vh] w-full flex-[4] grow flex-col justify-between'>
+        <div className='flex min-h-[60vh] w-full flex-[4] grow flex-col justify-between'>
           <LoadImage
             classes='w-60 h-60 rounded-xl'
             source={productImage}
@@ -79,7 +79,7 @@ export default function ProductDetail(): JSX.Element {
             <CharacteristicsTag product={product} />
           </div>
         </div>
-        <div className='flex h-[60vh] w-full flex-[6] grow flex-col flex-wrap justify-between gap-5'>
+        <div className='flex min-h-[60vh] w-full flex-[6] grow flex-col flex-wrap justify-between gap-5'>
           <div className='flex flex-col'>
             <span className='text-2xl font-bold' itemProp='name'>
               {product.name}
