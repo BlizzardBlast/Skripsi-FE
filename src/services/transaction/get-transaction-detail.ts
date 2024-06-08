@@ -1,4 +1,5 @@
 import { AxiosInstance } from '@/helper/instance/axios-instance.ts';
+import { type RoastingType } from '@/types/product';
 import { type ErrorResponses } from '@/types/services/error';
 import { type Product } from '@/types/services/shop/shop';
 import handleApiError from '@/utils/handle-api-error.ts';
@@ -17,7 +18,7 @@ export type GetTransactionDetailSingleResponse = {
   created_at: string | null;
   updated_at: string | null;
   product: Product;
-  roasting_type: 'low' | 'medium' | 'high';
+  roasting_type: RoastingType;
 };
 
 export type GetTransactionDetailResponse = GetTransactionDetailSingleResponse[];

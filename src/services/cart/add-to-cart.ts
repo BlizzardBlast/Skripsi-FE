@@ -1,4 +1,5 @@
 import { AxiosInstance } from '@/helper/instance/axios-instance.ts';
+import { type RoastingType } from '@/types/product';
 import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
 import { type ErrorResponses } from '@/types/services/error';
 import handleApiError from '@/utils/handle-api-error.ts';
@@ -11,7 +12,7 @@ const AddToCart = async ({
 }: {
   productId: number;
   quantity: number;
-  roastingType: 'low' | 'medium' | 'high';
+  roastingType: RoastingType;
 }): Promise<GetAllCartReturn[]> => {
   try {
     const response: AxiosResponse<GetAllCartReturn[]> =

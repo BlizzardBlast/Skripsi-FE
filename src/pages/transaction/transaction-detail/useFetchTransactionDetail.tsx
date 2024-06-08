@@ -18,7 +18,7 @@ export default function useFetchTransactionDetail(): UseFetchTransactionDetailRe
     {
       id: 0,
       quantity: 0,
-      roasting_type: 'low',
+      roasting_type: 'light',
       product_id: 0,
       order_id: 0,
       user_id: 0,

@@ -3,6 +3,7 @@ import { useToast } from '@/components/ui/use-toast.ts';
 import { useCartContext } from '@/context/cart-context/useCartContext';
 import useUserContext from '@/context/user-context/useUserContext';
 import AddToCart from '@/services/cart/add-to-cart';
+import { type RoastingType } from '@/types/product';
 import { type Product } from '@/types/services/shop/shop.ts';
 import { useState } from 'react';
 type UseHandleProductProps = {
@@ -12,9 +13,9 @@ type UseHandleProductProps = {
 
 type UseHandleProductReturnType = {
   quantity: string;
-  roastingType: '' | 'low' | 'medium' | 'high';
+  roastingType: '' | RoastingType;
   handleQuantityChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleRoastingTypeChange: (newValue: 'low' | 'medium' | 'high') => void;
+  handleRoastingTypeChange: (newValue: RoastingType) => void;
   handleAddToCart: () => Promise<void>;
 };
 
@@ -23,9 +24,7 @@ export default function useHandleProduct({
   setIsAdding
 }: Readonly<UseHandleProductProps>): Readonly<UseHandleProductReturnType> {
   const [quantity, setQuantity] = useState<string>('');
-  const [roastingType, setRoastingType] = useState<
-    'low' | 'medium' | 'high' | ''
-  >('');
+  const [roastingType, setRoastingType] = useState<RoastingType | ''>('');
   const { isSignedIn } = useUserContext();
   const { refetchCart } = useCartContext();
   const { toast } = useToast();
@@ -37,9 +36,7 @@ export default function useHandleProduct({
     setQuantity(onlyNumbersQuantity);
   };
 
-  const handleRoastingTypeChange = (
-    newValue: 'low' | 'medium' | 'high'
-  ): void => {
+  const handleRoastingTypeChange = (newValue: RoastingType): void => {
     setRoastingType(newValue);
   };
 
@@ -112,7 +109,7 @@ export default function useHandleProduct({
       await AddToCart({
         productId: product.id,
         quantity: parseInt(quantity),
-        roastingType: roastingType as 'low' | 'medium' | 'high'
+        roastingType: roastingType as RoastingType
       });
       refetchCart();
       showToast(
