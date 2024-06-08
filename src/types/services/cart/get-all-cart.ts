@@ -1,5 +1,6 @@
-import { type RoastingType } from '@/types/product';
 import { type Product } from '@/types/services/shop/shop';
+
+export type RoastingType = 'light' | 'medium' | 'dark';
 
 export type GetAllCartReturn = {
   user_id: number;

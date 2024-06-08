@@ -3,7 +3,7 @@ import { useToast } from '@/components/ui/use-toast.ts';
 import { useCartContext } from '@/context/cart-context/useCartContext';
 import useUserContext from '@/context/user-context/useUserContext';
 import AddToCart from '@/services/cart/add-to-cart';
-import { type RoastingType } from '@/types/product';
+import { type RoastingType } from '@/types/services/cart/get-all-cart';
 import { type Product } from '@/types/services/shop/shop.ts';
 import { useState } from 'react';
 type UseHandleProductProps = {

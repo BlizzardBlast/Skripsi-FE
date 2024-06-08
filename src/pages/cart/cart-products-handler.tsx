@@ -16,8 +16,10 @@ import DecrementQuantity from '@/services/cart/decrement-cart';
 import DeleteFromCart from '@/services/cart/delete-from-cart';
 import EditRoastingType from '@/services/cart/edit-roasting-type';
 import IncrementQuantity from '@/services/cart/increment-cart';
-import { type RoastingType } from '@/types/product';
-import { type GetAllCartReturn } from '@/types/services/cart/get-all-cart';
+import {
+  type RoastingType,
+  type GetAllCartReturn
+} from '@/types/services/cart/get-all-cart';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
 import { useState } from 'react';
 
