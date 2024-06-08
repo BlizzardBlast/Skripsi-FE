@@ -56,7 +56,7 @@ export default function ProductDetail(): JSX.Element {
         description='Purchase your preferred coffee beans now!'
       />
       <div className='flex min-h-[80vh] w-5/6 flex-col flex-wrap items-center justify-center gap-5 rounded-2xl bg-white px-10 py-10 text-center drop-shadow-[3px_3px_3px_#E48F45] sm:text-left lg:flex-row'>
-        <div className='flex h-full w-full flex-[4] flex-col'>
+        <div className='flex h-[60vh] w-full flex-[4] grow flex-col justify-between'>
           <LoadImage
             classes='w-60 h-60 rounded-xl'
             source={productImage}
@@ -74,7 +74,7 @@ export default function ProductDetail(): JSX.Element {
             <CharacteristicsTag product={product} />
           </div>
         </div>
-        <div className='flex h-full flex-[6] flex-col flex-wrap justify-between gap-5'>
+        <div className='flex h-[60vh] w-full flex-[6] grow flex-col flex-wrap justify-between gap-5'>
           <div className='flex flex-col'>
             <span className='text-2xl font-bold'>{product.name}</span>
             <span className='font-bold'>{product.subname}</span>
