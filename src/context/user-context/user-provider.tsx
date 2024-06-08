@@ -16,6 +16,7 @@ export type UserContextType = {
   isSignedIn: boolean;
   signIn: () => void;
   signOut: () => void;
+  fetchUserData: () => Promise<void>;
 };
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -41,31 +42,31 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
     setUser(undefined);
   }, []);
 
-  useEffect(() => {
-    const fetchUserData = async (): Promise<void> => {
-      setIsPending(true);
-      try {
-        const result = await GetUserData();
-        if (Object.keys(result).length <= 0) {
-          signOut();
-        } else {
-          setUser(result);
-          signIn();
-        }
-      } catch (error) {
+  const fetchUserData = useCallback(async (): Promise<void> => {
+    setIsPending(true);
+    try {
+      const result = await GetUserData();
+      if (Object.keys(result).length <= 0) {
         signOut();
-        console.error(error);
-      } finally {
-        setIsPending(false);
+      } else {
+        setUser(result);
+        signIn();
       }
-    };
+    } catch (error) {
+      signOut();
+      console.error(error);
+    } finally {
+      setIsPending(false);
+    }
+  }, [signIn, signOut]);
 
+  useEffect(() => {
     fetchUserData().catch(() => {});
-  }, [isSignedIn, signIn, signOut]);
+  }, [isSignedIn, fetchUserData]);
 
   const value = useMemo(
-    () => ({ user, isPending, isSignedIn, signIn, signOut }),
-    [user, isPending, isSignedIn, signIn, signOut]
+    () => ({ user, isPending, isSignedIn, signIn, signOut, fetchUserData }),
+    [user, isPending, isSignedIn, signIn, signOut, fetchUserData]
   );
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

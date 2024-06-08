@@ -95,41 +95,6 @@ export default function ProfileForm(): JSX.Element {
                   </FormItem>
                 )}
               />
-              {/* <FormField
-                control={form.control}
-                name='password'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <PasswordInput
-                        className={FORM_INPUT_CLASSNAME}
-                        placeholder='Enter a strong password'
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              /> */}
-              <FormField
-                control={form.control}
-                name='preferences'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Preference</FormLabel>
-                    <FormControl>
-                      <Input
-                        className={FORM_INPUT_CLASSNAME}
-                        placeholder='What is your preference?'
-                        {...field}
-                        autoComplete='preferences'
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <Button
                 type='submit'
                 className='float-right mt-3 rounded-full bg-primary-color'

@@ -10,10 +10,12 @@ import { AxiosError, type AxiosResponse } from 'axios';
 
 const UpdateProfile = async ({
   values,
-  id
+  id,
+  fetchUserData
 }: {
   values: UpdateProfileProps;
   id: string | number;
+  fetchUserData: () => Promise<void>;
 }): Promise<LoginReturnType> => {
   try {
     const response: AxiosResponse<UpdateProfileReturnType> =
@@ -22,6 +24,7 @@ const UpdateProfile = async ({
         new_username: values.new_username,
         new_name: values.new_name
       });
+    await fetchUserData();
     return response.data;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {

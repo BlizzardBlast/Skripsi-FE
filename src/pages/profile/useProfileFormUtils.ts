@@ -19,15 +19,13 @@ export default function useProfileFormUtils(): UseProfileFormUtilsReturnType {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const { user, isPending } = useUserContext();
+  const { user, isPending, fetchUserData } = useUserContext();
   const form = useForm<z.infer<typeof profileValidationSchema>>({
     resolver: zodResolver(profileValidationSchema),
     values: {
       email: user?.email ?? '',
       username: user?.username ?? '',
-      name: 'Hmmm',
-      // password: '*********',
-      preferences: user?.preferences ?? ''
+      name: 'Hmmm'
     }
   });
   async function onSubmit(
@@ -39,10 +37,12 @@ export default function useProfileFormUtils(): UseProfileFormUtilsReturnType {
         new_email: values.email,
         new_username: values.username,
         new_name: values.name
-        // password: values.password,
-        // preferences: values.preferences
       };
-      await UpdateProfile({ values: profileData, id: user?.id as number });
+      await UpdateProfile({
+        values: profileData,
+        id: user?.id as number,
+        fetchUserData
+      });
       toast({
         title: 'You updated your profile!',
         description: 'Profile Data has been updated.'

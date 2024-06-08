@@ -12,15 +12,7 @@ const profileValidationSchema = z.object({
   name: z
     .string()
     .min(3, { message: 'Name must be at least 3 characters long.' })
-    .max(20, { message: 'Name must be at most 20 characters long.' }),
-  // password: z
-  //   .string()
-  //   .min(8, { message: 'Password must be at least 8 characters long.' })
-  //   .refine((value) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(value), {
-  //     message:
-  //       'Password must contain at least one lowercase letter, one uppercase letter, and one digit.'
-  //   }),
-  preferences: z.string().optional()
+    .max(20, { message: 'Name must be at most 20 characters long.' })
 });
 
 export default profileValidationSchema;
