@@ -74,7 +74,7 @@ export default function ProductDetail(): JSX.Element {
             <CharacteristicsTag product={product} />
           </div>
         </div>
-        <div className='flex h-full flex-[6] flex-col flex-wrap gap-5'>
+        <div className='flex h-full flex-[6] flex-col flex-wrap justify-between gap-5'>
           <div className='flex flex-col'>
             <span className='text-2xl font-bold'>{product.name}</span>
             <span className='font-bold'>{product.subname}</span>
