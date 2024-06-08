@@ -56,7 +56,7 @@ export default function IndividualProduct({
         alternative={product.name}
       />
       <p>{product.name}</p>
-      <p>Characteristic: {product.type}</p>
+      <p>Bean Type: {product.type}</p>
       <p>Price/gram: {ConvertToRupiah(product.price)}</p>
       {user?.role !== 'admin' && (
         <>
