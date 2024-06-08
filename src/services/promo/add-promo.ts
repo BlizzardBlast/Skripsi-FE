@@ -22,8 +22,10 @@ const AddPromo = async ({
         'api/postPromo',
         {
           promo_code: values.promo_code,
-          promo_start_date: values.promo_start_date,
-          promo_expiry_date: values.promo_expiry_date,
+          promo_start_date: new Date(values.promo_start_date).toLocaleString(),
+          promo_expiry_date: new Date(
+            values.promo_expiry_date
+          ).toLocaleString(),
           discount: Number(values.discount),
           minimum: Number(values.minimum),
           maximum: Number(values.maximum),

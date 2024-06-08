@@ -14,7 +14,7 @@ const formatDate = (date: string): string => {
     'Nov',
     'Des'
   ];
-  const formattedDate = `${finalDate.getDate()} ${months[finalDate.getMonth()]} ${finalDate.getFullYear()} ${String(finalDate.getHours()).padStart(2, '0')}:${String(finalDate.getMinutes()).padStart(2, '0')}`;
+  const formattedDate = `${finalDate.getDate()} ${months[finalDate.getMonth()]} ${finalDate.getFullYear()}`;
 
   return formattedDate;
 };
