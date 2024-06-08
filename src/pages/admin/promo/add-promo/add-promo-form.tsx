@@ -81,7 +81,11 @@ export default function AddPromoForm(): ReactNode {
                     mode='single'
                     selected={new Date(field.value)}
                     onSelect={field.onChange}
-                    disabled={(date) => date < new Date()}
+                    disabled={(date) => {
+                      const today = new Date();
+                      today.setHours(0, 0, 0, 0);
+                      return date < today;
+                    }}
                     initialFocus
                     showOutsideDays
                   />
@@ -121,7 +125,11 @@ export default function AddPromoForm(): ReactNode {
                     mode='single'
                     selected={new Date(field.value)}
                     onSelect={field.onChange}
-                    disabled={(date) => date < new Date()}
+                    disabled={(date) => {
+                      const today = new Date();
+                      today.setHours(0, 0, 0, 0);
+                      return date < today;
+                    }}
                     initialFocus
                     showOutsideDays
                   />

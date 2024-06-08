@@ -14,9 +14,16 @@ const AddPromoValidationSchema = z
               : defaultError
         })
       })
-      .refine((date) => date >= new Date(), {
-        message: 'Start Date must be in the future.'
-      }),
+      .refine(
+        (date) => {
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          return date >= today;
+        },
+        {
+          message: 'Start Date must be in the future.'
+        }
+      ),
     promo_expiry_date: z.coerce
       .date({
         errorMap: (issue, { defaultError }) => ({
@@ -26,12 +33,16 @@ const AddPromoValidationSchema = z
               : defaultError
         })
       })
-      // .refine((date, { original }) => date >= original.promo_start_date, {
-      //   message: 'Expiry Date must be after the Start Date.'
-      // })
-      .refine((date) => date >= new Date(), {
-        message: 'Expiry Date must be in the future.'
-      }),
+      .refine(
+        (date) => {
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          return date >= today;
+        },
+        {
+          message: 'Expiry Date must be in the future.'
+        }
+      ),
     discount: z
       .string({ required_error: 'Discount is required.' })
       .min(1, { message: 'Discount is required.' })
