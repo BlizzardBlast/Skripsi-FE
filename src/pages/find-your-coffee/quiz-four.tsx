@@ -27,9 +27,10 @@ export default function QuizStepFour({
             delay: 0.1
           }}
         >
-          Before you said oh sweetness came on how much you add sugar. Coffee
-          naturally has its own sugar. However the longer you roasted that
-          natural sugar will turn into bold (bitter) flavor
+          Before you think that sweetness depends on how much sugar you add,
+          it&apos;s important to know that coffee naturally contains its own
+          sugars. However, the longer you roast the beans, the more these
+          natural sugars transform into bold, bitter flavors.
         </motion.p>
         <motion.div
           className='flex flex-wrap gap-5'
