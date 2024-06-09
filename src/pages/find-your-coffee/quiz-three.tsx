@@ -27,8 +27,9 @@ export default function QuizStepThree({
             delay: 0.1
           }}
         >
-          Generally, coffee beans can be separated into many types, but
-          generally it is split into Arabica, Robusta, and Bourbon
+          The aftertaste of coffee is a crucial aspect of its overall flavor
+          profile, lingering on the palate long after the last sip. Different
+          coffee beans contribute to a variety of aftertaste experiences.
         </motion.p>
         <motion.p
           className='text-xl'
@@ -42,8 +43,9 @@ export default function QuizStepThree({
             delay: 0.2
           }}
         >
-          Arabica tends to have a higher caffeine content and has a more bold or
-          bitter flavor
+          Arabica is known for its smooth, sweet, and nuanced flavors. Arabica
+          beans often leave a lingering aftertaste that is complex and layered,
+          with hints of fruits, flowers, and chocolate.
         </motion.p>
         <motion.p
           className='text-xl'
@@ -57,8 +59,9 @@ export default function QuizStepThree({
             delay: 0.3
           }}
         >
-          Robutsta on the other hand tends to have a more acidic flavor because
-          it is usually harvested in higher altitute
+          Robutsta typically has a stronger, more intense flavor. The aftertaste
+          of Robusta beans tends to be bold and slightly bitter, often with
+          nutty or earthy undertones.
         </motion.p>
         <motion.p
           className='text-xl'
@@ -72,7 +75,23 @@ export default function QuizStepThree({
             delay: 0.4
           }}
         >
-          So, which one would you prefer?
+          Bourbon beans are prized for their rich and balanced flavor. The
+          aftertaste is often sweet and lingering, with subtle notes of caramel
+          and vanilla.
+        </motion.p>
+        <motion.p
+          className='text-xl'
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            ease: 'easeInOut',
+            type: 'spring',
+            bounce: 0.5,
+            delay: 0.5
+          }}
+        >
+          So, which aftertaste do you prefer?
         </motion.p>
         <motion.div
           className='flex flex-wrap gap-5'
@@ -81,7 +100,7 @@ export default function QuizStepThree({
           transition={{
             duration: 0.5,
             ease: 'easeInOut',
-            delay: 0.5
+            delay: 0.6
           }}
         >
           <ChoiceButton
