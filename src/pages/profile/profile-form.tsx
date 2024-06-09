@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input.tsx';
 import useProfileFormUtils from '@/pages/profile/useProfileFormUtils';
 import wrapAsyncFunction from '@/utils/wrap-async-function';
 import { FaRegUser } from '@react-icons/all-files/fa/FaRegUser';
+import { Link } from 'react-router-dom';
 
 const FORM_INPUT_CLASSNAME =
   'rounded-3xl border-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0';
@@ -95,6 +96,14 @@ export default function ProfileForm(): JSX.Element {
                   </FormItem>
                 )}
               />
+              <div className='mt-2'>
+                <Link
+                  to='/change-password'
+                  className='text-primary-color underline underline-offset-4'
+                >
+                  Forgot password?
+                </Link>
+              </div>
               <Button
                 type='submit'
                 className='float-right mt-3 rounded-full bg-primary-color'
