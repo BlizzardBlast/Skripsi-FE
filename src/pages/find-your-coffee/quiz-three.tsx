@@ -13,7 +13,7 @@ export default function QuizStepThree({
     <div
       className={`min-h-[80vh] w-full bg-[url('@/assets/fyc1_bg.svg')] bg-cover bg-fixed bg-center bg-no-repeat text-white`}
     >
-      <div className='float-right flex w-full flex-col gap-10 bg-black bg-opacity-30 p-20 backdrop-blur-sm md:w-2/5'>
+      <div className='float-right flex min-h-[80vh] w-full flex-col gap-10 bg-black bg-opacity-30 p-20 backdrop-blur-sm md:w-2/5'>
         <MotionHeading title='Aftertaste' />
         <motion.p
           className='text-xl'
