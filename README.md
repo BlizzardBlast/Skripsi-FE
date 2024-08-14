@@ -41,13 +41,20 @@ Front-End dari website Kofebin yang dibuat dengan React.
 
 ## Usage
 
-1. **Start the development server**
+1. **Add `.env` file**
+   Add this line:
+
+   ```bash
+   VITE_FETCH_URL=theLinkToYourBackend
+   ```
+
+2. **Start the development server**
 
    ```bash
    npm run dev
    ```
 
-2. **Open your browser**
+3. **Open your browser**
 
    Navigate to <http://localhost:5173> to view the project.
 
