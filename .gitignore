@@ -127,3 +127,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 pnpm-lock.yaml
+
+reportcoverage/
+junit.xml

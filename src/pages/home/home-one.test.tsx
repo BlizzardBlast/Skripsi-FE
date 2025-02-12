@@ -1,7 +1,15 @@
+import useUserContext from '@/context/user-context/useUserContext';
 import HomeOne from '@/pages/home/home-one';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it, vi } from 'vitest';
+import {
+  beforeEach,
+  describe,
+  expect,
+  it,
+  type MockInstance,
+  vi
+} from 'vitest';
 
 const intersectionObserverMock = (): {
   observe: () => null;
@@ -12,7 +20,15 @@ window.IntersectionObserver = vi
   .fn()
   .mockImplementation(intersectionObserverMock);
 
+vi.mock('@/context/user-context/useUserContext');
+
 describe('Input', async () => {
+  beforeEach(() => {
+    (useUserContext as unknown as MockInstance).mockReturnValue({
+      isSignedIn: false
+    });
+  });
+
   it('should render the input', () => {
     render(
       <MemoryRouter>

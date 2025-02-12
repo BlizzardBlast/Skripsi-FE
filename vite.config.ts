@@ -2,7 +2,6 @@ import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import tailwindcss from 'tailwindcss';
-import { chunkSplitPlugin } from 'vite-plugin-chunk-split';
 import viteCompression from 'vite-plugin-compression';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { defineConfig } from 'vitest/config';
@@ -21,18 +20,22 @@ export default defineConfig({
     }),
     react(),
     ViteImageOptimizer(),
-    chunkSplitPlugin(),
     viteCompression({ algorithm: 'brotliCompress' })
   ],
   test: {
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
-    reporters: ['html'],
+    reporters: ['junit'],
+    outputFile: {
+      junit: './junit.xml'
+    },
     coverage: {
-      provider: 'v8',
-      reporter: ['text', 'json', 'html'],
-      enabled: true
+      enabled: true,
+      provider: 'istanbul',
+      reporter: ['cobertura', 'html', 'lcov'],
+      reportsDirectory: './reportcoverage',
+      reportOnFailure: true
     }
   },
   build: {
