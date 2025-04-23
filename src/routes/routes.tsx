@@ -44,6 +44,24 @@ const router = createBrowserRouter([
         }
       },
       {
+        path: '/change-password',
+        lazy: async () => {
+          const { default: ChangePasswordPage } = await import(
+            '@/pages/change-password/change-password-page.tsx'
+          );
+          return { Component: ChangePasswordPage };
+        }
+      },
+      {
+        path: '/change-password/new-password',
+        lazy: async () => {
+          const { default: NewPasswordPage } = await import(
+            '@/pages/new-password/new-password.tsx'
+          );
+          return { Component: NewPasswordPage };
+        }
+      },
+      {
         path: '/cart',
         lazy: async () => {
           const { default: CartPage } = await import(
